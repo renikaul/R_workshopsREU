@@ -4,39 +4,30 @@ Series of workshops used to introduce R to participants of the Population Biolog
 ## Workshop 1: Introduction to R, Rstudio and tidyverse
   1. What is the goal of these workshops? (John)
   2. Workshop format and expectations
-  2. What is `R` and how is it used for research?
-  3. Interface with Rstudio
-## Workshop 2: Reproducible research with R
-  1. Review 
-## Workshop 3: Simulating infectious diseases with R
-
-## Workshop 4: Data visualization with R
-
----
-
-## Module specific skills covered
-  1.  What is R and RStudio
+  3. What is `R` and how is it used for research?
+  4.  What  RStudio
       - list at least 3 reasons R/RStudio is a useful research tool 
       - describe CRAN's function
       - install a package
       - create a variable in R
-  2.  Data Types
+      - Interface with Rstudio
+  5. Getting the terminology
+  6.  Data Types
       - assigning objects
       - data structure and syntax
       - troubleshooting through Rstudio
       - data subsetting
-  3.  Writing your first script
-      - script best practices 
-  4.  Writing functions 
+  7.  Best practices
+  8.  Writing functions 
       - function syntax
       - control statements
       - logic statements 
-      
-      which will require the following skills already covered:       
-       - data structure 
-       - assigning an object
-        
-  5.  Manipulating and exploring Data  
+  9. What to do when you are stuck    
+## Workshop 2: Reproducible research with R
+  1. Review making a script
+  2. Function swap
+  3. Reproducible research
+  4.  Manipulating and exploring Data  
       - loading data 
       - calculate simple stats in base `R`
       - plot function in base `R`
@@ -45,11 +36,9 @@ Series of workshops used to introduce R to participants of the Population Biolog
        - logic statements
        - manipulating data  
        - assigning an object
- 
- 6.  Writing functions recap
- 7.  Data Visualization
-      - plotting in base R
-      - plotting in ggplot
+
+
+## Workshop 3: Simulating infectious diseases with R
  8.  Simulating Data
         - simulating data of discrete model
         - simulating data of continuous model
@@ -62,3 +51,15 @@ Series of workshops used to introduce R to participants of the Population Biolog
         - plotting in base `R`
         - plotting in ggplot
         - manipulating data  
+
+## Workshop 4: Data visualization with R
+Collaborative plotting
+ 7.  Data Visualization
+      - plotting in base R
+      - plotting in ggplot
+      - spatial data 
+---
+
+        
+ 
+
