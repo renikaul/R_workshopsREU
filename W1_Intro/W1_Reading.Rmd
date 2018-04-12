@@ -1,0 +1,74 @@
+---
+title: "Introduction to R Population Biology of Infectious Diseases REU"
+author: "Reni Kaul"
+date: "4/11/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+  1. What is `R` and RStudio? 
+  2. How is it used for research?
+  3. Introduction to data with tidyverse
+  4. How to get unstuck 
+  *Break*
+  5. Exploring data
+  Other useful information
+  
+
+The core tidyverse includes the packages that you're likely to use in everyday data analyses, such as [ggplot2](http://ggplot2.tidyverse.org/) for data visualization and [dplyr](http://dplyr.tidyverse.org/) for data wrangling. You'll focus on these two in this session.
+
+
+You can execute chunks by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter* or *Ctrl+Shift+Enter* on Windows. 
+
+#3. Introduction to tidyverse
+
+The tidyverse is a set of packages that work in harmony because they share common data representations and API design. The `tidyverse` package is designed to make it easy to install and load core packages from the tidyverse in a single command.
+
+Code using tidyverse syntax starts with `data` and is followed by one or more `verbs` to be done to the data. The data and verbs are linked together using `%>%` which is called pipe. You can type out the pipe operator or using the shortcut *Cmd+Shift+M*.  
+
+To get an overview of your data, use the function "summary":
+
+```{r message = FALSE}
+# Summary titanic
+summary(passengers)
+```
+
+Now do the same using a pipe, one of the handiest tools in the tidyverse:
+
+```{r message = FALSE}
+# Summarize titanic using a pipe
+passengers %>%
+  summary()
+
+```
+
+
+
+
+[A quick overview of differences with base](http://www.science.smith.edu/~amcnamara/blog/teaching/2018/02/11/Syntax-comparison.html?utm_content=bufferc6c7a&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer) `R`.
+
+
+#4. How to get unstuck
+========================================================
+manual pages and vignettes
+Every function and package has instructions. 
+**Reading manual pages**
+
+Every 
+![manual page](W1_Intro-figure/read-a-help-page.png) from http://socviz.co/appendix.html#a-little-more-about-r
+
+google 
+cheatsheets
+error warnings
+
+#Other useful information
+
+You may have noticed stylistic consistency in the code that we've written above. That's because we're adhering to a style guide. In data science *and* programming/coding in general, it's important to get accustomed to using a style guide asap. As Hadley Wickham puts it in the [tidyverse style guide](http://style.tidyverse.org/index.html),
+
+> Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread.
+
+Part I of the [tidyverse style guide](http://style.tidyverse.org/index.html) would be most useful for beginners. 
