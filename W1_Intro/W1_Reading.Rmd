@@ -11,11 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
   1. What is `R` and RStudio? 
-  2. How is it used for research?
-  3. Introduction to data with tidyverse
-  4. How to get unstuck 
-  *Break*
-  5. Exploring data
+  2. Introduction to data with tidyverse
+  3. How to get unstuck 
+  4. Exploring data
   Other useful information
   
 

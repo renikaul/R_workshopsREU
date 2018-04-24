@@ -1,0 +1,150 @@
+Introduction to R
+========================================================
+author: [NAME]
+
+
+Why is R programming a useful skill?
+========================================================
+John Drake will make a pitch about the uses of R and why it is a skill worth learning. 
+
+About Myself
+========================================================
+ This is just a rough template, please edit as you'd like. Many times, students don't have a good concept of all the ways R is used in this discipline. This is an opportunity to give them a quick overview of your research and how you use R to conduct it. 
+ 
+ It would be great if you are available to the students after the workshop.
+ 
+ - My research interest is [INSERT DESCRIPTION]
+ - I use `R` in my research to:
+   + organize data 
+   + develop machine learning algorithms
+   + 
+ - I mostly work [in this disease system or approach] 
+ - My contact info is [INSERT EMAIL]
+ 
+
+Workshop Goals 
+========================================================
+
+Science is iterative, so our work flow matches this process. Workshops will cover multiple parts of this cycle, each time focusing on a new aspect. Today will focus mostly on Import>Tidy>Transform. 
+
+Workshop Format 
+========================================================
+Focus on 'authentic tasks' or something similar to scientific programming. 
+
+
+Expectations
+========================================================
+Setting the tone for the course. Feel free to edit. 
+
+Outline 
+========================================================
+Setting expectations for goal oriented tasks.
+
+
+1. What is R and RStudio? 
+========================================================
+Important to stress R is the language, RStudio is software.
+Can use R without RStudio but not the other way around. 
+All workshops will use RStudio.     
+
+RStudio 
+========================================================
+*Switch over to RStudio*
+The next workshop will go into using Projects, so you don't need to go into much detail.
+Clicking on the RProj should open RStudio along with the Exercise.Rmd
+Do this with them. 
+
+
+Might also want to point out some of the features of the Rmd. 
+ - green arrow to run code chunk
+ - expand/collapse sections
+ - section navigator 
+ - etc. 
+
+RStudio 
+========================================================
+Walk them through the layout of RStudio with the names. 
+
+
+3. Introduction to tidyverse
+========================================================  
+Tidyverse uses syntax that is different than base R which sticks out because of the pipe.
+
+Point out the dplyr::verb() syntax to identify specific package 
+	- Different packages can have the same named function 
+	- Isn't an issue 99% of the time. 
+
+tidyverse package
+========================================================  
+Each package has a name and many have icons. 
+Packages are typically designed to do a single thing really well, so we need many packages to move through the iterative cycle. 
+Of these, the workshops will mainly focus on dplyr, ggplot and rmarkdown. 
+
+
+Install tidyverse package
+======================================================== 
+*Switch over to RStudio/Split screen*
+Read the bit on different ways to execute the code. 
+Mention the comment
+The installation should take <10 seconds
+Have them comment the line when done! (the document will not knit properly if not)
+
+
+Load tidyverse package
+======================================================== 
+Have them propose an answer. 
+This should get them thinking about the use of "quotes"
+
+
+======================================================== 
+
+Switch over to `W1_Exercise.Rmd`
+
+========================================================
+ 
+ <h1> *Break* </h1>
+
+4. How to get unstuck: functions
+========================================================
+They should have already read about this, and looked at the ifelse()
+
+I think the ifelse man page is one of the best examples. 
+Point out the package or base R
+Some chance to show difference between ?filter (stats) and ?dplyr::filter
+
+
+How to get unstuck: packages
+========================================================
+encourage google. 
+Maybe have CRAN open on another tab
+
+How to get unstuck: packages
+========================================================
+mention ggplot and dplyr both have cheatsheets that will be useful for next exercise. 
+
+
+How to get unstuck: packages
+========================================================
+encourage google and #rstats on twitter
+
+
+How to get unstuck: error messages
+========================================================
+Walk through logical expressions again. 
+
+
+How to get unstuck: error messages
+========================================================
+encourage google, stack overflow, etc. 
+
+
+
+  
+  5. Exploring further
+========================================================
+The students should spend ~45minutes on this activity. If they finish early, ask them to add a specific tweak to the figure or additional question. Encourage them to use the cheatsheets, google, etc. to try something new. 
+
+
+  6. Wrap Up
+========================================================
+Next is reproducible research

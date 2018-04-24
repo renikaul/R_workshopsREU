@@ -1,13 +1,13 @@
 Introduction to R
 ========================================================
-author: Person
-date: date
+author: [NAME]
+date: 
 autosize: true
 font-import: https://fonts.googleapis.com/css?family=PT+Sans
 font-family: 'PT Sans', sans-serif;
 
 ***
-<div class="midcenter"><div style="margin-left:-0px;margin-top:500px;"><img style="margin:0px; background-color:transparent; border:0px; box-shadow:none;" src="W1_Intro-figure/logo.png"></img></div></div>
+<div class="midcenter"><div style="margin-left:-0px;margin-top:500px;"><img style="margin:0px; background-color:transparent; border:0px; box-shadow:none;" src="figs/logo.png"></img></div></div>
 
 ```{r setup, echo=FALSE}
 chooseCRANmirror(graphics=FALSE, ind=1)
@@ -16,6 +16,7 @@ chooseCRANmirror(graphics=FALSE, ind=1)
 Why is R programming a useful skill?
 ========================================================
 (John Drake)
+
 
 About Myself
 ========================================================
@@ -40,7 +41,7 @@ left:65%
 
 ***
 
-![workflow](W1_Intro-figure/iterative.png)
+![workflow](figs/iterative.png)
 
 
 Workshop Format 
@@ -74,30 +75,49 @@ left: 40%
 
 **You should be able to...**
 - calculate summary statistics of a dataset
-- automate an analysis
+- create a figure from data
   
 *** 
 
 **Topics**
-  1. What is `R` and RStudio? 
-  2. How is it used for research?
-  3. Introduction to with tidyverse with code along
+  1. What is `R` and RStudio?
+  2. Introduction to with tidyverse with code along
   
   *Break*
   
-  4. Troubleshooting   
-  5. Exploring data in groups 
-  6. Wrap Up 
+  3. Troubleshooting   
+  4. Exploring data in groups 
+  5. Wrap Up 
 
- 1. What is R and RStudio? 
+
+
+1. What is R and RStudio? 
+========================================================
+left: 50%
+![R logo](figs/Rlogo.svg)
+
+* `R` is a free, open source programming language with a pre-set functionality (base `R`) 
+* Functionality is extented by `R` packages which are collections of functions and data sets developed by the community.
+
+***
+![RStudio logo](figs/RStudio-Logo.png)
+
+* RStudio is a software program that makes `R` programming easier by:
+  - write and test code efficiently
+  - orginizing files into projects
+  - intergrating different programming lanuguages (RMarkdown, Latex, etc.)
+   
+
+RStudio 
 ========================================================
 
-R packages are collections of functions and data sets developed by the community.
+Let's open today's exercise by clicking on W1_Exercise.Rproj in the W1_Exercise folder. 
 
-![RStudio](W1_Intro-figure/rstudio-console.png)
-  
-2. How is it used for research?
+RStudio should automatically open from here. 
+
+RStudio 
 ========================================================
+![RStudio](figs/Rstudio_layout.png)
 
 
 3. Introduction to tidyverse
@@ -108,20 +128,20 @@ left: 50%
 - Unique syntax used pipes (`%>%`) to connect data (object) to verbs (functions). 
 
 ***
-![tidy syntax](W1_Intro-figure/tidysyntax.png)
+![tidy syntax](figs/tidysyntax.png)
 
 
 tidyverse package
 ========================================================  
 The tidyverse package is designed to make it easy to install and load core packages from the `tidyverse` in a single command.
 
-![tidy verse package](W1_Intro-figure/tidyverse.png)
+![tidy verse package](figs/tidyverse.png)
 
 
 Install tidyverse package
 ======================================================== 
 - We need to install the `tidyverse` package. This can be done by clicking on buttons in Rstudio or from the console using `install.packages()`
-- Install the package by running line X of the `W1_Exercise.Rmd` file
+- Install the package by running line 21 of the `W1_Exercise.Rmd` file
 
 ```{r, eval=FALSE}
 #install all the packages in the tidyverse
@@ -156,7 +176,7 @@ left: 35%
 - `?function()` to access  
 
 ***
-![manual page](W1_Intro-figure/read-a-help-page.png)
+![manual page](figs/read-a-help-page.png)
 
 How to get unstuck: packages
 ========================================================
@@ -165,7 +185,7 @@ left: 50%
 
 * People often make their own tutorials too
 ***
-![](W1_Intro-figure/dplyr_tutorial.png)
+![](figs/dplyr_tutorial.png)
 
 How to get unstuck: packages
 ========================================================
@@ -174,7 +194,7 @@ left: 30%
  - Cheatsheets published out by RStudio
  
 ***
-![cheatsheets](W1_Intro-figure/ggcheat.png)
+![cheatsheets](figs/ggcheat.png)
 
 https://www.rstudio.com/resources/cheatsheets/
 
@@ -186,13 +206,13 @@ left: 30%
  - Contributed cheatsheets 
  
 ***
-![cheatsheets](W1_Intro-figure/datastructures2.png)
+![cheatsheets](figs/datastructures2.png)
 
 
 How to get unstuck: error messages
 ========================================================
 
-![error](W1_Intro-figure/error_msg.png)
+![error](figs/error_msg.png)
 
 First, try to understand the error message. It can be very helpful. 
 
@@ -203,7 +223,7 @@ left: 30%
  - But sometimes, the messages is cryptic. So use google!   
 
 ***
-![google](W1_Intro-figure/googlefu.png)
+![google](figs/googlefu.png)
 
 
   
@@ -218,5 +238,24 @@ Let's work in small groups (max [X])
 More instructions in the file. 
 
 
+  6. Wrap Up
+========================================================
+left: 30%
+
+**Today**
+   - `dplyr` package
+    -   filter, arrange...
+  - `ggplot2` package
+    -   geom_point, facet...
+    
+*Next*
+  - How to communicate
+    -   others
+    -   future self 
+    
+***
+![W1](figs/W1_iterative.png)
+
+![W1](figs/W2_iterative.png)
 
 
