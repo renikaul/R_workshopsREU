@@ -374,9 +374,10 @@ Use the `group_by` and `summarise` verbs to find the mean fare and proportion of
 We will now use some of the skills we've just learnt to answer a our own questions! 
 
 As a group: 
-1. Develop a question that can be answered with the `passengers1` dataset. See [dataset description](https://www.kaggle.com/c/titanic/data) for more details on each of the columns.
-2. Talk through how the data needs to be manipulated to get the appropriate answer. Would plotting the data be useful? Which verbs will you use and in what order? 
-3. Write the code for the analysis. Designate a computer that will have the completed code. If you are not actively typing, you can help your group by thinking about what should come next or proof reading what has already been typed. Be sure to test your code often. 
+
+1.  Develop a question that can be answered with the `passengers1` dataset. See [dataset description](https://www.kaggle.com/c/titanic/data) for more details on each of the columns.
+2.  Talk through how the data needs to be manipulated to get the appropriate answer. Would plotting the data be useful? Which verbs will you use and in what order? 
+3.  Write the code for the analysis. Designate a computer that will have the completed code. If you are not actively typing, you can help your group by thinking about what should come next or proof reading what has already been typed. Be sure to test your code often. 
 
 
 ```{r, eval = TRUE}
