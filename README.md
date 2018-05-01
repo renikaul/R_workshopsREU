@@ -2,41 +2,43 @@
 Series of workshops used to introduce R to participants of the Population Biology of Infectious Disease 
 
 ## Workshop 1: Introduction to R, Rstudio using tidyverse
-  	0. Why is R programming a useful skill? (John)
-  	0. Workshop format and expectations
-  	1.  What is R and RStudio
-      - list at least 3 reasons R/RStudio is a useful research tool 
-      - describe CRAN's function
-      - install a package
-      - create a variable in R
-      - Interface with Rstudio
-  	2. Introduction to R with tidyverse code along
-  	3. How to troubleshoot in R
-  	4. Exploring data further in groups 
+
+0. Why is R programming a useful skill? (John)
+0. Workshop format and expectations
+1.  What is R and RStudio
+    - list at least 3 reasons R/RStudio is a useful research tool 
+    - describe CRAN's function
+    - install a package
+    - create a variable in R
+    - Interface with Rstudio
+2. Introduction to R with tidyverse code along
+3. How to troubleshoot in R
+4. Exploring data further in groups 
   	
   Additional reading:
   
      
-## Workshop 2: Reproducible research with RStudio
-	1. Introduction to reproductive research
-		- starting/working in R projects
-    	- good file organization  	
-    	- good commenting  "the why, not the how"
-    	- good commentary
-    	- using code chunks
-    	- writing a script
-  	2. Review of tidyverse with exercise
-  		- edit Exploring further from Wksp 1 to adhere to best practices
-    	3. Exploring data using reproducible research practices
- 		- explore the data using the reproducible workflow
-    	- new skills:
-    		- ~class str()~
-    		- writing functions
-    		- ~iterating~ 
-    	- practice old skills:
-    		- tidyverse
-    		- Rproject
-		- logic statements (ifelse)
+## Workshop 2: Reproducible research with RStudio (Done)
+
+1. Introduction to reproductive research
+    - starting/working in R projects
+    - good file organization  	
+    - good commenting  "the why, not the how"
+    - good commentary
+    - using code chunks
+    - writing a script
+2. Review of tidyverse with exercise
+    - edit Exploring further from Wksp 1 to adhere to best practices
+3. Exploring data using reproducible research practices
+    - explore the data using the reproducible workflow
+    - new skills:
+      - writing functions
+      - ~~class str()~~
+      - ~~iterating~~ 
+    - practice old skills:
+      - tidyverse
+      - Rproject
+      - logic statements (ifelse)
   
   Additional reading:
 
