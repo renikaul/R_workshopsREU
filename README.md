@@ -21,21 +21,22 @@ Series of workshops used to introduce R to participants of the Population Biolog
 	1. Introduction to reproductive research
 		- starting/working in R projects
     	- good file organization  	
-    	- good commenting  "the why not the how"
+    	- good commenting  "the why, not the how"
     	- good commentary
     	- using code chunks
     	- writing a script
   	2. Review of tidyverse with exercise
   		- edit Exploring further from Wksp 1 to adhere to best practices
-    3. Exploring data using reproducible research practices
+    	3. Exploring data using reproducible research practices
  		- explore the data using the reproducible workflow
     	- new skills:
-    		- class str()
+    		- ~class str()~
     		- writing functions
-    		- iterating and logic statements
+    		- ~iterating~ 
     	- practice old skills:
     		- tidyverse
     		- Rproject
+		- logic statements (ifelse)
   
   Additional reading:
 
