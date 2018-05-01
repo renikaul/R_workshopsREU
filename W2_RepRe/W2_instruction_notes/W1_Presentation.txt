@@ -1,0 +1,285 @@
+Thanks for teaching this workshop. 
+
+Some useful information: 
+
+
+
+2. The goal of these workshops are for students to develop R programming skills that they will use during the REU by jumping straight into those tasks. The design will show students the value of this skill and encourage maintained engagement. However, this approach priorizes task completion over technical knowledge which will hopefully be filled in over time and as needed.     
+
+Each workshop is broken down into 3 parts: 1. Short lecture, 2. Code Along or demonstration of a skill, and 3. Application of those skills.  
+
+Short Lecture: 
+You've been provided HTML slides that will help you introduce the topic. There are some slides that will require edits from you (ie. contact information, how you use R in your work). 
+The slides were created with RStudio .Rpres feature. Once you have made your edits, save the presentation as a html for the workshop. See
+https://support.rstudio.com/hc/en-us/articles/200486468-Authoring-R-Presentations for more details. 
+
+Feel free to edit the material as needed, but please still cover the information since each workshop will build on previously covered skills. 
+
+
+See FILE for slide specific comments. 
+
+Code-Along:
+The code along file is the W1_Exercise.Rmd with a solutions file (W1_Exercise_soln.Rmd or code chunks only: W1_Exercise_soln.R). It might be easiest to print off the .R to reference during the code along.   
+I have modified the Data Camp's  Introduction to tidyverse live code-along held on Facebook live April 5th, 2018. The code-along was 1 hour. The video is broken into 2 parts. It might be help watch the video to see how this type of instruction works. 
+
+Part 1: https://www.facebook.com/726282547396228/videos/2021285494562587/
+Part 2: https://www.facebook.com/726282547396228/videos/2021328791224924/
+
+I think this type of instruction works best when the leader takes the time to read the bits in between the code chunks and keeps a relatively moderate pace. I have built in little reflection sections to allow students to catch up as needed. 
+It is also important to set up your screen to maximize the view of previously completed lines while making sure students can still see what is currently being typed. The bottom of the projector screen is too low to be seen from the back of the computer lab. You may also want to make sure that monitors not in use are stored under the table. 
+
+See W1_Exercise_soln.R for chunck specific comments. 
+
+Application of skills: 
+This is to be completed as a group at the end of the W1_Exercise.Rmd. The majority of your time will be spent working with groups. Engage students and groups who seem to be withdrawing from the activity. Encourage them to look at the cheatsheets and other references. This is an opportunity for them to develop trouble shooting skills, and ownership of a product. 
+
+You should check in with groups early in the process to make sure the question is appropriately challenging and answerable given the dataset. This isn't a skill that will be explicitly covered in these workshops. 
+
+There exploration   
+
+
+Introduction to R
+========================================================
+author: Person
+date: date
+autosize: true
+font-import: https://fonts.googleapis.com/css?family=PT+Sans
+font-family: 'PT Sans', sans-serif;
+
+***
+<div class="midcenter"><div style="margin-left:-0px;margin-top:500px;"><img style="margin:0px; background-color:transparent; border:0px; box-shadow:none;" src="figs/logo.png"></img></div></div>
+
+
+
+Why is R programming a useful skill?
+========================================================
+(John Drake)
+
+About Myself
+========================================================
+
+ - My research interest is [INSERT DESCRIPTION]
+ - I use `R` in my research to:
+   + organize data 
+   + develop machine learning algorithms
+   + 
+ - I mostly work [in this disease system or approach] 
+ - My contact info is [INSERT EMAIL]
+ 
+
+Workshop Goals 
+========================================================
+left:65%
+**The workshop series** consists of four half day workshops each focusing on a different part of the research process
+- Introduction to `R` and RStudio (Today)
+- Conducting reproducible research (Date; Person)
+- Visualizing data (Date; Person)
+- Simulating infectious disease dynamics (Date; Person)
+
+***
+
+![workflow](figs/iterative.png)
+
+
+Workshop Format 
+========================================================
+
+- Introduction of instructor & how they use `R`
+- Review of past concepts
+- Outline of the day's goals  
+- Work through data analysis project  
+- Reflection on day's materials
+
+Expectations
+========================================================
+left:60%
+**You**
+- Come ready to participate
+  + review the materials before hand
+  + room tends to be cold
+- Ask questions
+- Help eachother
+
+***
+**Instructor**
+- Come ready to participate
+- Help you find answers 
+- Be a resource for you during the REU program
+
+Outline 
+========================================================
+left: 40%
+
+**You should be able to...**
+- calculate summary statistics of a dataset
+- automate an analysis
+  
+*** 
+
+**Topics**
+  1. How is it used for research?
+  2. What is `R` and RStudio?
+  3. Introduction to with tidyverse with code along
+  
+  *Break*
+  
+  4. Troubleshooting   
+  5. Exploring data in groups 
+  6. Wrap Up 
+
+
+  
+1. How is it used for research?
+========================================================
+
+2. What is R and RStudio? 
+========================================================
+left: 50%
+![R logo](figs/Rlogo.svg)
+
+* `R` is a free, open source programming language with a pre-set functionality (base `R`) 
+* Functionality is extented by `R` packages which are collections of functions and data sets developed by the community.
+
+***
+![RStudio logo](figs/RStudio-Logo.png)
+
+* RStudio is a software program that makes `R` programming easier by:
+  - write and test code efficiently
+  - orginizing files into projects
+  - intergrating different programming lanuguages (RMarkdown, Latex, etc.)
+   
+
+RStudio 
+========================================================
+
+Let's open today's exercise by clicking on W1_Exercise.Rproj in the W1_Exercise folder. 
+
+RStudio should automatically open from here. 
+
+RStudio 
+========================================================
+![RStudio](figs/Rstudio_layout.png)
+
+
+3. Introduction to tidyverse
+========================================================  
+left: 50%
+
+- The tidyverse is a set of packages that work in harmony because they share common design. 
+- Unique syntax used pipes (`%>%`) to connect data (object) to verbs (functions). 
+
+***
+![tidy syntax](figs/tidysyntax.png)
+
+
+tidyverse package
+========================================================  
+The tidyverse package is designed to make it easy to install and load core packages from the `tidyverse` in a single command.
+
+![tidy verse package](figs/tidyverse.png)
+
+
+Install tidyverse package
+======================================================== 
+- We need to install the `tidyverse` package. This can be done by clicking on buttons in Rstudio or from the console using `install.packages()`
+- Install the package by running line 21 of the `W1_Exercise.Rmd` file
+
+
+```r
+#install all the packages in the tidyverse
+install.packages("tidyverse") 
+```
+
+
+Load tidyverse package
+======================================================== 
+- Once a package is installed, we need to load it during our current R session. 
+- This is done using `library()`.
+- How should this code be altered to load the tidyverse library? 
+
+
+```r
+#load tidyverse library
+library()
+```
+
+
+======================================================== 
+
+Switch over to `W1_Exercise.Rmd`
+
+========================================================
+ 
+ <h1> *Break* </h1>
+
+4. How to get unstuck: functions
+========================================================
+left: 35%
+- Every function has a help page 
+- `?function()` to access  
+
+***
+![manual page](figs/read-a-help-page.png)
+
+How to get unstuck: packages
+========================================================
+left: 50%
+* Packages have a vignette and/or reference manual on [cran.r-project.org](cran.r-project.org)
+
+* People often make their own tutorials too
+***
+![](figs/dplyr_tutorial.png)
+
+How to get unstuck: packages
+========================================================
+left: 30%
+
+ - Cheatsheets published out by RStudio
+ 
+***
+![cheatsheets](figs/ggcheat.png)
+
+https://www.rstudio.com/resources/cheatsheets/
+
+How to get unstuck: packages
+========================================================
+left: 30%
+
+ - Cheatsheets published out by RStudio
+ - Contributed cheatsheets 
+ 
+***
+![cheatsheets]figs/datastructures2.png)
+
+
+How to get unstuck: error messages
+========================================================
+
+![error](figs/error_msg.png)
+
+First, try to understand the error message. It can be very helpful. 
+
+How to get unstuck: error messages
+========================================================
+left: 30%
+
+ - But sometimes, the messages is cryptic. So use google!   
+
+***
+![google](figs/googlefu.png)
+
+
+  
+  5. Exploring further
+========================================================
+Let's work in small groups (max [X])
+
+- Develop a question about that can be answered with this data
+- Decide on the needed verbs, and order
+- Write the code in the final code chunck of the `W1_Exercise.Rmd` file
+
+More instructions in the file. 
+
+
+
+

@@ -1,0 +1,47 @@
+---
+title: "W2 Reproducible research primer"
+author: "Reni Kaul"
+date: "4/25/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+This exercise is an introduction to producing *reproducible research* in R using [R Markdown](http://rmarkdown.rstudio.com/). Like the introductory workshop, this exercise is itself written in R Markdown. Before we write our first codes using R Markdown, we need to think a little about how to organize our work. A useful convention is to create a *work directory*, perhaps on your computer desktop or in your home directory. This directory or file will be used to store codes, data, figures, and any additional computer files needed or generated along the way. This can be done manually by:
+
+1. Create a work directory
+2. Open RStudio
+3. Choose "New File" -> "R Markdown" from the File drop down menu.
+4. Navigate to your work directory and save this file with a name of your choosing, ending in the extension `.Rmd`. This is your practice markdown document.
+5. (a) Choose "Set Working Directory" -> "To Source File Location" from the Session drop down menu (b) Set working directory using console command `setwd()`
+
+However, `RStudio` does this automatically when using a `R project` ([details](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)). 
+
+
+1. Open RStudio
+2. Choose "File" -> "New Project" 
+3. From the pop up window click "New Directory", then "Empty Project"
+4. Name your new directory. 
+5. Use the "browse" button to choose the directoy location. 
+
+When you're finished working on the project for the day, close the project ("File" -> "Close Project"). When you open the project up again, all the documents you were working on will automatically re-open. 
+
+**Note:**
+* The `R project` is designed to integrate with the version control systems Git and Subversion through RStudio ([details](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN)). Ask your lab if this is something you should be using. 
+
+
+# Mixing text and code
+
+You have already seen that an `.Rmd` allows us to mix code and natural language. This is useful because it allows the use of commentary or longer comments and descriptions that are too long to be placed inline with the code. 
+
+Commented lines start with a pound sign and space `# ` 
+
+
+
+
+
+https://parasites.nunn-lab.org/primates/download/

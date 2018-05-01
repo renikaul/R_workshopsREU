@@ -1,0 +1,123 @@
+---
+title: "W2_Functions"
+author: "Reni Kaul"
+date: "5/1/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Automating data analysis with functions
+
+
+Sometimes we have a set of analyses that needs to be done multiple times. Instead of a copy & paste approach, we can write a `function()` 
+
+![automation](figs/geeks.png)
+
+
+## Anatomy of a function 
+
+```{r, eval = FALSE}
+FunctionName <- function(arguement1, arguement2, ...){
+  #some analysis
+  return(outputOfFunction)
+}
+
+```
+
+
+## Function Names
+
+Function names should...
+
+* be verbs describing what the function will do. 
+* use CamelCaseNaming 
+
+*GOOD:* CalculateAvgClicks  
+*BAD:* calculate_avg_clicks , calculateAvgClicks 
+
+## Practice 
+
+*scenario:* In addition to the GMPD, there are also parasite datasets for cetaceans and fish among others. They all follow the same format and column naming system. You've been asked to continue exploring which groups are sickest (Q1) using these additional datasets. 
+
+*task:* Write a function that will automate these calculations for each dataset. 
+
+*Step 1.* Determine what the function should do. Maybe try out the analysis on a sample dataset
+
+  * we have code that will do this for the `gmp` dataset
+
+```{r}
+library(tidyverse)
+gmp <- read_csv("data/GMPD_main.csv")
+
+gmp %>%
+  drop_na(Prevalence) %>%
+  group_by(Group) %>%
+  summarise(MeanPrev = mean(Prevalence), SdErrPrev = sd(Prevalence)/sqrt(n()))
+```
+
+*Step 2.* Decide how to generalize the code
+
+  * What names will change with each dataset? 
+  * What will stay the same? 
+
+```{r, eval = FALSE}
+gmp %>%
+  drop_na(Prevalence) %>%
+  group_by(Group) %>%
+  summarise(MeanPrev = mean(Prevalence), SdErrPrev = sd(Prevalence)/sqrt(n()))
+```
+
+From the information in the scenario, we know that the column names will not change. This means that lines 69 through 71 are already general. The dataset name will change since it is not possible to have multiple dataset objects with the same name. We might want to use a more generic name than `gmp` for the dataset name. Let's use `dataset`.
+
+*Step 3.* Put into function format
+
+We have already decided what the analysis should be, now we have 2 more decisions to make:
+
+1. What should we name the function (see rules above)
+2. What arguements does the function need.
+
+The arguements are what is fed into the function. In this case, we need to tell the function which dataset to feed into the analysis pipeline. 
+
+Modify the function skeleton below to make a working function
+
+```{r}
+ InformativeName<- function(agr1, arg2, ...){
+  #analysis
+ }
+
+```
+
+*Step 4.* Try it out
+  Once you've writen your function, you'll need to load it into the environment by executing the code. Then you can call that analysis just like the other functions we've been using!
+
+```{r}
+#load function into environment
+ PrevByHostGroup<- function(dataset){
+  dataset %>%
+    drop_na(Prevalence) %>%
+    group_by(Group) %>%
+    summarise(MeanPrev = mean(Prevalence), SdErrPrev = sd(Prevalence)/sqrt(n()))
+ }
+
+#check to make sure it works. 
+PrevByHostGroup(gmp)
+```
+
+## Challenge
+
+ Modify this function so that the mean prevalence is calculated for each parasite type. 
+ 
+```{r}
+ PrevByParType<- function(dataset){
+  dataset %>%
+    drop_na(Prevalence) %>%
+    group_by(Group) %>%
+    summarise(MeanPrev = mean(Prevalence), SdErrPrev = sd(Prevalence)/sqrt(n()))
+ }
+
+PrevByParType(gmp)
+```
