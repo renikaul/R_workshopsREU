@@ -1,6 +1,27 @@
 # R_workshopsREU
 Series of workshops used to introduce R to participants of the Population Biology of Infectious Disease 
 
+<Philosophy of workshop and rationale for changes>
+
+# Learning objectives
+The learning objectives are broken down by workshop, and are stated as "Students will be able to" (SWBAT). 
+
+
+## Workshop 3: Simulating infectious diseases with R
+
+    - convert data between wide and long data format using gather()
+    - explain the difference between wide and long data format
+    - write the syntax for a generic function
+    - code a system of ODEs as a function for lsoda() simulations
+    - describe Euler's method (conceptually)
+    - write code to numerically solve ODEs using lsoda()
+    - describe a compartmental model
+    - plot numerical solutions of ODE models 
+    - describe the impact of changing beta and gamma on the size and duration of an outbreak in a SIR model
+    - write and source a script in R
+    - write a for loop to iterate over a vector 
+
+# Outline of Workshop Modules
 ## Workshop 1: Introduction to R, Rstudio using tidyverse
 
 0. Why is R programming a useful skill? (John)
@@ -44,8 +65,18 @@ Series of workshops used to introduce R to participants of the Population Biolog
 
 ## Workshop 3: Simulating infectious diseases with R
 
+1. Modeling concepts
+2. Review of functions
+3. Converting ODEs to R code
+4. Simulate exponential growth of a populations
+5. Simulate an SIR model
+6. Iterations in R
 
- Additional reading: ODE and compartmental models primer
+ Additional reading: 
+ 
+ 1. ODE and compartmental models primer
+ 2. Base are syntax primer
+ 
  
 ## Workshop 4: Data visualization with R
 Collaborative plotting
