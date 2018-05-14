@@ -1,0 +1,480 @@
+---
+title: "W3_Exercise_soln"
+author: "Reni Kaul"
+date: "5/7/2018"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
+```
+
+
+# Solving ODEs with lsoda
+
+The function `lsoda()` (Livermore Solver for Ordinary Differential Equations) is part of the `deSolve` package. Let's start by installing and loading the `deSolve` package
+
+```{r start up, message=FALSE, warning=FALSE}
+# install package (if not already)
+#install.packages("deSolve")
+# load library
+library(deSolve)
+# load some of the other libraries we will need later on
+library(tidyverse)
+```
+ 
+ 
+Now that the library is loaded, look at the manual page for lsoda. Interpret the first 4 arguements.
+
+- y 
+- times
+- func
+- params
+
+*Note: Line within the r chunks starting with* `##` *need to be completed or edited*
+
+## Writing a function for lsoda
+
+Based on the manual page, we know lsoda is expecting a model in the form of `func <- function(t,y,parms)`. 
+
+Let's convert the exponential growth function into this form. 
+
+$$\frac{dN}{dt} = rN$$
+
+```{r Exp Growth}
+ExponentialGrowth <- function(t, y, params) {
+# Computes the rate of change of the variable y over time
+#
+# Args:
+#   t: vector of time points in the integration
+#   y: vector of variables in the differential equation
+#   params: vector of parameter values
+#
+# Returns:
+#   The rate of change of the variable y.
+
+  N <- y # create local variable N
+
+  # the argument to "with" lets us use the variable names
+  with(as.list(c(params)), { 
+    dN <- r*N     # Right hand side of the differential equation
+    dx <- c(dN) # combine results into a single vector dx
+    list(dx) # return list of results
+    }
+  )
+}  
+
+```
+
+## Other arguements for lsoda
+
+**Parameters**
+So now that we have the model written, let's tackle the other arguements starting with `params`. 
+
+What are the parameters in the exponential growth model? What are they called in the `ExponentialGrowth()` function? 
+
+*Remember: We can save values to a named object by using redirecting the output using the `<-` syntax *
+
+```{r param values}
+# the only parameter in the exponential growth model is the grawth rate (r). Let's define r=0.75
+parameters <- c(r = 0.75) 
+```
+
+**Time**
+
+Working backwards the next arguement for `lsoda()` is `times`. The solver needs to know when to report the numerical solution for the ODE. Let's create a vector called `t.vector` starting at 0.1 and increases by 0.1 up to 1. 
+
+*Remember: We can save time when making patterned vectors by using* `seq()` *function*
+```{r time}
+t.vector <- seq(0.1, 1, by = 0.1) 
+```
+
+
+**Initial condition of state variable(s)**
+
+The initial condition of the state variable(s) is set by a named vector, just like the parameters values. Let's create a vector `y0` with an initial state value (N0) of 10.
+
+```{r initial condition}
+y0 <- c(N0 = 10) 
+```
+
+## Run a simulation
+
+We now have a function called `ExponentialGrowth()` that describes the exponential growth model the 3 required arguements for the `lsoda()` function. Let's simulate the population and save it as an object called `sim1` 
+
+```{r exp population simulation}
+sim1 <- lsoda(y = y0, times = t.vector, func = ExponentialGrowth, parms = parameters)
+```
+
+What is the population size at the end of the simulation? How would you expect it to change if the growth rate was decreased? Test it out by creating another simulated population named `sim2` with this new growth rate. 
+
+```{r exp population sinulation low growth}
+parameters2 <- c(r = 0.5) # create a new vector for the params arguement
+sim2 <- lsoda(y = y0, times = t.vector, func = ExponentialGrowth, parms = parameters2)
+```
+
+## Plot the simulation 
+
+In some situations, plotting the simulation(s) is more informative than looking at the print out. We can create a scatter plot using `ggplot() + geom_point()` syntax. 
+
+Try plotting `sim1` with time on the x-axis. 
+
+```{r sim1 plot,  error = TRUE}
+
+ggplot(data = sim1, aes(x = time, y = N0)) + 
+  geom_point() 
+
+```
+
+You'll notice that this code returns an error instead of a plot. 
+
+Use google, `str()`, `?ggplot()`, and the ggplot cheatsheet to interperet the error. What does the error mean? 
+
+```{r sim1 error problem solving}
+
+str(sim1) # use the `?` to look up the str() function
+
+#?ggplot()
+```
+
+The `ggplot()` function requires data in a data.frame. What is the current object class? Based on the reading for today, how can we convert `sim1` to a data.frame?
+
+```{r plotting exp model}
+sim1 <- as.data.frame(sim1) # convert sim1 to a data.frame for plotting  
+sim2 <- as.data.frame(sim2) # convert sim2 to a data.frame as well
+
+# plot sim1 as points 
+ggplot(data = sim1, aes(x = time, y = N0)) + 
+  geom_point() +
+  geom_line()
+
+```
+
+*Note: The* `sim1 <- as.data.frame(sim1)` *code writes over the old version of sim1.*
+
+### Plotting multiple data objects in a single plot
+
+The `ggplot` syntax has a layered design. You can add layers to the plot by using the `+`. This works for adding different elements for the same dataset like the code chunk above, but also can be used to pull in another dataset. 
+
+Let's use the `geom_point()` and `geom_line()` to add the `sim2` data to the `sim1` plot. 
+
+```{r}
+# start with the original sim1 plot
+ggplot(data = sim1, aes(x = time, y = N0)) + 
+  geom_point() +
+  geom_line() + 
+  geom_point(data =sim2, aes(time, N0)) +  # we can add points and lines from sim2 by calling the sim2 data, and defining the aesthetic
+  geom_line(data =sim2, aes(time, N0))
+
+
+```
+
+*Note:*
+
+- The `ggplot()` call can be saved to an object using the `<-`
+- layer can be added to the saved object using the same `+` syntax
+- The saved `ggplot()` object can be plotted by calling the object 
+
+```{r ggplot object example}
+# save the sim1 plot as an object
+p <- ggplot(data = sim1, aes(x = time, y = N0)) + 
+      geom_point() +
+      geom_line()
+
+p # call the object p plots the figure 
+
+
+# add sim2 data to the plot `p`
+p + geom_point(data = sim2, aes(x = time,y = N0)) + 
+    geom_line(data = sim2, aes(x = time,y = N0), color = 'red')
+  
+
+```
+
+
+**Recap:**
+
+- You've written a function based on an ODE model
+- You've simulated data based on an ODE model
+- You've plotted multiple simulations on the same plot
+
+**Up Next:**
+
+- Break! 
+- We will simulate a susceptible-infected-recovered (SIR) model
+
+
+# Simulating an outbreak with an SIR model
+
+You will build on the exponential growth model to make an SIR model and simulate an outbreak. Work in groups of 2-3.
+
+Steps:
+
+1. Using ExponentialGrowth as a guide write a `DensityDepSIR()`
+2. Run a simulation using the parameter values (beta, gamma) and initial state conditions (S=,I=,R=)
+3. Plot the simulation
+
+
+## 1. Write `DensityDepSIR()`
+
+The SIR model with density dependent transmission takes the following form: 
+
+$$\begin{aligned}
+\frac{dS}{dt} &= -\beta SI \\
+\frac{dI}{dt} &= \beta SI-\gamma I\\
+\frac{dR}{dt} &= \gamma I
+\end{aligned}$$
+
+```{r SIR model}
+
+DensityDepSIR <- function(t,x,params){
+  # Computes the rate of change of the variables S, I and R over time
+   #
+   # Args:
+   # t: vector of time points in the integration
+   # x: vector of variables in the differential equation
+   # params: vector of parameter values
+   #
+   # Returns:
+   # The rate of change of the variables S, I and R.
+    
+   S <- x[1] #create local variable S, the first element of x
+   I <- x[2] #create local variable I
+   R <- x[3] #create local variable R
+  
+  
+   with( #we can simplify code using "with"
+   as.list(params), #this argument to "with" lets us use the variable names
+   { #the system of rate equations
+     dS <- -beta*S*I
+     dI <- beta*S*I-gamma*I
+     dR <- gamma*I
+     dx <- c(dS,dI,dR) #combine results into a single vector dx
+     list(dx) #return result as a list,
+     #note order must be same as the state variables
+     }
+     )
+}
+
+```
+
+
+
+## 2. Simulate an outbreak 
+
+Sometimes it is more informative to model the proportion of the population in the S,I, and R classes. We can simulate the fraction of the population instead of total individuals by changing the initial conditions to a fraction. In the case of the initial conditions below, the simulation will start with 1 infected individual in a population of 10,000. 
+
+
+```{r SIR parameters and initial conditions}
+# time points for the integration
+t.SIR <-seq(0,120,by=5)
+
+# Initial conditions S,I,R
+xstart<- c(S=999/1000,I=1/1000,R=0)
+
+# parameter values
+SIRparameters <- c(beta=0.3, gamma=1/7)
+
+```
+
+
+```{r simulate SIR}
+
+# simulate an outbreak
+SIRsim <- as.data.frame(lsoda(y = xstart, times = t.SIR, func = DensityDepSIR, parms = SIRparameters))
+
+```
+
+
+## 3. Plot the simulation
+
+The `SIRsim` object is already a data.frame and a single class can be easily plotted using `ggplot()`. How do you think the infected class will change over time? Plot the Infected class to check your thinking. 
+
+```{r plotting I class}
+ggplot(data = SIRsim, aes( x = time, y = I)) +
+  geom_point() +
+  geom_line() 
+```
+
+It would be useful to see how the S, and R class are changing over time too. We could add layers with S and R as x values in the `aes`thetic but there is a faster way. 
+
+The data is currently in wide format (ie. S, I, and R at a given time are all in the same row). We can convert `SIRsim` to long format using the `gather()` before plotting. The long format data is preferable for data analysis in `R`. 
+
+![](figs/gather_values.png)
+
+
+Long format has a single observation per row. See this [blog post](
+https://sebastiansauerblog.wordpress.com/2016/07/13/long-vs-wide-format-and-gather/
+) for more details. 
+
+Explore the `gather()` function. Once you have a handle on the `gather()` function make a new long format `longSIRsim` object and plot. 
+
+```{r long format SIR}
+
+longSIRsim <- SIRsim %>% 
+              gather(key = state, value = value, S:R)
+
+ggplot(data = longSIRsim, aes(time, value, color = state)) + 
+    geom_line()
+
+```
+
+
+*Note:*
+ Tidyverse pipes can feed directly into ggplot. Here, the `data` arguement for `ggplot()` is not needed, the output of the pipe from the line above is automatically used. For consistency, you can use a `.` (period) for the `data` arguement but it isn't required. 
+
+```{r fast SIR plot}
+
+SIRsim %>% 
+  gather(key = state, value = value, S:R) %>%  # the gathered data is fed directly into ggplot without creating a secondary object. 
+  ggplot(data = ., aes(time, value, color = state)) + 
+    geom_line()
+
+
+```
+
+
+**Recap:**
+
+- You've simulated and plotted data for an exponential growth model
+- You've simulated and plotted data for an SIR model
+
+**Up Next:**
+
+- Explore the impact of parameter values on the SIR model
+
+
+## Parameter values of an SIR
+
+Explore the impact of the $\beta$ and $\gamma$ values on the size and duration of the outbreak. 
+
+- What happens when $\gamma$ is increased? 
+- What happens when $\beta$ is increased? 
+- What happens when the ratio of is held constant but the absolute values change?
+
+Be sure to run your simulations long enough to see the equlibrium values. 
+
+*Remember best practices*
+
+
+
+
+**Recap:**
+
+- You've simulated and plotted data for an exponential growth model
+- You've simulated and plotted data for an SIR model
+- Explore the impact of parameter values on the SIR model
+
+**Up Next:**
+
+- Revisiting reproducible reseach and workflow 
+
+
+# Maintaining a clean workflow 
+
+Functions are useful for repeative tasks. Sometimes we might even want to use them in different `.Rmd` files. We *could* copy & paste the functions between `.Rmd` files. This is not a good practice because:
+
+- C&P might introduce transcription errors in your functions
+- Errors in the function have to be changed in *each* location that it has been copied to. 
+
+An alternative is creating a script and storing it in the `scripts/` folder of your working directory. Scripts have a `.R` file extension, and are a way to reference more stable code without actually interacting with the stable code. Let's make a script for the `ExponentialGrowth()` function. 
+
+**Making a Script:**
+
+1. Create a `.R` file 
+2. Make some comments at the start of the file
+    - *Note:* There is some bad advice about scripts you might come across. Never start a script by cleaning the environmet (`rm(list = ls())`) or by setting the working director (`setwd()`)
+    - Using R projects means that you don't have to set working directories. 
+3. Save file in scripts directory with an informative name
+
+**Sourcing a script**
+
+The functions in the script are loaded into the `R` environment by using the `source()` command. Let's try it out. 
+
+For the sake of this demonstration, let's start with a fresh session of `R` by clicking on Session > Restart R. You'll notice the Enviornment tab is now empty. 
+
+
+```{r source script}
+# Uncomment command, and add relative path to script
+# source()
+
+```
+
+Is the `ExponentialGrowth()` function in your environment?
+
+
+**Recap:**
+
+- You've simulated and plotted data for exponential growth and SIR model
+- Explored the impact of parameter values on the SIR model
+- Wrote a script and sourced to current environment 
+
+**Up Next:**
+
+- Iterating in R
+
+# Iteration using exponential growth as an example
+
+The Euler method and the `lsoda()` algorithm are an examples of iteration or repeating a process over and over. Iteration can be a common part of data analysis and is implimented in `R` using loops. Loops come in 3 flavors:
+
+- For loop: repeated a set number of times
+- while loop: repeated until a condition is met (could be zero times)
+- repeat loop: repeated until a condition is met (completed at least 1 time)
+
+Let's explore the For loops with the exponential growth model.  
+
+**What is population size at next time step?**
+
+We can calculate the $N_{t+1}$ given a population size of 10 and a 2% growth rate ($N_t = 10$ and $r=0.02$). 
+
+```{r One step at a time}
+Nt <- 10 # starting population
+r <- 0.02 # population increases 2% each time
+Nt1 <- Nt + r*Nt
+```
+
+**What is population size at 100th time step?**
+
+We could repeat the previous code chunk 100 times, or use a For loop. 
+
+The basic syntax of a `for` loop is:
+
+```{r}
+for(i in 1:10){
+  print(i)
+}
+```
+
+What is the output of this loop? 
+
+Let's use the For loop syntax to calculate the population size at t+100
+
+```{r t100}
+N.seq <- c(rep(0,100)) # make a vector where the calculations will be stored. 
+N.seq[1] <- 10 # set the current population size to 10 
+
+for(i in 1:100){
+    N.seq[i+1] <- N.seq[i] + (r*N.seq[i])
+}
+
+N.seq
+
+```
+
+**Concept check:** What would the N.seq vector look like if the for command was changed to:
+  - `for(i in 1:50)`?
+  - `for(i in 50:100)`?
+  
+Re-run the loop with the new commands to check your answers. 
+
+**Note:**
+
+- For loops are *slow* but easy 
+- If you need to iterate over more than a few thousand look into using `apply()` functions
+
+DataCamp has a more extensive [tutorial of loops](https://www.datacamp.com/community/tutorials/tutorial-on-loops-in-r)
+
