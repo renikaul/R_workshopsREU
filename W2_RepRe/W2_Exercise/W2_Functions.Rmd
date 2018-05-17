@@ -109,15 +109,50 @@ PrevByHostGroup(gmp)
 
 ## Tidyverse Challenge
 
- Modify this function so that the mean prevalence is calculated for each parasite type. 
+ Modify the `PrevByHostGroup()` function so that the mean prevalence is calculated for each host group and parasite type. 
  
 ```{r}
  PrevByParType <- function(dataset){
   dataset %>%
-    drop_na(Prevalence) %>%
-    group_by(Group) %>%
-    summarise(MeanPrev = mean(Prevalence), SdErrPrev = sd(Prevalence)/sqrt(n()))
- }
+    # calculate mean prevalence for host group and parasite type   
+}
 
-PrevByParType(gmp)
+# uncomment following line to test function
+# PrevByParType(gmp)
 ```
+
+
+# Maintaining a clean workflow 
+
+Functions are useful for repeative tasks. Sometimes we might even want to use them in different `.Rmd` files. We *could* copy & paste the functions between `.Rmd` files. This is not a good practice because:
+
+- C&P might introduce transcription errors in your functions
+- Errors in the function have to be changed in *each* location that it has been copied to. 
+
+An alternative is creating a script and storing it in the `scripts/` folder of your working directory. Scripts have a `.R` file extension, and are a way to reference more stable code without actually interacting with the stable code. Let's make a script for the `PrevByHostGroup()` function. 
+
+**Making a Script:**
+
+1. Create a `.R` file 
+2. Make some comments at the start of the file, write your functions
+    - *Note:* There is some bad advice about scripts you might come across. Never start a script by cleaning the environmet (`rm(list = ls())`) or by setting the working director (`setwd()`)
+    - Using R projects means that you don't have to set working directories. 
+3. Save file in scripts directory with an informative name
+
+**Sourcing a script**
+
+The functions in the script are loaded into the `R` environment by using the `source()` command. Let's try it out. 
+
+For the sake of this demonstration, let's start with a fresh session of `R` by clicking on Session > Restart R. You'll notice the Enviornment tab is now empty. 
+
+
+```{r source script}
+# Uncomment command, and add relative path to script
+# source()
+
+```
+
+Is the `PrevByHostGroup()` function in your environment? What when you type `PrevByHostGroup` into the console? What about `PrevByHostGroup()`? 
+
+
+

@@ -42,30 +42,14 @@ The learning objectives are broken down by workshop, and are stated as "Students
 
 ### Workshop 2: Reproducible research with R
 
-IN PROGRESS
 - start a new project in RStudio
 - write the syntax for a generic function
--
-1. Introduction to reproductive research
-- starting/working in R projects
-- good file organization
-- good commenting  "the why, not the how"
-- good commentary
-- using code chunks
-- writing a script
-2. Review of tidyverse with exercise
-- edit Exploring further from Wksp 1 to adhere to best practices
-3. Exploring data using reproducible research practices
-- explore the data using the reproducible workflow
-- new skills:
-- writing functions
-- practice old skills:
-- tidyverse
-- Rproject
-- logic statements (ifelse)
-
-
-Additional reading:
+- code using RR best practices
+    - good file organization and naming
+    - good commenting  "the why, not the how"
+    - good commentary
+    - good object and function naming
+- write and source a script
 
 
 ### Workshop 3: Simulating infectious diseases with R
@@ -78,7 +62,7 @@ Additional reading:
 - describe a compartmental model
 - plot numerical solutions of ODE models
 - describe the impact of changing beta and gamma on the size and duration of an outbreak in a SIR model
-- write and source a script in R
+- ~write and source a script in R~ (MOVED TO W2)
 - write a for loop to iterate over a vector
 
 ### Workshop 4: Data visualization in R
@@ -134,9 +118,7 @@ Files to be shared with students
 - `W1_Reading.html`
 - `W1_Presentation.html`
 - `W1_Exercies_soln.html`
-
 - `W1_Exercise.Rmd`
-
 - data/train.csv
 
 Additional files for instructor
@@ -231,11 +213,8 @@ Files to be shared with students
 - `W2_Presentation.html`
 - `W2_Exercies_soln.html`
 - `W2_Functions_soln.html`
-
 - `W2_Exercise.Rmd`
 - `W2_Functions.Rmd`
-
-
 - data/GMPD_*.csv (4 files)
 - data/metadata.pdf
 
@@ -271,6 +250,7 @@ For groups that finish quickly, push them by asking them to add more nuance to t
 
 The last module of the workshop covers writing functions using a hypothetical scenario where a summary calculation of the GMPD is converted into a function. This work is done in the `W2_Functions.Rmd` file and has lots of scaffolding. The main take home from this module should be 1) good function names, 2) function syntax, and 3) how argument names are used as place holders within the function. Writing functions will be essential to the next workshop which used lsoda() to numerically solve an SIR model. 
 
+ADD IN SCRIPT COMMENTS
 
 # Simulating Infectious Diseases Teaching Notes
 

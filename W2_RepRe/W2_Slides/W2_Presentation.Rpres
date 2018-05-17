@@ -29,10 +29,11 @@ Outline
 ========================================================
 left: 40%
 
-**You should be able to...**
+**At the end of this workshop you should be able to…**
 - code using best practices
 - create an HTML doc with code and commentary  
 - write a function
+- create and use scripts
 - <span style="color:gray"> calculate summary statistics of a dataset </span>
 - <span style="color:gray"> create a figure from data </span>
 
@@ -47,7 +48,8 @@ left: 40%
     
   3. Explore data using a R project
   4. Automating data analysis with functions
-  5. Wrap Up 
+  5. Using scripts in your workflow 
+  6. Wrap Up 
 
 
 1. What is Reproducibe Research (RR)? 
@@ -442,16 +444,29 @@ PrevByParType(gmp)
 
 Tidyverse Challenge
 ========================================================
+ Modify this function so that the mean prevalence is calculated for each host group *and* parasite type. 
+ 
+```{r, eval = FALSE}
+ PrevByParType<- function(dataset){
+  dataset %>%
+   # calculate mean prevalence for host group and parasite type
+ }
+```
+
+Tidyverse Challenge: Solution
+========================================================
  Modify this function so that the mean prevalence is calculated for each parasite type. 
  
 ```{r}
  PrevByParType<- function(dataset){
   dataset %>%
     drop_na(Prevalence) %>%
-    group_by(Group) %>%
+    group_by(Group, ParType) %>% # add second grouping variable
     summarise(MeanPrev = mean(Prevalence), SdErrPrev = sd(Prevalence)/sqrt(n()))
  }
 ```
+
+
 
 Returning to RR
 ========================================================  
@@ -461,20 +476,109 @@ So in this case, we've written a function that can take in different datasets or
 
 *as long as the column names are consistent. 
 
+5. Using scripts in your workflow 
+========================================================
+We've touched on organization earlier. Let's focus on the *scripts* folder.
 
-  6. Wrap Up
+ ![flow](figs/directory_orgScripts.png)
+
+Keeping a clean workflow
+========================================================
+If you are writing functions that:
+- are long
+- used for different parts of your research
+- won't be changing often. 
+
+Then, a script might make for clean workflow. 
+
+ ![flow](figs/directory_orgScripts.png)
+
+What is a script?
+========================================================
+
+- stable code often consisting of functions
+- is saved as `.R` file type
+- is loaded into the R environment using the `source()` command
+- simplifies your `.Rmd` files 
+
+
+
+Make a script
+========================================================
+
+1. Create a `.R` file 
+2. Make some comments at the start of the file, write your functions
+3. Save file in scripts directory with an informative name
+
+
+Make a script
 ========================================================
 left: 30%
+1. Create a `.R` file 
 
-**Today**
+***
 
-  - R projects workflow 
-  - writing functions
-  - Reviewed today
-    - `dplyr` package
-      -   filter, arrange...
-    - `ggplot2` package
-      -   geom_point, facet...
+ ![](figs/newScript.png)
+ 
+ 
+Make a script
+========================================================
+
+1. Create a `.R` file 
+2. Make some comments at the start of the file
+
+```{r, eval = FALSE}
+# Written on May 11, 2018 by Reni Kaul
+# This script contains functions for the R workshop; REU summer 2018. 
+# Originally written to be part of the W2_Functions.Rmd exploratio
+
+ PrevByParType <- function(dataset){
+  dataset %>%
+    drop_na(Prevalence) %>%
+    group_by(Group) %>%
+```
+
+*Never start a script with rm(list = ls())*
+
+Make a script
+========================================================
+
+1. Create a `.R` file 
+2. Make some comments at the start of the file
+3. Save file in scripts directory with an informative name
+
+- What is good name for this script? 
+- Create a script folder inside the `GMPD` project and save your script
+
+
+Use a script
+========================================================
+
+ *only for this demo Session > Restart R*
+
+Source the script 
+
+```{r, eval=FALSE}
+source("scripts/YOURFILE.R")
+
+```
+
+What's in the Environment tab?
+
+
+6. Wrap Up
+========================================================
+left: 50%
+
+
+**We can…**
+- code using best practices
+- create an HTML doc with code and commentary  
+- write a function
+- create and use scripts
+- <span style="color:gray"> calculate summary statistics of a dataset </span>
+- <span style="color:gray"> create a figure from data </span>
+
 
     
 ***
@@ -484,7 +588,7 @@ left: 30%
 
   6. Wrap Up
 ========================================================
-left: 30%
+left: 50%
     
 **Next**
 
