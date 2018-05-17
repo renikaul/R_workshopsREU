@@ -48,7 +48,17 @@ left: 40%
   5. Wrap Up 
 
 
-1. What is reproducible research (RR)? 
+1. What is Reproducibe Research (RR)? 
+========================================================
+
+**Johns Hopkins Bloomberg School of Public Health:**
+
+Reproducible Research is the idea that data analyses, and more generally, scientific claims, are published with their data and software code so that others may verify the findings and build upon them.
+
+ ![](figs/repspectrum.JPG)
+
+
+What is reproducible research? 
 ========================================================
 Three R's: Replication, repeatability, and reproducibility
   
@@ -57,13 +67,6 @@ Three R's: Replication, repeatability, and reproducibility
 **Repeatability** concerns the ability to arrive at the same findings when a study is repeated and establishes the generality of the observed finding to other study populations or systems.
 
 **Reproducibility** concerns the reliability of the logic that leads from data to conclusions -- that is, the *data analysis*. It would seem that reproducibility is an essential ingredient of scientific knowledge. But, as data workflow become more and more complicated they also bring more subjective decision-making by the data analyst, more computations, and more opportunities for error.
-
-What is RR? 
-========================================================
-
-**Johns Hopkins Bloomberg School of Public Health:**
-
-Reproducible Research is the idea that data analyses, and more generally, scientific claims, are published with their data and software code so that others may verify the findings and build upon them.
 
 Why should research be made reproducible?
 ========================================================
@@ -121,7 +124,8 @@ left: 50%
  - Analysis: `R` code
  - What else?
  
- Where is the "Why"? 
+
+What should be included in RR? 
 ========================================================
 left: 50%
 
@@ -129,23 +133,24 @@ left: 50%
  - Experimental details: experimental design, sampling protocol, etc.
  - Analysis: `R` code
  - What else?
- 
+
+**Where is the <i>why </i>?**
 ***
 
 *What would you need to recreate a modeling project?*
  - Experimental details: model assumptions, number of simulations, etc.
  - Analysis: `R` code
  - What else?
- 
+
  
 
 
- Where is the "Why"? 
+ Where is the 'Why'? 
 ========================================================
 
 Within your code your comments and longer commentary should include the *why* instead of the what or how.  
 
-Is this an example of good commenting?
+Is this an example of good commenting the **why**?
 
 
 ```r
@@ -160,7 +165,7 @@ passengers %>% # start with Titanic passengers data set
 
 An example of better comments with commentary: 
 
-> I hypothesis that older men will pay a higher fare because they have had more time to accumulate more wealth. The first step of testing this hypothesis is to determine if there is a possitive correlation between age and fare for male passengers.
+> I hypothesize that older men will pay a higher fare because they have had more time to accumulate more wealth. The first step of testing this hypothesis is to determine if there is a possitive correlation between age and fare for male passengers.
 
 ```r
 # create a plot to see how male passengers' age correlated with the fare they paid. 
@@ -219,6 +224,8 @@ Now, we are going explore data starting from scratch. Let's start a new project.
 
 <iframe width="660" height="415" src="https://www.youtube.com/embed/hKoSJGWnFFA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
+Some great reasons to use projects at http://bit.ly/WhyUseProjects
+
 Exploring the Global Mammal Parasite Database
 ========================================================
 
@@ -234,7 +241,7 @@ It is now your turn to start a R project to explore the Global Mammal Parasite D
 What is the Global Mammal Parasite Database? 
 ========================================================
 
-Take the next 10 minutes to review:
+Take the next few minutes to review:
 
 * Check out the dataset publication at http://bit.ly/RworkshopGMPD
 * Read the abstract of the `metadata.pdf` file 
@@ -264,6 +271,7 @@ library(tidyverse)
 gmp <- read_csv("data/GMPD_main.csv")
 ```
 
+* use the cheat sheets, `W1_exercise.Rmd` and each other for help! 
 
 Q1. Which group is sicker? 
 ========================================================
@@ -275,10 +283,10 @@ Q1. Which group is sicker?
 gmp %>%
   drop_na(Prevalence) %>%
   group_by(Group) %>%
-  summarise(MeanPrev=mean(Prevalence), SdErrPrev=sd(Prevalence)/sqrt(n())) %>%
-  ggplot(aes(x=Group, y=MeanPrev)) +
-  geom_bar(stat="identity") +
-  geom_errorbar(aes(ymin=MeanPrev-SdErrPrev, ymax=MeanPrev+SdErrPrev), width=0.2)
+  summarise(MeanPrev = mean(Prevalence), SdErrPrev = sd(Prevalence)/sqrt(n())) %>%
+  ggplot(aes(x = Group, y = MeanPrev)) +
+  geom_bar(stat = "identity") +
+  geom_errorbar(aes(ymin = MeanPrev-SdErrPrev, ymax = MeanPrev+SdErrPrev), width = 0.2)
 ```
 
 *what is the output of this code chunk?*
@@ -315,6 +323,20 @@ gmpTraits %>%
 ```
 
 *what happens if an `ifelse` statement isn't used?*
+
+Q2. Do vectored parasites also have intermediate hosts? 
+========================================================
+
+
+
+
+```r
+gmpTraits %>% mutate(vector = ifelse(vector == 0, "No", "Yes")) %>% mutate(intermediate = ifelse(intermediate == 
+    0, "No", "Yes")) %>% ggplot(aes(x = vector, fill = intermediate)) + geom_bar()
+```
+
+![plot of chunk unnamed-chunk-7](W2_Presentation-figure/unnamed-chunk-7-1.png)
+
 
 
 4. Automating data analysis with functions
@@ -442,7 +464,7 @@ PrevByParType(gmp)
 3 ungulates     0.500   0.00706
 ```
 
-Challenge
+Tidyverse Challenge
 ========================================================
  Modify this function so that the mean prevalence is calculated for each parasite type. 
  

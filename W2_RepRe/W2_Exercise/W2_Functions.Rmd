@@ -85,8 +85,8 @@ The arguements are what is fed into the function. In this case, we need to tell 
 Modify the function skeleton below to make a working function
 
 ```{r}
- InformativeName<- function(agr1, arg2, ...){
-  #analysis
+ InformativeName <- function(agr1, arg2, ...){
+  ## analysis
  }
 
 ```
@@ -107,12 +107,12 @@ Modify the function skeleton below to make a working function
 PrevByHostGroup(gmp)
 ```
 
-## Challenge
+## Tidyverse Challenge
 
  Modify this function so that the mean prevalence is calculated for each parasite type. 
  
 ```{r}
- PrevByParType<- function(dataset){
+ PrevByParType <- function(dataset){
   dataset %>%
     drop_na(Prevalence) %>%
     group_by(Group) %>%
