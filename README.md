@@ -87,6 +87,12 @@ Additional reading:
 
 ### Workshop 4: Data visualization in R
 
+## Other useful information
+
+The bottom quarter of the projected screen is hard to see with the desk monitors are at full height. You might encourage students to push the monitors down so people can see behind them, put away monitors that aren't being worked on, and rearrange your RStudio panels so that the panel you're interacting with most is in the upper half of the screen.
+
+We have requested that students use the computers provided to avoid installation issues with R.
+
 
 # Provided Materials 
 
@@ -116,6 +122,15 @@ In some cases students will given short readings to be done before the workshop.
 
 ## Agenda
 
+1. What is `R` and RStudio?
+2. Introduction to with tidyverse with code along
+
+*Break*
+
+3. Troubleshooting
+4. Exploring data in groups
+5. Wrap Up
+
 ## Files
 
 Files to be shared with students
@@ -135,26 +150,68 @@ Additional files for instructor
 
 
 ## Notes (IN PROGRESS)
-Code-Along:
-The code along file is the W1_Exercise.Rmd with a solutions file (W1_Exercise_soln.Rmd or code chunks only: W1_Exercise_soln.R). It might be easiest to print off the .R to reference during the code along.   
-I have modified the Data Camp's  Introduction to tidyverse live code-along held on Facebook live April 5th, 2018. The code-along was 1 hour. The video is broken into 2 parts. It might be help watch the video to see how this type of instruction works. 
+
+This is the first workshop in the series, and so it is important to start by clearly motivating the workshops and setting the tone for what is to come. The latest iteration of this series has been modified and reorganized to clearly communicate the value of R in scientific research. These modifications include:
+
+1. John will give an intro pep talk at the first workshop about the value of R
+2. The first workshop jumps right in with tidyverse data manipulation and plotting.
+3. Researchers leading the workshops will be asked to explain how they use R in their research.
+4. The first exercise in a workshop will have a review component, connect the concepts from the last workshop to the next.
+
+This approach comes at the cost of covering the finer technical details that are sometimes introduced during an *Introduction to R* course. Students can cover some of this content in the Free Course Introduction to R offered by DataCamp (https://www.datacamp.com/courses/free-introduction-to-r). I think it is also important to acknowledge that this workshop series will not cover *all* of the skills the students will need, but instead emphisize the skills needed to for future learning as new challenges arise. These problem solving skills are practiced while covering commonly used concepts/tasks in this field.
+
+This workshop will start with John Drake giving a brief overview of the importance of R programming in research. This is followed by describing the workshop formats, setting expectations and introducing yourself including how you use  `R`.   Science is iterative, so our work flow matches this process. Workshops will cover multiple parts of this cycle, each time focusing on a new aspect. Today will focus mostly on Import>Tidy>Transform of the workflow diagram.  Exercises are designed to be 'authentic tasks' or something similar to scientific programming.
+
+### 1. What is R and RStudio?
+
+Before jumping into the demo/code-along make sure to give the students a good grasp of vocabulary. Stress the difference between R the language, and RStudio is software. These workshops will exclusively use RStudio.
+
+Demonstrate opening the project as a way to launch RStudio. The next workshop will focus on projects, so you don't need to go into much detail explaining the project component. Orientate them to the different panels of Rstudio- you might want to point out specific features like:
+
+- green arrow to run code chunk
+- expand/collapse sections
+- section navigator
+- etc.
+
+### 2. Introduction to with tidyverse with code along (1.5 hours)
+
+ We will use tidyverse for all of the workshops with the exception of workshop 3 which uses base `R`. If the students completed the DataCamp introduction course they will have been exposed to base `R` and the various object classes. Point out `pipes` and explain the verb orientated nature of tidyvers.
+The syntax example also has a reference to a specific package, this will not often be used in the exercises but is useful when different packages can have the same named function.
+
+Packages are associated with a specific task or feature and many have icons. Since packages are typically designed to do a single thing really well, so we need many packages to move through the iterative cycle. Of these, the workshops will mainly focus on dplyr, ggplot and rmarkdown.
+
+The first command the students will execut in R is installing the tidyverse package. The installation should take less than 10 seconds. You should demo the GUI and command line method. While the package is installing you might also metion the hash tag comment. Make sure that install.packages() is commented before continuing. The document will not knit with an install.packages() command.
+
+The install.packages() requires quoted package name but library() does not. Use this difference as an opprotunity to point out the importance of paying attention to syntax.
+
+At this point, you can jump into the code-along in  W1_Exercise.Rmd with a solutions file (W1_Exercise_soln.Rmd or code chunks only: W1_Exercise_soln.R). It might be easiest to print off the .R to reference during the code along.  I have modified the DataCamp's  Introduction to tidyverse live code-along held on Facebook live April 5th, 2018. The code-along was a fast paced hour. The video is broken into 2 parts. It might be help watch the video to see how this type of instruction works.
 
 Part 1: https://www.facebook.com/726282547396228/videos/2021285494562587/
 Part 2: https://www.facebook.com/726282547396228/videos/2021328791224924/
 
-I think this type of instruction works best when the leader takes the time to read the bits in between the code chunks and keeps a relatively moderate pace. I have built in little reflection sections to allow students to catch up as needed. 
-It is also important to set up your screen to maximize the view of previously completed lines while making sure students can still see what is currently being typed. The bottom of the projector screen is too low to be seen from the back of the computer lab. You may also want to make sure that monitors not in use are stored under the table. 
+I think this type of instruction works best when the leader takes the time to read the bits in between the code chunks and keeps a relatively moderate pace. I have built in little reflection sections to allow students to catch up as needed. Check in with the students often to find the appropriate pace. Watch the non-verbals for engagement. Do they make eye contact when you're asking questions? Do they shake their heads "yes" when you end with a "right"? Are students still typing? Are they struggling to see what your typing?
 
-See W1_Exercise_soln.R for chunck specific comments. 
+The dataset defines gender as a binary. Be sensitive to this.
 
-Application of skills: 
-This is to be completed as a group at the end of the W1_Exercise.Rmd. The majority of your time will be spent working with groups. Engage students and groups who seem to be withdrawing from the activity. Encourage them to look at the cheatsheets and other references. This is an opportunity for them to develop trouble shooting skills, and ownership of a product. 
+If you haven't already this section should end with a break.
 
-You should check in with groups early in the process to make sure the question is appropriately challenging and answerable given the dataset. This isn't a skill that will be explicitly covered in these workshops. 
+### 3. Troubleshooting
 
-The first workshop jumps in with data manipulation, summarization, and plotting in tidyverse using a code-along followed by group exploration of a data set. The exploration ends with foreshadowing the next workshop which focuses on reproducible research by kniting the .Rmd into a HTML file, and sharing the code which will be interpreted by others.
+The break is followed by a short lecture on different ways to trouble shoot code. The purpose of this section is to drive home coding and trouble shooting go hand in hand. The slides run through a few different resources: manual pages, vignettes/turtorials, cheatsheets, error messages, and google.
 
-Setting the tone for the workshop series.
+In my experience manual pages, and error messages are the most intimidating for students. The round() manual page is one of the more straight forward pages to use for explaining the basic layout and argument interpretations. This is also a good place to introduce vocabulary specific to functions (the belong to a package, they take in arguments, etc.).  Students often need a little push to read beyond `error:`
+
+### 4. Exploring data in groups (1 hour max)
+
+Students will now have a chance to use tidyverse on their own. Working in groups makes this task appropriately challenging. Assign groups if they don't self assemble. This is to be completed as a group at the end of the W1_Exercise.Rmd. The majority of your time will be spent working with groups. Engage students and groups who seem to be withdrawing from the activity. Encourage them to look at the cheatsheets and other references. This is an opportunity for them to develop trouble shooting skills, and ownership of a product. When possible help them understand the cheat sheets or other trouble shooting approaches.
+
+You should check in with groups early in the process to make sure the question is appropriately challenging and answerable given the dataset.  This isn't a skill that will be explicitly covered in these workshops, but is needed for the program. This exploration will be used in the next workshop so try to steer groups into different questions. The more diversity of approaches and questions the better.
+
+The exploration ends with saving the document with a group number. It is important that they 1) remember their number for the next workshop,  2)  are uniquly numbered, and 3) email a copy to you.
+
+### 5. Wrap Up
+
+Take a minute to recap all of the skills that have been covered. You might ask for examples for each of the steps in the Import -> Visualize flow.  Learning R can feel like you're drinking from a fire hose, but this workshop hopefully demonstrates that it is worth the effort. The next work shop will add communication into the mix. 
 
 ---
 # Reproducible Research Teaching Notes

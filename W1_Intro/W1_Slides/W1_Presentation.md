@@ -23,7 +23,7 @@ About Myself
  - I use `R` in my research to:
    + organize data 
    + develop machine learning algorithms
-   + 
+   + [INSERT DETAILS]
  - I mostly work [in this disease system or approach] 
  - My contact info is [INSERT EMAIL]
  
@@ -32,10 +32,10 @@ Workshop Goals
 ========================================================
 left:65%
 **The workshop series** consists of four half day workshops each focusing on a different part of the research process
-- Introduction to `R` and RStudio (Today)
-- Conducting reproducible research (Date; Person)
-- Visualizing data (Date; Person)
-- Simulating infectious disease dynamics (Date; Person)
+- Introduction to `R` (Today)
+- Reproducible research (May 30; Robbie Richards)
+- Simulating infectious diseases  (June4; John Vinson)
+- Visualizing data (June 6; Michelle Evans)
 
 ***
 
@@ -59,7 +59,7 @@ left:60%
   + review the materials before hand
   + room tends to be cold
 - Ask questions
-- Help eachother
+- Help each other
 
 ***
 **Instructor**
@@ -71,7 +71,7 @@ Outline
 ========================================================
 left: 40%
 
-**You should be able to...**
+**At the end of this workshop you should be able to...**
 - calculate summary statistics of a dataset
 - create a figure from data
   
@@ -118,7 +118,7 @@ RStudio
 ![RStudio](figs/Rstudio_layout.png)
 
 
-3. Introduction to tidyverse
+2. Introduction to tidyverse
 ========================================================  
 left: 50%
 
@@ -143,7 +143,7 @@ Install tidyverse package
 
 
 ```r
-#install all the packages in the tidyverse
+# install all the packages in the tidyverse
 install.packages("tidyverse") 
 ```
 
@@ -156,7 +156,7 @@ Load tidyverse package
 
 
 ```r
-#load tidyverse library
+# load tidyverse library
 library()
 ```
 
@@ -169,7 +169,7 @@ Switch over to `W1_Exercise.Rmd`
  
  <h1> *Break* </h1>
 
-4. How to get unstuck: functions
+3. How to get unstuck: functions
 ========================================================
 left: 35%
 - Every function has a help page 
@@ -227,7 +227,7 @@ left: 30%
 
 
   
-  5. Exploring further
+4. Exploring further
 ========================================================
 Let's work in small groups (max [X])
 
@@ -238,23 +238,34 @@ Let's work in small groups (max [X])
 More instructions in the file. 
 
 
-  6. Wrap Up
+5. Wrap Up
 ========================================================
-left: 30%
+left: 50%
 
-**Today**
-   - `dplyr` package
+**We can...**
+- calculate summary statistics of a dataset
+- create a figure from data
+  
+*using*
+ - `dplyr` package
     -   filter, arrange...
-  - `ggplot2` package
+ - `ggplot2` package
     -   geom_point, facet...
-    
-*Next*
-  - How to communicate
-    -   others
-    -   future self 
     
 ***
 ![W1](figs/W1_iterative.png)
+
+
+
+5. Wrap Up
+========================================================
+left: 50%
+
+*Next*
+
+  Focus on communication by following best practices for reproducible research 
+    
+***
 
 ![W1](figs/W2_iterative.png)
 

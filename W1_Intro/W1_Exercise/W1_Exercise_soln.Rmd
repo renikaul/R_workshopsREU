@@ -1,8 +1,12 @@
 ---
-title: "W1_Exercise"
-author: "Reni Kaul"
-date: "4/11/2018"
-output: html_document
+title: "W1_Exercise Solutions"
+author: "PopBio REU 2018" 
+date:  "Reni Kaul"
+output: 
+  html_document: 
+    toc: true
+    toc_depth: 2
+    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
@@ -385,6 +389,7 @@ passengers %>%
 We will now use some of the skills we've just learnt to answer a our own questions! 
 
 As a group: 
+
 1. Develop a question that can be answered with the `passengers1` dataset. See [dataset description](https://www.kaggle.com/c/titanic/data) for more details on each of the columns.
 2. Talk through how the data needs to be manipulated to get the appropriate answer. Would plotting the data be useful? Which verbs will you use and in what order? 
 3. Write the code for the analysis. Designate a computer that will have the completed code. If you are not actively typing, you can help your group by thinking about what should come next or proof reading what has already been typed. Be sure to test your code often. 
@@ -399,7 +404,7 @@ As a group:
 4. When you are finished:
   - save the file with your group number (ie. `W1_Group1.Rmd`)  
   - Knit the `.Rmd` (short for RMarkdown) to HTML using the Knit button. Open the HTML, what does it look like? We will explore this more during the next workshop. 
-  - email the `.Rmd` to your group members and Ania (EMAIL). 
+  - email the `.Rmd` to your group members and Ania (majewska@uga.edu ). 
 
 
 
