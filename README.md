@@ -10,10 +10,12 @@ Each workshop is broken down into 3 parts: 1. Short lecture, 2. Code Along or de
 ## Workshop Overview
 
 1. Introduction to R
-    This workshop gives students an introductory to R and RStudio, along with a review of troubleshooting strategies. The majority of the workshop is spent exploring the Titanic passenger list using tidyverse in a code-along session. Data manipulation, summary statistics and basic visualizations using tidyverse are covered. The workshop ends with the students working in groups to explore a self-identified question regarding the Titanic data set. The workshop ends with students compiling their .Rmd into an html document. 
+
+This workshop gives students an introductory to R and RStudio, along with a review of troubleshooting strategies. The majority of the workshop is spent exploring the Titanic passenger list using tidyverse in a code-along session. Data manipulation, summary statistics and basic visualizations using tidyverse are covered. The workshop ends with the students working in groups to explore a self-identified question regarding the Titanic data set. The workshop ends with students compiling their .Rmd into an html document.
 
 2. Reproducible Research with R
-    This workshop gives students an introduction to reproducible research concepts. They develop and practice best practices for commenting and commentary of code, along with using RStudio projects to manage workflow. The workshop revisits tidyverse and the Titanic data set by asking students to comment and add commentary to their group exploration of the Titanic data set. Students also start a new RStudio project, and are asked to explore the global mammal parasite database using tidyverse. The workshop ends with an introduction to writing functions.
+
+This workshop gives students an introduction to reproducible research concepts. They develop and practice best practices for commenting and commentary of code, along with using RStudio projects to manage workflow. The workshop revisits tidyverse and the Titanic data set by asking students to comment and add commentary to their group exploration of the Titanic data set. Students also start a new RStudio project, and are asked to explore the global mammal parasite database using tidyverse. The workshop ends with an introduction to writing functions.
 
 3. Simulating Infectious Diseases with R
 
@@ -31,23 +33,18 @@ The learning objectives are broken down by workshop, and are stated as "Students
 
 ### Workshop 1: Introduction to R
 
-IN PROGRESS
-0. Why is R programming a useful skill? (John)
-0. Workshop format and expectations
-1.  What is R and RStudio
-- list at least 3 reasons R/RStudio is a useful research tool
-- describe CRAN's function
-- install a package
-- create a variable in R
-- Interface with Rstudio
-2. Introduction to R with tidyverse code along
-3. How to troubleshoot in R
-4. Exploring data further in groups
+- install and load a package
+- load data from csv
+- manipulate data using dplyr verbs and tidyverse syntax
+- calculate summary statistics of a dataset
+- create a barplot from data
+- list trouble shooting resources
 
 ### Workshop 2: Reproducible research with R
 
 IN PROGRESS
 - start a new project in RStudio
+- write the syntax for a generic function
 -
 1. Introduction to reproductive research
 - starting/working in R projects
@@ -67,15 +64,14 @@ IN PROGRESS
 - Rproject
 - logic statements (ifelse)
 
-Additional reading:
 
+Additional reading:
 
 
 ### Workshop 3: Simulating infectious diseases with R
 
 - convert data between wide and long data format using gather()
 - explain the difference between wide and long data format
-- write the syntax for a generic function
 - code a system of ODEs as a function for lsoda() simulations
 - describe Euler's method (conceptually)
 - write code to numerically solve ODEs using lsoda()
@@ -149,7 +145,7 @@ Additional files for instructor
 - `W1_Presentation.Rpres` (used to make `W1_Presentation.html`)
 
 
-## Notes (IN PROGRESS)
+## Notes
 
 This is the first workshop in the series, and so it is important to start by clearly motivating the workshops and setting the tone for what is to come. The latest iteration of this series has been modified and reorganized to clearly communicate the value of R in scientific research. These modifications include:
 
@@ -211,7 +207,7 @@ The exploration ends with saving the document with a group number. It is importa
 
 ### 5. Wrap Up
 
-Take a minute to recap all of the skills that have been covered. You might ask for examples for each of the steps in the Import -> Visualize flow.  Learning R can feel like you're drinking from a fire hose, but this workshop hopefully demonstrates that it is worth the effort. The next work shop will add communication into the mix. 
+Take a minute to recap all of the skills that have been covered. You might ask for examples for each of the steps in the Import -> Visualize flow.  Learning R can feel like you're drinking from a fire hose, but this workshop hopefully demonstrates that it is worth the effort. The next work shop will add communication into the mix.
 
 ---
 # Reproducible Research Teaching Notes
