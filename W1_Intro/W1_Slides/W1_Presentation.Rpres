@@ -191,7 +191,7 @@ How to get unstuck: packages
 ========================================================
 left: 30%
 
- - Cheatsheets published out by RStudio
+ - Cheatsheets published by RStudio
  
 ***
 ![cheatsheets](figs/ggcheat.png)
@@ -202,7 +202,7 @@ How to get unstuck: packages
 ========================================================
 left: 30%
 
- - Cheatsheets published out by RStudio
+ - Cheatsheets published by RStudio
  - Contributed cheatsheets 
  
 ***
@@ -220,7 +220,7 @@ How to get unstuck: error messages
 ========================================================
 left: 30%
 
- - But sometimes, the messages is cryptic. So use google!   
+ - But sometimes, the message is cryptic. So use google!   
 
 ***
 ![google](figs/googlefu.png)
@@ -229,7 +229,7 @@ left: 30%
   
 4. Exploring further
 ========================================================
-Let's work in small groups (max [X])
+Let's work in small groups (max 3 people)
 
 - Develop a question about that can be answered with this data
 - Decide on the needed verbs, and order
