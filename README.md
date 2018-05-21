@@ -197,13 +197,14 @@ Take a minute to recap all of the skills that have been covered. You might ask f
 ## Agenda
   
   1. Introduction to reproducible research (RR)
-  2. Review of tidyverse
+  2. Review of tidyverse with RR
   
     *Break*
     
   3. Explore data using a R project
   4. Automating data analysis with functions
-  5. Wrap Up 
+  5. Using scripts in your workflow
+  6. Wrap Up 
 
 ## Files
 
@@ -227,7 +228,12 @@ Additional files for instructor
 - `W2_Presentation.Rpres` (used to make `W2_Presentation.html`)
 
 ## Notes
+
+### 1. Introduction to reproducible research (RR)
+
 The workshop starts with a short lecture covering the basic principles of RR. This is also an opportunity to share how following RR practices have been useful to you and collaborators. I often stress the importance of these practices for them during the REU since the work that they are doing will most likely be handed off to another scientist (including future self). Many of these practices are baked into RStudio, RProjects and the workshops.
+
+### 2. Review of tidyverse with RR
 
 The first exercise (W2_exercise.Rmd) will focus on incorporating commentary outside of code chunks and comments inside of code chunks. Students are asked to revisit the group data exploration from the first workshop. They will need to add commentary/comments to their own work, and a different group’s work. They will need to be able to interpret the other groups code in order to add comments/commentary, forcing them to revisit tidyverse syntax. I expect trying to comment on another group’s work will give them an understanding of the importance of this practice in their own research. The exercise ends with a discussion reflecting on their experience. Questions to prompt conversation include:
 
@@ -240,7 +246,9 @@ and are on the last slide before the break.
 
 *break*
 
-The second exercise of workshop involves setting up an RProject from scratch. Start by walking the students through the GUI setup of an RProject, and the value of RProjects (there is an embedded YouTube video describing the set up process). I found a nice video of ‘why use projects’ that might also be useful but cannot be embedded or added to edpuzzle (http://bit.ly/WhyUseProjects). The video ends with github which we don’t cover. They will need to move the GMPD data into the project directory. This is a good opportunity to explain the type of files that could go into each subdirectory using the R for data science suggested organization. Once they have the organization in place they are given two prompts to explore the GMPD. This exercise is another opportunity to practice tidyverse syntax and commenting/commentary. Since they aren’t given any skeleton for the analysis, you may need to coach groups on a reasonable approach to get at an answer. I have provided an example figure for each, but summary statistics could also work. 
+### 3. Explore data using a R project
+
+The second exercise of the workshop involves setting up an RProject from scratch. Start by walking the students through the GUI setup of an RProject, and the value of RProjects (there is an embedded YouTube video describing the set up process). I found a nice video of ‘why use projects’ that might also be useful but cannot be embedded or added to edpuzzle (http://bit.ly/WhyUseProjects). The video ends with github which we don’t cover. They will need to move the GMPD data into the project directory. This is a good opportunity to explain the type of files that could go into each subdirectory using the R for data science suggested organization. Once they have the organization in place they are given two prompts to explore the GMPD. This exercise is another opportunity to practice tidyverse syntax and commenting/commentary. Since they aren’t given any skeleton for the analysis, you may need to coach groups on a reasonable approach to get at an answer. I have provided an example figure for each, but summary statistics could also work. 
 
 Q1. solution introduces piping directly into ggplot, and more complex visualization. At this stage a bar plot is all that is really expected. They will have a chance to explore more complex figures in the last workshop. 
 
@@ -248,9 +256,20 @@ Q2. solution revisited the ifelse() command to convert 0/1 numeric data into cat
  
 For groups that finish quickly, push them by asking them to add more nuance to the analysis or refining commenting/commentary of the document. This module can be shortened to a single question if needed. The new skills are covered in the set up. 
 
-The last module of the workshop covers writing functions using a hypothetical scenario where a summary calculation of the GMPD is converted into a function. This work is done in the `W2_Functions.Rmd` file and has lots of scaffolding. The main take home from this module should be 1) good function names, 2) function syntax, and 3) how argument names are used as place holders within the function. Writing functions will be essential to the next workshop which used lsoda() to numerically solve an SIR model. 
+The last two modules of the workshop cover functions and scripts within the GMPD Rproject. 
 
-ADD IN SCRIPT COMMENTS
+### 4. Automating data analysis with functions
+
+The functions exercise is motivated by a hypothetical scenario where a summary calculation of the GMPD is converted into a function. This work is done in the `W2_Functions.Rmd` file and has lots of scaffolding. The main take home from this module should be 1) good function names, 2) function syntax, and 3) how argument names are used as place holders within the function. Writing functions will be essential to the next workshop which used lsoda() to numerically solve an SIR model. 
+
+### 5. Using scripts in your workflow
+
+ The functions module flows into the script module.  Revisit the suggested subdirectory organization. The GMPD started with creating a data directory, this module focuses on the scripts directory. The function that was written in the previous module is then used to create a script. This is also another chance to give examples from your own research. 
+
+### 6. Wrap Up 
+
+Take a minute to recap all of the skills that have been covered. You might ask for examples for each of the steps in the Import -> Visualize flow.  Learning R can feel like you're drinking from a fire hose, but this workshop hopefully covers skills to manage the mess of learning. The next workshop will use the skills covered in the first 2 workshops to build an SIR model.
+
 
 # Simulating Infectious Diseases Teaching Notes
 
