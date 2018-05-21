@@ -14,11 +14,13 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 # Introduction to the series
 
-This is the first of four sessions on using `R` and RStudio as part of your research process. These workshops were designed for you to develop a foundational understanding of `R` programming. This will not be an exhustive course, but instead focuses on giving you the skills needed to learn the skills your particular project requires. The exercises used throughout the series were chosen because they mirror tasks a typical REU student might need to complete. The first two workshops focus on covering the basics of `R` and R Studio for scientific research. The third workshop focuses on infectious disease modeling which is a key tool used in the field. Finally, the last workshop covers data visualization. This workshop will be a useful reference when creating the [scientific posters](http://reu.ecology.uga.edu/?cat=34) you'll be presenting at the end of the REU program. Each workshop is led by a different instructor and are happy to help with follow up questions. 
+This is the first of four sessions on using `R` and R Studio as part of your research process. These workshops were designed for you to develop a foundational understanding of `R` programming. This will not be an exhaustive course, but instead focuses on giving you the skills needed to learn the skills your particular project requires. The exercises used throughout the series were chosen because they mirror tasks a typical REU student might need to complete. 
+
+The first two workshops focus on covering the basics of `R` and R Studio for scientific research. The third workshop focuses on infectious disease modeling which is a key tool used in the field. Finally, the last workshop covers data visualization. This workshop will be a useful reference when creating the [scientific posters](http://reu.ecology.uga.edu/?cat=34) you'll be presenting at the end of the REU program. Each workshop is led by a different instructor and are happy to help with follow up questions. 
 
 You will have a short reading to be completed before each workshop. The reading will introduce important topics. Examples of `R` code use the `Courier New` font with grey highlight. 
 
-As I've already mentioned, the exercises focus on authentic tasks. This approach prioritizes task completion over detailed technical knowledge of programming in `R`. If you're working on a quantitative project or are just curious I suggest [R for Data Science](http://r4ds.had.co.nz/) or the [Introduction to R free course from DataCamp](https://www.datacamp.com/courses/free-introduction-to-r). 
+As I've already mentioned, the exercises focus on authentic tasks. This approach prioritizes task completion over detailed technical knowledge of programming in `R`. If you're working on a quantitative project or are just curious, I suggest [R for Data Science](http://r4ds.had.co.nz/) or the [Introduction to R free course from DataCamp](https://www.datacamp.com/courses/free-introduction-to-r). 
 
 
 # Introduction to R 
@@ -32,6 +34,8 @@ The topics covered in this workshop include:
   
 
 ## 1. What is R and RStudio
+
+`R` is a programming language and environment commonly used in many scientific fields. The open-source software is maintained by [CRAN](cran.r-project.org) with contributors from all over the world. Since `R` is open-source, the software is freely available and has constantly expanding capabilities.  
 
 R Studio is a user friendly R working environment that makes it easy to organize projects and provides several improvements over the default R working environment such as providing an integrated full featured script editor and remembering all graphics outputs for a session. It is available for most operating systems (windows, mac, and linux), and can be downloaded here: http://www.rstudio.com/
 
@@ -52,7 +56,7 @@ The workspace/ history window (upper right): This window has two tabs. Workspace
 
 ### Packages
 
-`R` "packages" are libraries of code, specialized collections of functions (and often data), most of which are not part of the core `R` package. Many of them implement specialized statistical or numerical methods that would not be covered in typical courses. For example, deSolve is a package that allows users to numerically solve di???erential equation models. Di???erential equation models are often used to represent the dynamics of epidemics, so tools for solving them can be very useful to scientists studying infectious diseases. Packages that are loaded into or are currently active in R are referred to as "attached". In RStudio, new packages can be downloaded and installed by clicking on the "Tools" tab and selecting install packages.
+`R` "packages" are libraries of code, specialized collections of functions (and often data), most of which are not part of the core `R` package. Many of them implement specialized statistical or numerical methods that would not be covered in typical courses. For example, deSolve is a package that allows users to numerically solve differential equation models. Differential equation models are often used to represent the dynamics of epidemics, so tools for solving them can be very useful to scientists studying infectious diseases. Packages that are loaded into or are currently active in R are referred to as "attached". In RStudio, new packages can be downloaded and installed by clicking on the "Tools" tab and selecting install packages.
 
 ### R Markdown (.Rmd)
 
@@ -60,7 +64,7 @@ RStudio has developed different file types that allow the user to mix different 
 
 If you have never used a markdown language before check out the [R Markdown cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf). 
 
-Most of the `R` code in a `.Rmd` needs to be within a code chunk which starts with three back ticks followed by a lower case r within curly brakets (```{r}). The code chunk ends with three back ticks. There are other options that can be included in the curly bracket follow the lower case r (See the [cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)). 
+Most of the `R` code in a `.Rmd` needs to be within a code chunk which starts with three back ticks followed by a lower case r within curly brackets (```{r}). The code chunk ends with three back ticks. There are other options that can be included in the curly bracket follow the lower case r (See the [cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)). 
 
 You can execute chunks by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter* or *Ctrl+Shift+Enter* on Windows. 
 
@@ -79,19 +83,19 @@ Here is a quick overview of [differences between base R and tidyverse](http://ww
 
 ## 3. How to get unstuck
 
-I major part of *learning to learn* is developing troubleshooting skills. Each package has a long-form description called a [vignette](https://cran.r-project.org/web/packages/rmarkdown/rmarkdown.pdf). Individual manual pages for functions can be pulled up within RStudio by preceeding a function with '?' in the console. A double question mark searches function help pages. 
+I major part of *learning to learn* is developing troubleshooting skills. Each package has a long-form description called a [vignette](https://cran.r-project.org/web/packages/rmarkdown/rmarkdown.pdf). Individual manual pages for functions can be pulled up within R Studio by preceding a function with '?' in the console. A double question mark searches function help pages. 
 
 Manual pages follow a set format.
 
 ![manual page from http://socviz.co/appendix.html#a-little-more-about-r](W1_Slides/figs/read-a-help-page.png) 
 
-In addition to vingettes and manual pages package authors will often make guides or examples that are returned by a google search. Once you have a  handle on a function or package, cheat sheets are a useful reference. RStudio has a few, but also a bank of user contributed cheat sheets. You'll often find these cheat sheets posted near computers in labs. 
+In addition to vignettes and manual pages package authors will often make guides or examples that are returned by a Google search. Once you have a  handle on a function or package, cheat sheets are a useful reference. R Studio has a few, but also a bank of user contributed cheat sheets. You'll often find these cheat sheets posted near computers in labs. 
 
 ### Error warnings
 
-Error warnings are part of the coding process. Errors can be the result of a minor typo or a larger issue with the code. The first step of dealing with an error is trying to understand the error message returned. Since `R` packages are user contributed, the helpfulness of error messages differs from function to function. If you're struggling to understand an error message, google is your friend. Googling the error message normally returns a useful response on StackOverflow, a blog post, etc. It is very unlikely that you're the first person to come across the error. 
+Error warnings are part of the coding process. Errors can be the result of a minor typo or a larger issue with the code. The first step of dealing with an error is trying to understand the error message returned. Since `R` packages are user contributed, the helpfulness of error messages differs from function to function. If you're struggling to understand an error message, Google is your friend. Goggling the error message normally returns a useful response on Stack Overflow, a blog post, etc. It is very unlikely that you're the first person to come across the error. 
 
-The RStudio has a more detailed [help guide](https://www.r-project.org/help.html). 
+The R Studio has a more detailed [help guide](https://www.r-project.org/help.html). 
 
 # Other useful information
 
@@ -99,6 +103,6 @@ You'll notice stylistic consistency in the exercises. That's because we're adher
 
 > Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread.
 
-Part I of the [tidyverse style guide](http://style.tidyverse.org/index.html) would be most useful for beginners. It is ok to follow [other style guides](https://google.github.io/styleguide/Rguide.xml), just be consistent.  
+Part I of the [tidyverse style guide](http://style.tidyverse.org/index.html) would be most useful for beginners. It is OK to follow [other style guides](https://google.github.io/styleguide/Rguide.xml), just be consistent.  
 
 
