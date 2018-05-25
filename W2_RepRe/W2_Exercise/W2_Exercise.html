@@ -131,22 +131,23 @@ $(document).ready(function () {
 </blockquote>
 <p>Good commenting and commentary also make your code easier to read. This is also a key part of reproducible research. A well documented analysis can makes your work accessible to other scientists, including your future self.</p>
 <p><strong>Directions</strong></p>
-<p>We will practice this skill by modifying the group exercises from the first workshop with comments and commentary. Start by modifying your group’s exercise in the space below <em>## Documenting my group’s exercise</em>, then add comments and commentary to another group’s exercise. You should have a copy of your exploration in your email.</p>
-<p>[DIRECTIONS ON HOW TO GET ANOTHER GROUP’S CODE]. Since you were not involved in their exploration, it might be easier to understand their code by running pieces of it at a time. In order to do that we need to load the <code>tidyverse</code> package and passenger data.</p>
-<p>When you are finished adding comments and commentary knit the <code>.Rmd</code> file into an HTML. Do the code and figures look how you expected?</p>
+<p><em>Task 1: Modify your own code</em> We will practice this skill by modifying the group exercise from the first workshop with comments and commentary. Start by copy and pasting your group’s exercise from the first workshop in the space below <em>## Documenting my group’s exercise</em>, then add comments and commentary that follow literate statistical programming practices. You should have a copy of your exploration in your email.</p>
+<p><em>Task 2: Modify someone else’s code</em> The code for another group’s exploration is included in the code chunk under <em>## Documenting another group’s exercise</em>. Since you were not involved in their exploration, it might be easier to understand their code by running pieces of it at a time. In order to do that we need to load the <code>tidyverse</code> package and passenger data.</p>
+<p>When you are finished adding comments and commentary knit the <code>.Rmd</code> file into an HTML. Do the code and figures look how you expected? Experiment with the <code>opts_chunk$set()</code> and YAML setting to create the desired <code>.html</code>.</p>
 <p>How does your documentation compare with other group members?</p>
 <pre class="r"><code># Import the Tidyverse
 library(tidyverse)
-# Import data and convert survived to yes/no factor for easy plotting (passengers1).  
+# Import data and convert survived to yes/no factor for easy plotting
+# (passengers1).
 passengers &lt;- read_csv(&quot;data/train.csv&quot;)
 
-passengers1 &lt;- passengers %&gt;% 
-  mutate(Survived = ifelse(Survived == 0, &quot;No&quot;, &quot;Yes&quot;))</code></pre>
+passengers1 &lt;- passengers %&gt;% mutate(Survived = ifelse(Survived == 0, &quot;No&quot;, 
+    &quot;Yes&quot;))</code></pre>
 <p><em>Useful information</em></p>
 <ul>
 <li>The <code>.Rmd</code> allows us to mix code (code chunks) and natural language.</li>
 <li>The natural language can be quickly formatted using <code>R</code>’s version of a markdown language (<a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">See page 1 for more details on formatting with Rmarkdown</a>).</li>
-<li>A minimum code chunk starts with <em><code>{r}* and ends with *</code></em>. You may want to seperate different coding tasks into different code chunks (<a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">See page 2 for more details on the code chunk options</a>).</li>
+<li>A minimum code chunk starts with <strong>```{r}</strong> and ends with <strong>```</strong>. You may want to seperate different coding tasks into different code chunks (<a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">See page 2 for more details on the code chunk options</a>).</li>
 <li>Note that <code>#</code> sign within a code chunk starts a comment, but is a section header in Rmarkdown.</li>
 </ul>
 <div id="documenting-my-groups-exercise" class="section level2">
@@ -154,6 +155,28 @@ passengers1 &lt;- passengers %&gt;%
 </div>
 <div id="documenting-another-groups-exercise" class="section level2">
 <h2>Documenting another group’s exercise</h2>
+<pre class="r"><code>p2 &lt;- passengers %&gt;%
+  drop_na() %&gt;%
+  mutate(FamSize = Parch + SibSp) %&gt;%
+  mutate(Pclass = as.character(Pclass))
+  
+p2Summary &lt;- p2 %&gt;%
+  group_by(Pclass) %&gt;%
+  summarise(meanFam = mean(FamSize), minFam = min(FamSize), maxFam = max(FamSize))  
+
+p2Summary
+
+ggplot(p2, aes(x = Pclass , y = FamSize)) +
+  geom_boxplot() +
+  geom_jitter(aes(colour = as.factor(SibSp))) +
+  theme_classic() +
+  scale_color_discrete(name= &quot;No. Siblings&quot;) +
+  scale_x_discrete(labels = c(&quot;Upper&quot;, &quot;Middle&quot;, &quot;Lower&quot;)) +
+  labs(
+    title = &quot;Some data from the Titanic&quot;, 
+    x = &quot;Socio-economic status (SES)&quot;,
+    y = &quot;Family Size&quot;
+  )</code></pre>
 </div>
 </div>
 
