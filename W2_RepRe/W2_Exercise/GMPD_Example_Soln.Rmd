@@ -1,0 +1,55 @@
+---
+title: "GMPD Example Solution"
+author: "PopBio REU 2018"
+date: "Reni Kaul"
+output: html_document
+---
+
+```{r setup, include = FALSE, eval = TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# You've been tasked to explore the GMPD data set
+
+Your research group is particularly interested in: 
+
+1. Which of the 3 groups (carnivores, primates, or ungulates) are sickest? *(hint: use the main.csv file)*
+2. Are parasites transmitted by vectors also likely to have complex life cycles compared to non-vectored parasites? *(hint: use the traits.csv file)*  
+
+
+```{r prep, messages = FALSE}
+library(tidyverse)
+gmp <- read_csv("data/GMPD_main.csv")
+```
+
+
+# Q1. Which group is sicker? 
+
+ I'm using mean prevalence as a measurement of health. The mean prevalence is calculated for all reported parasites, ignoring parasite type. This might be an assumption to explore later. The sample sizes are very different so I will also calculate standard error to use when comparing the mean values.  
+
+```{r Q1 plot, fig.align='center'}
+gmp %>%
+  drop_na(Prevalence) %>%
+  group_by(Group) %>%
+  summarise(MeanPrev = mean(Prevalence), SdErrPrev = sd(Prevalence)/sqrt(n())) %>%
+  ggplot(aes(x = Group, y = MeanPrev)) +
+  geom_bar(stat = "identity") +
+  geom_errorbar(aes(ymin = MeanPrev-SdErrPrev, ymax = MeanPrev+SdErrPrev), width = 0.2)
+
+```
+
+
+# Q2. Do vectored parasites also have intermediate hosts? 
+
+I am interested in the proportion of parasites with complex life histories or intermediate hosts. I think that vectored parasites as compared to non-vectored parasites are more likely to have an intermediate host. For the first pass, I want to visualize the number of vectored parasites. 
+
+```{r Q2 plot, eval=FALSE, fig.aling = 'center' }
+gmpTraits <- read_csv("data/GMPD_parasite_traits.csv")
+
+gmpTraits %>%
+  mutate(vector = ifelse(vector == 0, "No", "Yes")) %>%
+  mutate(intermediate = ifelse(intermediate == 0, "No", "Yes")) %>%
+  ggplot(aes(x = vector, fill = intermediate)) +
+  geom_bar()
+```
+

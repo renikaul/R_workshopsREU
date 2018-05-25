@@ -233,8 +233,8 @@ Exploring the Global Mammal Parasite Database
 
 It is now your turn to start a R project to explore the Global Mammal Parasite Database (GMPD).
 
-1. Start a new project from a new directory called GMPD
-2. Move the GMPD data into the appropriate location
+1. Start a new project from a new directory called `GMPD`
+2. Move the contents of `W2_Exercise\GMPD_data` into the appropriate location
 
  ![workflow](figs/directory_org.png)
  
