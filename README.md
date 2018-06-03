@@ -275,9 +275,41 @@ Take a minute to recap all of the skills that have been covered. You might ask f
 
 ## Agenda
 
+1. Modeling Concepts
+  2. Review of functions
+  3. Converting ODEs to R code
+  4. Simulate exponential growth of a population 
+  
+  *Break*
+  
+  5. Simulate an SIR model
+  6. Revisiting workflows
+  7. Iterations in `R`
+  8. Wrap Up 
+
 ## Files
 
 ## Notes
+
+### 1. Modeling Concepts
+Review of readings 
+### 2. Review of functions
+Review of functions using function they wrote last workshop
+### 3. Converting ODEs to R code
+Conceptual discussion of how `lsoda` functions
+### 4. Simulate exponential growth of a population 
+ Code along 
+  
+  *Break*
+  
+
+### 5. Simulate an SIR model
+Work in small groups
+
+### 6. Iterations in `R`
+Writing loops using exponential growth as an example. 
+### 7. Wrap Up 
+Take a minute to recap all of the skills that have been covered. This might also be a good place to discuss the benfit of `R` over excel. Learning R can feel like you're drinking from a fire hose, but this workshop hopefully covers skills to manage the mess of learning. The last workshop will use the skills covered in the first 3 workshops to produce publication ready figures and basic statistical analysis.
 
 https://www.khanacademy.org/science/biology/ecology/population-growth-and-regulation/a/exponential-logistic-growth
 
