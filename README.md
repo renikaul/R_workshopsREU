@@ -279,6 +279,7 @@ Take a minute to recap all of the skills that have been covered. You might ask f
 
 ## Notes
 
+https://www.khanacademy.org/science/biology/ecology/population-growth-and-regulation/a/exponential-logistic-growth
 
 # Data Visualization Teaching Notes
 
