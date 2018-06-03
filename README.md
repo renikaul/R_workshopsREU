@@ -283,35 +283,59 @@ Take a minute to recap all of the skills that have been covered. You might ask f
   *Break*
   
   5. Simulate an SIR model
-  6. Revisiting workflows
-  7. Iterations in `R`
-  8. Wrap Up 
+  6. Iterations in `R`
+  7. Wrap Up 
 
 ## Files
+
+Files to be shared with students
+
+- `W3_Reading.html`
+- `W3_slide.html`
+- `W3_Exercies_soln.html`
+- `W3_Exercies_soln.Rmd`
+- `W3_Exercise.Rmd`
+- `W3_Sims.Rproj`
+
+Additional files for instructor
+
+- `W3_slides.Rpres` (used to make `W3_slides.html`)
+- `W3_Reading.Rmd`
 
 ## Notes
 
 ### 1. Modeling Concepts
-Review of readings 
+
+This workshop in the series is unique since it focuses on converting an ODE model into R code. Before the students can understand the `R` part of the workshop, they need to understand the basics of population modeling. The reading introduced an exponential growth model and an SIR model. This is a chance to discuss the readings as a class.  You might review key terminology and major points. Keep in mind there is no calculus reuirement for the program. 
+
 ### 2. Review of functions
-Review of functions using function they wrote last workshop
+
+The last workshop students converted a piece of code into a function (See Wk 2; #4). This function is presented as the example. Review could include the terminology, advantages, best practices, etc.  
+
 ### 3. Converting ODEs to R code
-Conceptual discussion of how `lsoda` functions
+
+Conceptual discussion of how `lsoda` functions. It isn't important to stress the specifics of `lsoda` or any ODE solver, but touch on the conceptual approach that the code uses. The goal is to demystify simulations. 
+
 ### 4. Simulate exponential growth of a population 
- Code along 
+ Walk through the example to writing an exponential growth model. You might start with a disclaimer like "We're going to do this together for the exponential model, then work in groups to make an SIR model". The W3_Exercise starts at this point. Have students open the `.Rproj` instead of the `.Rmd` to avoid working directory issues. The exercise is broken into smaller steps to mimic learning any new skill in `R`. Be sure to give them enough time to review the manual page, so they can practice reading documentation. The exercise ends with plotting. This maybe a bit tricky since they have to convert the output to a data.frame this was touched on *briefly* in an earlier workshop, but is coverted in detail in the recommended DataCamp course. Don't spend too much time explaining object classes. If they are interested, they have the resources to explore more on their own.  
   
   *Break*
   
-
 ### 5. Simulate an SIR model
-Work in small groups
+The students are asked to repeat the process of coding a model and plotting the solution. I would encourage them to work in groups, and revisit Step 4. I would recommend having them read through all the steps before starting. This might make it easier to see how things fix together. Since the SIR model returns 3 values for each time point, I've included a uick aside on wide vs long data forms. This conversion is a time saver for plotting, and not an essential concept to understand. 
+
+Given that the group has a wide range of abilities, I've included a challenge task for the faster groups to complete. If they are interested, this also creates an opprotunity to talk about some disease modeling concepts. The solution offered for the challenge is a bit complicated with pipes, gathering and plotting. I would not expect them to come up with this - this is more of an aspirational example of what can be done. 
 
 ### 6. Iterations in `R`
-Writing loops using exponential growth as an example. 
+
+Loops always seem to be a challenge the first time around. I have tried to motivate why you would possibly write a loop in an authentic manner. The students have not had exposure to indexing in the workshop (but is covered early on in the DataCamp course they have access to). I imagine this would work best by walking them through most of it, but letting them write the loop themselves. 
+
 ### 7. Wrap Up 
 Take a minute to recap all of the skills that have been covered. This might also be a good place to discuss the benfit of `R` over excel. Learning R can feel like you're drinking from a fire hose, but this workshop hopefully covers skills to manage the mess of learning. The last workshop will use the skills covered in the first 3 workshops to produce publication ready figures and basic statistical analysis.
 
-https://www.khanacademy.org/science/biology/ecology/population-growth-and-regulation/a/exponential-logistic-growth
+## Suggestions for improvement
+
+Potentially useful link for reading: https://www.khanacademy.org/science/biology/ecology/population-growth-and-regulation/a/exponential-logistic-growth
 
 # Data Visualization Teaching Notes
 
