@@ -29,11 +29,12 @@ Review of past workshops
 ========================================================
 **You should be able to...**
 
-- write a function
+- code using best practices
 - create an HTML doc with code and commentary  
-- write code following best practices
+- write a function
+<!-- - <span style="color:gray"> create and use scripts </span> -->
 - calculate summary statistics of a dataset
-- create a figure from data 
+- create a figure from data
 
 Outline 
 ========================================================
@@ -41,8 +42,7 @@ left: 40%
 
 **You should be able to...**
 - iterate a calculation
-- simulate populations
-- source a function 
+- simulate populations based on an ODE
 
 *** 
 
@@ -55,9 +55,8 @@ left: 40%
   *Break*
   
   5. Simulate an SIR model
-  6. Revisiting workflows
-  7. Iterations in `R`
-  8. Wrap Up 
+  6. Iterations in `R`
+  7. Wrap Up 
 
 
 Introduction to ODE models 
@@ -141,7 +140,7 @@ ODEs can be solved in `R` using the `lsoda` function in the `deSolve` package.
 
 The `lsoda()` functions has specific format requirements. 
 
-Open the W3_exercise.Rmd to continue 
+Open the W3.Rproj to start today's exercise.  
 
 ***
 
@@ -201,7 +200,7 @@ func <- function(t,y,parms)
 Let's work to write the exponential growth model $\frac{dN}{dt}= rN$ in this form 
 
 
-switch over to `W3_Exercise.Rmd`
+switch over to `W3_Exercise.Rmd` to run model and plot solution.
 
 ========================================================
 <h1>Break</h1>
@@ -220,6 +219,18 @@ Steps:
 
 If your group finishes move onto exploring parameter values. 
 
+Challenge: Parameter values of an SIR
+========================================================
+
+Once you have a working SIR model, simulate outbreaks with different parameter values. 
+
+Explore the impact of the $\beta$ and $\gamma$ values on the size and duration of the outbreak. 
+
+- What happens when $\gamma$ is increased? 
+- What happens when $\beta$ is increased? 
+- What happens when the ratio of is held constant but the absolute values change?
+
+Are the changes what you expected? How would changing $\gamma$ or $\beta$ impact $R_0$?
 
 Lessons learned: Simulating an SIR model 
 ========================================================
@@ -232,97 +243,6 @@ Lessons learned: Simulating an SIR model
 - `gather()` converts wide data to long format
 - ...
 
-Keeping a clean workflow
-========================================================
-We touched on organization during the Reproducible Research workshop. Let's focus on the *scripts* folder.
-
- ![flow](figs/directory_orgScripts.png)
-
-Keeping a clean workflow
-========================================================
-If you are writing functions that:
-- are long
-- used for different parts of your research
-- won't be changing often. 
-
-Then, a script might make for clean workflow. 
-
- ![flow](figs/directory_orgScripts.png)
-
-What is a script?
-========================================================
-
-- stable code consisting of functions
-- is saved as `.R` file type
-- is loaded into the R environment using the `source()` command
-- simplifies your `.Rmd` files 
-
-
-
-Make a script
-========================================================
-
-1. Create a `.R` file 
-2. Make some comments at the start of the file
-3. Save file in scripts directory with an informative name
-
-
-Make a script
-========================================================
-left: 30%
-1. Create a `.R` file 
-
-***
-
- ![](figs/newScript.png)
- 
- 
-Make a script
-========================================================
-
-1. Create a `.R` file 
-2. Make some comments at the start of the file
-
-```{r, eval = FALSE}
-# Writen on May 11, 2018 by Reni Kaul
-# This script contains functions for the modeling R workshop; REU summer 2018. 
-# Originally written to be part of the simulations work in W3_Exercise.Rmd
-
-ExponentialGrowth <- function(t, y, params) {
-# Computes the rate of change of the variable y over time
-#
-# Args:
-#   t: vector of time points in the integration
-#   y: vector of variables in the differential equation
-#   params: vector of parameter values
-```
-
-*Never start a script with rm(list = ls())*
-
-Make a script
-========================================================
-
-1. Create a `.R` file 
-2. Make some comments at the start of the file
-3. Save file in scripts directory with an informative name
-
-- What is good name for this script? 
-- Create a script folder inside the `W3_Modeling` and save your script
-
-
-Use a script
-========================================================
-
- *only for this demo Session > Restart R*
-
-Source the script 
-
-```{r, eval=FALSE}
-source("scripts/YOURFILE.R")
-
-```
-
-What's in the Environment tab?
 
 Iterating in R
 ========================================================
@@ -346,11 +266,15 @@ We will focus on a For loop
 Exponential Model
 ========================================================
 
-At the next time step the population size of an exponentially growing population is:
+The next time step if an exponentially growing population is:
 
 $N_{t+1} = N_t + rN_t$
 
-What is the populations size at t+1?
+where
+
+* $N_{t}$ is the current population size ($N_t = 10$) 
+* $r$ is the per captia growth rate (2%, $r=0.02$)
+
 
 Exponential Model at t+1
 ========================================================
@@ -363,7 +287,7 @@ Nt1 <- Nt + r*Nt
 Nt1
 ```
 
-Let's iterate this function to determine the population size 100 time steps in the future. 
+Let's iterate this function to determine the population size 100 time steps in the future. The means we have to repeat this 100 times- For loops automate this!
 
 Exponential Model at t+100
 ========================================================
@@ -442,3 +366,31 @@ N.seq # vector of N at N_t through N_t+100
 ```
 
 *Concept check: what would N.seq look like if the for command was changed to for(i in 1:50)?*
+
+
+8. Wrap Up 
+========================================================
+**You should be able to...**
+
+- iterate a calculation
+- simulate populations based on an ODE
+- <span style="color:gray"> write a function </span>
+<!-- - <span style="color:gray"> create and use scripts </span> -->
+- <span style="color:gray"> create an HTML doc with code and commentary  </span>
+- <span style="color:gray"> write code following best practices </span>
+- <span style="color:gray"> calculate summary statistics of a dataset </span>
+- <span style="color:gray"> create a figure from data </span>
+
+ 
+========================================================
+left: 40%
+left: 50%
+    
+**Next**
+
+  - Data visualization
+  - Statistical analysis
+  
+***
+
+![W3](figs/W3_iterative.png)

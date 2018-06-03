@@ -1,11 +1,10 @@
 ---
 title: "W3_Exercise_soln"
-author: "Reni Kaul"
-date: "5/7/2018"
+author: "PopBio REU 2018"
+date: "Reni Kaul"
 output: 
   html_document:
     toc: true
-    toc_depth: 2
     toc_float: true
 ---
 
@@ -141,7 +140,9 @@ str(sim1) # use the `?` to look up the str() function
 #?ggplot()
 ```
 
-The `ggplot()` function requires data in a data.frame. What is the current object class? Based on the reading for today, how can we convert `sim1` to a data.frame?
+The `ggplot()` function requires data in a data.frame. What is the current object class? Any ideas on how can we convert `sim1` to a data.frame? 
+
+*Hint: It is covered in the DataCamp Introduction to R course. If you need a review, check out [DataCarpentry](https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/) *
 
 ```{r plotting exp model}
 sim1 <- as.data.frame(sim1) # convert sim1 to a data.frame for plotting  
@@ -348,7 +349,7 @@ SIRsim %>%
 - Explore the impact of parameter values on the SIR model
 
 
-## Parameter values of an SIR
+## Challenge: Parameter values of an SIR
 
 Explore the impact of the $\beta$ and $\gamma$ values on the size and duration of the outbreak. 
 
@@ -360,6 +361,32 @@ Be sure to run your simulations long enough to see the equlibrium values.
 
 *Remember best practices*
 
+```{r challenge Parameter values, fig.align = 'center', fig.height =  4, fig.width = 14}
+t.SIR <- seq(0,200, 5) # increase simulation length so the all the lines have flattened out  
+
+# Increase gamma
+betaSIRsim <- as.data.frame(lsoda(y = xstart, times = t.SIR, func = DensityDepSIR, parms = c(beta = 0.5, gamma = 1/7))) %>% mutate(sim = "Increase Beta")
+
+# Increase beta
+gammaSIRsim <- as.data.frame(lsoda(y = xstart, times = t.SIR, func = DensityDepSIR, parms = c(beta = 0.3, gamma = 1/4)))  %>% mutate(sim = "Increase Gamma")
+
+# Double both but keep ratio the same
+ratioSIRsim <- as.data.frame(lsoda(y = xstart, times = t.SIR, func = DensityDepSIR, parms = c(beta = 0.6, gamma = 2/7)))  %>% mutate(sim = "Constant Ratio")
+
+# Run original parameters but for longer so the same length as the others
+SIRsim <- as.data.frame(lsoda(y = xstart, times = t.SIR, func = DensityDepSIR, parms = SIRparameters)) %>% mutate(sim = "Original")
+
+# Plot the 4 different simulations. I added an additional col ("sim") that can be used to make a facet or multi-panel plot quickly 
+
+SIRsim %>%
+  bind_rows(betaSIRsim, gammaSIRsim, ratioSIRsim) %>%
+  gather(key = state, value = value, S:R) %>%
+  ggplot( aes(time, value, color = state)) + 
+  geom_line() +
+  facet_grid(. ~ sim) + 
+  ylab("Proportion of Total Population")
+
+```
 
 
 
@@ -371,51 +398,7 @@ Be sure to run your simulations long enough to see the equlibrium values.
 
 **Up Next:**
 
-- Revisiting reproducible reseach and workflow 
-
-
-# Maintaining a clean workflow 
-
-Functions are useful for repeative tasks. Sometimes we might even want to use them in different `.Rmd` files. We *could* copy & paste the functions between `.Rmd` files. This is not a good practice because:
-
-- C&P might introduce transcription errors in your functions
-- Errors in the function have to be changed in *each* location that it has been copied to. 
-
-An alternative is creating a script and storing it in the `scripts/` folder of your working directory. Scripts have a `.R` file extension, and are a way to reference more stable code without actually interacting with the stable code. Let's make a script for the `ExponentialGrowth()` function. 
-
-**Making a Script:**
-
-1. Create a `.R` file 
-2. Make some comments at the start of the file
-    - *Note:* There is some bad advice about scripts you might come across. Never start a script by cleaning the environmet (`rm(list = ls())`) or by setting the working director (`setwd()`)
-    - Using R projects means that you don't have to set working directories. 
-3. Save file in scripts directory with an informative name
-
-**Sourcing a script**
-
-The functions in the script are loaded into the `R` environment by using the `source()` command. Let's try it out. 
-
-For the sake of this demonstration, let's start with a fresh session of `R` by clicking on Session > Restart R. You'll notice the Enviornment tab is now empty. 
-
-
-```{r source script}
-# Uncomment command, and add relative path to script
-# source()
-
-```
-
-Is the `ExponentialGrowth()` function in your environment?
-
-
-**Recap:**
-
-- You've simulated and plotted data for exponential growth and SIR model
-- Explored the impact of parameter values on the SIR model
-- Wrote a script and sourced to current environment 
-
-**Up Next:**
-
-- Iterating in R
+- Iterating in `R` 
 
 # Iteration using exponential growth as an example
 
