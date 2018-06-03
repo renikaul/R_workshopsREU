@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Reni Kaul" />
+<meta name="author" content="PopBio REU 2018" />
 
 
 <title>W3_Exercise</title>
@@ -123,7 +123,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2",
+      selectors: "h1,h2,h3",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
@@ -215,8 +215,8 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">W3_Exercise</h1>
-<h4 class="author"><em>Reni Kaul</em></h4>
-<h4 class="date"><em>5/7/2018</em></h4>
+<h4 class="author"><em>PopBio REU 2018</em></h4>
+<h4 class="date"><em>Reni Kaul</em></h4>
 
 </div>
 
@@ -278,8 +278,10 @@ parameters &lt;- c(r = 0.75) </code></pre>
 <p><strong>Time</strong></p>
 <p>Working backwards the next arguement for <code>lsoda()</code> is <code>times</code>. The solver needs to know when to report the numerical solution for the ODE. Let’s create a vector called <code>t.vector</code> starting at 0.1 and increases by 0.1 up to 1.</p>
 <p><em>Remember: We can save time when making patterned vectors by using</em> <code>seq()</code> <em>function</em></p>
+<pre class="r"><code>## t.vector &lt;- seq()</code></pre>
 <p><strong>Initial condition of state variable(s)</strong></p>
 <p>The initial condition of the state variable(s) is set by a named vector, just like the parameters values. Let’s create a vector <code>y0</code> with an initial state value (N0) of 10.</p>
+<pre class="r"><code>## y0</code></pre>
 </div>
 <div id="run-a-simulation" class="section level2">
 <h2>Run a simulation</h2>
@@ -301,7 +303,7 @@ parameters &lt;- c(r = 0.75) </code></pre>
 <pre class="r"><code>str(sim1) # use the `?` to look up the str() function
 
 #?ggplot()</code></pre>
-<p>The <code>ggplot()</code> function requires data in a data.frame. What is the current object class? Based on the reading for today, how can we convert <code>sim1</code> and <code>sim2</code> to a data.frame?</p>
+<p>The <code>ggplot()</code> function requires data in a data.frame. What is the current object class? Any ideas on how can we convert <code>sim1</code> and <code>sim2</code> to a data.frame?</p>
 <pre class="r"><code>sim1 &lt;- as.data.frame(sim1) # convert sim1 to a data.frame for plotting  
 ##sim2 &lt;- as.data.frame()  # convert sim2 to a data.frame as well
 
@@ -361,6 +363,7 @@ p + geom_point(data = sim2, aes(x = time,y = N0)) +
 <li>Run a simulation using the parameter values (beta, gamma) and initial state conditions (S=,I=,R=)</li>
 <li>Plot the simulation</li>
 </ol>
+<p>Each of the steps is broken down with prompts. Work through the code chunks. Stop at the next <strong>Recap</strong> section.</p>
 <div id="write-densitydepsir" class="section level2">
 <h2>1. Write <code>DensityDepSIR()</code></h2>
 <p>The SIR model with density dependent transmission takes the following form:</p>
@@ -452,8 +455,8 @@ SIRparameters &lt;- c(beta=0.3, gamma=1/7)</code></pre>
 <li>Explore the impact of parameter values on the SIR model</li>
 </ul>
 </div>
-<div id="parameter-values-of-an-sir" class="section level2">
-<h2>Parameter values of an SIR</h2>
+<div id="challenge-parameter-values-of-an-sir" class="section level2">
+<h2>Challenge: Parameter values of an SIR</h2>
 <p>Explore the impact of the <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\gamma\)</span> values on the size and duration of the outbreak.</p>
 <ul>
 <li>What happens when <span class="math inline">\(\gamma\)</span> is increased?</li>
@@ -506,7 +509,11 @@ for(i in 1:100){
 }
 
 N.seq</code></pre>
-<p><strong>Concept check:</strong> What would the N.seq vector look like if the for command was changed to: - <code>for(i in 1:50)</code>? - <code>for(i in 50:100)</code>?</p>
+<p><strong>Concept check:</strong> What would the N.seq vector look like if the for command was changed to:</p>
+<ul>
+<li><code>for(i in 1:50)</code>?</li>
+<li><code>for(i in 50:100)</code>?</li>
+</ul>
 <p>Re-run the loop with the new commands to check your answers.</p>
 <p><strong>Note:</strong></p>
 <ul>

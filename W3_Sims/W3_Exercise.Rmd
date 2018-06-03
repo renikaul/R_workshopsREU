@@ -436,6 +436,7 @@ N.seq
 ```
 
 **Concept check:** What would the N.seq vector look like if the for command was changed to:
+
   - `for(i in 1:50)`?
   - `for(i in 50:100)`?
   
