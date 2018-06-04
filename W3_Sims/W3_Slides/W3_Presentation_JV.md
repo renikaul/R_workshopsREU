@@ -19,7 +19,7 @@ About Myself
    + organize data 
    + simulate population dynamics and data
    + generate and visualize parameter spaces
- - I mostly work theoretical systems.
+ - I mostly work in theoretical systems.
  - My contact info is vinsonje@uga.edu (twitter: @futuredrvinson)
 
 Selected Publications (using R): 
