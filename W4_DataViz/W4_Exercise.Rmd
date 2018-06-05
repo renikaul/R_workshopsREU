@@ -1,0 +1,13 @@
+
+---
+title: "W4_Exercise"
+author: "PopBio REU 2018"
+date: "Reni Kaul"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, tidy = TRUE)
+```
+
+
