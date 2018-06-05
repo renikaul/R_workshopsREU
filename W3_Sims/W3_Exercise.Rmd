@@ -1,7 +1,7 @@
 ---
-title: "W3_Exercise"
-author: "PopBio REU 2018"
-date: "Reni Kaul"
+title: "Simulating infectious diseases with R: Exercise"
+author: "PopBio REU 2018, Reni Kaul"
+date: "6/4/2018"
 output: 
   html_document:
     toc: true
@@ -368,6 +368,8 @@ Explore the impact of the $\beta$ and $\gamma$ values on the size and duration o
 - What happens when $\gamma$ is increased? 
 - What happens when $\beta$ is increased? 
 - What happens when the ratio of is held constant but the absolute values change?
+- What is $R_0$? Can you derive this value for the model we've been using?
+- How do these parameter values influence $R_0$? 
 
 Be sure to run your simulations long enough to see the equlibrium values. 
 
