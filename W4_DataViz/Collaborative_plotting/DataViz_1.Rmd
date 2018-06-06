@@ -1,7 +1,7 @@
 ---
 title: 'Data Visualization: Group 1'
-author: "Ana Bento & Reni Kaul"
-date: "August 18-19 2017"
+author: "PopBio REU 2018"
+date: "Reni Kaul"
 output: html_document
 ---
 
@@ -11,22 +11,29 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.align =
 
 
 
-Yesterday we started to explore data visualization in base `R`. Today we will spend time exploring different visualizations using the `ggplot2` package. The different approaches each have their advantages, so you will likely use both during your research career. 
+We've created data visualization using many of the default settings. Today we will spend time exploring different visualizations using the `ggplot2` package. Focus on creating a visualization for presentation. 
+
+At a minimum figures should have:
+
+* labeled axes with units
+* legend with meaningful labels
 
 
 
-#Problem 1
+#Challenge 1
 
-  Yesterday we explored the `nycflights13` dataset. One plot was a boxplot of the temperature by month using base `R`. The plot looked like this:
+  Today we will explore the `weather` dataset that is part of the `nycflights13` [data package](https://cran.r-project.org/web/packages/nycflights13/nycflights13.pdf). The `weather` dataset consists of hourly meterological data for LGA, JFK and EWR airports for all of 2013. If we were interested in the annual trend in tempature we could make a box plot of the recorded temperatures for each month. 
+  
+  Using base `R`, the code and plot look like this:
    
-```{r boxplot}
+```{r boxplot, echo=TRUE}
 library(nycflights13) #load data from package
 
 boxplot(weather$temp ~ weather$month, xlab="month", ylab="Temperature (F)" ) #instead of assigning x and y values, you can use the syntax y ~ x
 ```
 
 
-Today, your goal is to recreate this figure using the `ggplot2` package.  `ggplot2` was first published to CRAN in 2005, so a quick google search will return *MANY* tutorials, discussion pages, etc.  The general syntax for boxplots in `ggplot2` is:
+Today, your challenge is to recreate this figure using the `ggplot2` package.  `ggplot2` was first published to CRAN in 2005, so a quick google search will return *MANY* tutorials, discussion pages, etc.  The general syntax for boxplots in `ggplot2` is:
 
 ```{r function structure, eval=FALSE}
 ggplot(data, #matrix
@@ -59,14 +66,14 @@ ggplot(weather, aes(x=Month, y=temp)) +
 
 ```
 
-Work with your team to create a polished `ggplot2` boxplot. It doesn't need to look like these figures, but you are welcome to use them as a guide. A very detailed tutorial is on [ZevRoss](http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3/). A more formal guide is in the [R for Data Science](http://r4ds.had.co.nz/data-visualisation.html) visualization chapter. 
+Work with your team to create a polished `ggplot2` boxplot. It doesn't need to look like these figures, but you are welcome to use them as a guide. If you need guidance, check out the ggplot2 cheat sheet. A very detailed tutorial is on [ZevRoss](http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3/). A more formal guide is in the [R for Data Science](http://r4ds.had.co.nz/data-visualisation.html) visualization chapter. 
 
 
-#Problem 2
+#Challenge 2
 
 For this exercise, we will use `mtcars` in the `datasets` package. Install (if needed) and load the `datasets` package. Explore the `mtcars` dataset which is from the 1974 *Motor Trend US* magazine, and comprises fuel consumption, engine metrics,  etc. for 32 car models. 
 
-So far we have only created visualizations with 2 dimensions. We can add a third dimension to the data by coloring the plotted points. We can make a basic scatterplot of `mtcars` using `ggplot2`. Here the x-axis is car weight, y-axis mile per gallon, and color is the number of engine cylinders.
+So far we have mostly created visualizations with 2 dimensions. We can add a third dimension to the data by coloring the plotted points. We can make a basic scatterplot of `mtcars` using `ggplot2`. Here the x-axis is car weight, y-axis mile per gallon, and color is the number of engine cylinders.
 
 ```{r ggscatter, echo=FALSE}
 ggplot(data = mtcars, mapping = aes(x = wt, y = mpg, color = as.factor(cyl))) + geom_point()

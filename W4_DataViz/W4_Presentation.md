@@ -186,7 +186,7 @@ For the visualization exercises you'll work with the people sitting in your row.
 
 * Open `W4_Exercise/DataViz/DataViz_X.html` with the number corresponding to your row.
 * Complete the 2 challenges as a group. (*this is a chance to practice starting a new project*)
-    + Everyone has the same 1$^{st}$ challenge, but different 2$^{nd}$ challenge
+    + Every group has the same 1$^{st}$ challenge, but different 2$^{nd}$ challenge
     + When you're finished, practice explaining your Challenge 2 code.
 * We'll shuffle groups and explain the solutions to eachother. 
 
@@ -196,8 +196,7 @@ If you finish early, add more details to the plots or try exporting as a .png.
 3. Plotting challenge
 ========================================================  
 
-
-**What were some of the interesting things you learned? **
+**What were some of the interesting things you learned?**
 
 ========================================================  
 

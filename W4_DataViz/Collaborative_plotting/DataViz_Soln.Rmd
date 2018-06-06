@@ -1,7 +1,7 @@
 ---
 title: 'Data Visualization: Group Solutions'
-author: "Ana Bento & Reni Kaul"
-date: "August 18-19 2017"
+author: "PopBio REU 2018"
+date: "Reni Kaul"
 output: html_document
 ---
 ```{r setup, include=FALSE}
@@ -14,7 +14,7 @@ Below are solutions for the different visualization challenges. As we saw, there
 
 
 
-#Problem 1
+#Challenge 1
 
   Yesterday we explored the `nycflights13` dataset. One plot was a boxplot of the temperature by month using base `R`. The plot looked like this:
    
@@ -58,7 +58,7 @@ ggplot(weather, aes(x=Month, y=temp)) +  #indicate the data, x and y values
 A very detailed tutorial is on [ZevRoss](http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3/). A more formal guide is in the [R for Data Science](http://r4ds.had.co.nz/data-visualisation.html) visualization chapter. 
 
 
-# Group 1: Problem 2 Scatter plot
+# Group 1: Challenge 2 Scatter plot
 
 For this exercise, we will use `mtcars` in the `datasets` package. Install (if needed) and load the `datasets` package. Explore the `mtcars` dataset which is from the 1974 *Motor Trend US* magazine, and comprises fuel consumption, engine metrics,  etc. for 32 car models. 
 
@@ -74,7 +74,7 @@ ggplot(data = mtcars, aes(x = wt, y = mpg, color = as.factor(cyl))) + #set data,
 ```
 
 
-#Grou 2: Problem 2 Multi-panel plots
+#Grou 2: Challenge 2 Multi-panel plots
 
 For this exercise, we will use `diamonds` in the `ggplot2` package. The `ggplot2` package should already be loaded. Explore the `diamonds` dataset which contains 10 attributes (price, cut, clarity, etc.) for ~54,000 diamonds. 
 
@@ -94,7 +94,7 @@ ggplot(diamonds, aes(x=carat, y=price)) +
 
 ```
 
-#Group 3: Problem 2 Violin plots
+#Group 3: Challenge 2 Violin plots
 
 The `ggplot2` package can make highly stylized visualizations with relatively few codes of line. The violin plot is a good example of these stylized visualization. [Violin plots](http://www.letmegooglethat.com/?q=violin+plots) are a combination of a histogram and boxplot. Today you'll create a violin plot with data pulled from a unimodal, bimodal, and trimodal distribution. 
 
@@ -131,7 +131,7 @@ ggplot(df, aes(Distribution, Value)) + #set x and y data
 ```
 
 
- #Group 4: Problem 2 Weighted scatter plot
+ #Group 4: Challenge 2 Weighted scatter plot
 
 For this exercise, we will use `airquality` in the `datasets` package. Install (if needed) and load the `datasets` package. Explore the `airquality` dataset, a daily air quality measurement of NYC in 1973.
 
@@ -145,11 +145,10 @@ aq_trim$Month <- factor(aq_trim$Month,
                         labels = c("July", "August", "September")) #convert Month to a factor
 
 ggplot(aq_trim, aes(x = Day, y = Ozone, size = Wind, fill=Month)) + #define dataset, x,y, color and point size
-        geom_point(shape =25)+ #set points to be triangles 
+        geom_point(shape = 21)+ #set points to be triangles 
         labs(x = "Day of the month", y = "Ozone (ppb)") + #set x and y labs
-        scale_x_continuous(breaks = seq(1, 31, 5)) + #x-axis ticks from 1 to 31 by 5  
-        scale_size_area(max_size = 10) + #set the max value of point size
-        scale_size(range = c(1, 10)) #set the range of point sizes, making smallest points larger
+        scale_x_continuous(breaks = seq(1, 31, 5)) #x-axis ticks from 1 to 31 by 5  
+        
 
 ```
 
