@@ -67,6 +67,11 @@ The learning objectives are broken down by workshop, and are stated as "Students
 
 ### Workshop 4: Data visualization in R
 
+- customize ggplot figures
+- code a t-test
+- code a correlation coefficient test
+- code a linear regression 
+
 ## Other useful information
 
 The bottom quarter of the projected screen is hard to see with the desk monitors are at full height. You might encourage students to push the monitors down so people can see behind them, put away monitors that aren't being worked on, and rearrange your RStudio panels so that the panel you're interacting with most is in the upper half of the screen.
@@ -333,15 +338,72 @@ Loops always seem to be a challenge the first time around. I have tried to motiv
 ### 7. Wrap Up 
 Take a minute to recap all of the skills that have been covered. This might also be a good place to discuss the benfit of `R` over excel. Learning R can feel like you're drinking from a fire hose, but this workshop hopefully covers skills to manage the mess of learning. The last workshop will use the skills covered in the first 3 workshops to produce publication ready figures and basic statistical analysis.
 
-## Suggestions for improvement
-
-Potentially useful link for reading: https://www.khanacademy.org/science/biology/ecology/population-growth-and-regulation/a/exponential-logistic-growth
 
 # Data Visualization Teaching Notes
 
 ## Agenda
+ 
+  1. Approach to visualizations
+  2. `ggplot` review
+  3. Plotting challenge 
+  
+    *Break*
+    
+  4. Inferential statistics
+  5. Wrap Up 
 
 ## Files
 
+Files to be shared with students
+
+- `W4_Reading.html`
+- `W4_Presentation.html`
+- `W4_Exercise\W4_Exercies_soln.html`
+- `W4_Exercise\W4_Exercies_soln.Rmd`
+- `W4_Exercise\W4_Exercise.Rmd`
+- `W4_Exercise\W4_Exercise.Rproj`
+- `W4_Exercise\data\niamey.rds`
+- `W4_Exercise\DataViz_1.html`
+- `W4_Exercise\DataViz_2.html`
+- `W4_Exercise\DataViz_3.html`
+- `W4_Exercise\DataViz_4.html`
+- `W4_Exercise\DataViz_Soln.html`
+
+Additional files for instructor
+
+- `W4_Presentation.Rpres` (used to make `W4_Presentation.html`)
+- `W4_Reading.Rmd` (which pulls from `\data` and `\figs`)
+
 ## Notes
 
+### 1. Approach to visualizations
+ 
+ This section serves as a discussion based on the reading, and is a place to share some of your experiences in developing appropriate visualizations. The reading sets up the differences between visualizations used for data exploration and presentations along 4 different traits. This is a chance to talk about specific differences (ie. when to include units on axes labels, color choice, plot appropriateness for specific data). 
+ 
+### 2. `ggplot` review
+
+The students have create ggplots scatter or barplots in every workshop, and have been guided to reference the cheat sheets. They should be familiar with the ggplot basics, but this is a good chance to review and explicitly walk through using the dense cheat sheet. This is the last bit of guidance before they are set loose on the plotting challenge. 
+
+### 3. Plotting challenge (1.5 - 2 hours)
+
+The plotting challenge is a modified jigsaw exercise and is based on the premise that we often have a visualization goal but can be challenging to reach. You might present the scenario of chatting with your mentor about your project. These meetings often include brainstorming different methods to visualize relationships. At the end of the meeting you're tasked with creating visualizations based on sketchs developed during the meeting. 
+
+Students should work with the students in their row. Suggesting they only sit in 4 designated rows at the start of the workshop makes this exercise run smoother. Each row is given a different set of 2 challenges as an `.html`(DataViz_X.html). The first challenge is the same for all groups, and has a bit of guidence. The second challenge is different for each group, and are only given the dataset and the end figure. The data used in this exercise are either included in data packages or simulated. Encourage groups that finish early to include additional features appropriate for a presentation visualization, exporting the figure (covered in the reading), or explaining the code to eachother. 
+
+When the groups have finished, reassign students so that each member of the new group worked on a different challenge (ie. groups by columns instead of rows). The new groups of students should then move through the rows of computers. At each row, the student who made the visualization should explain how they made their figure and any challenges they we able to figure out. Most students get stuck on including informative labels, and ordering factors (ie. order of months). 
+
+After the students complete the jigsaw, you might include a class level reflective discussion on the task. You could also revisit the visualization vs presentation discussion by asking students how easily they understood the new visualizations produced by the other groups.   
+
+    *Break*
+    
+### 4. Inferential statistics (~ 1 hour)
+
+This is the only module focused on hypothesis testing, and closely follows the reading. The reading included the conceptual backgroud of t-test, correlations, and linear regression with `R` code. This is a chance for the students to practice using these tests during an authentic task exploring a measles dataset. The exercise is to be completed in W4_Exercise.Rmd, and is broken down into the 3 tests by prompts that are appropriate for each test. The lines of code in the exercise that need to be completed start with a double hash (##). Depending on the students, either stop after each test and discuss or let them run through the whole exercise. It might be useful to have the solutions open to review as they complete the different sections of the exercise. 
+
+The t.test could reuire subsetting columns using base R `$` syntax. This might be a tricky bit for students who have been working along in the DataCamp course, since we have only focused on tidyverse.  
+
+For students that are moving through the exercise uickly encourage them to practice including commentary with in-line test statistics reported from objects (`r lm.fit$coefficients`). More details are included in the reading for the W2_RepRe.  
+
+### 5. Wrap Up 
+
+Take a minute to recap all of the skills that have been covered. This might also be a good place to discuss the benfits of `R` over excel. Learning R can feel like you're drinking from a fire hose, but this workshop hopefully covers skills to manage the mess of learning. This is the last workshop in the series which has been structured around the tidyverse interation diagram included at the beginning and end of each presentation. They have touched on each of the steps in at least two seperate workshops. They have really covered many concepts! Give them a chance to reflect on their progress, and perhaps even set new goals. 
