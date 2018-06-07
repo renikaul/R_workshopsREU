@@ -186,7 +186,7 @@ practice (*and google*)
 
 For the visualization exercises you'll work with the people sitting in your row. 
 
-* Open `W4_Exercise/DataViz/DataViz_X.html` with the number corresponding to your row.
+* Open `W4_Exercise\DataViz_X.html` with the number corresponding to your row.
 * Complete the 2 challenges as a group. (*this is a chance to practice starting a new project*)
     + Every group has the same 1$^{st}$ challenge, but different 2$^{nd}$ challenge
     + When you're finished, practice explaining your Challenge 2 code.
@@ -238,6 +238,8 @@ niamey <- readRDS("data/niamey.rds")
 niamey %>% gather(key = District, value = case, D1:D3) %>% ggplot(aes(Day, case, 
     color = District)) + geom_point() + geom_line() 
 ```
+
+Start by opening `W4_Exercise\W4_Exercise.Rproj` 
 
 We want to compare D1 and D2 to ask:
 ========================================================  

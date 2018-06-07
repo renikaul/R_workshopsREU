@@ -183,7 +183,7 @@ practice (*and google*)
 
 For the visualization exercises you'll work with the people sitting in your row. 
 
-* Open `W4_Exercise/DataViz/DataViz_X.html` with the number corresponding to your row.
+* Open `W4_Exercise\DataViz_X.html` with the number corresponding to your row.
 * Complete the 2 challenges as a group. (*this is a chance to practice starting a new project*)
     + Every group has the same 1$^{st}$ challenge, but different 2$^{nd}$ challenge
     + When you're finished, practice explaining your Challenge 2 code.
@@ -227,6 +227,8 @@ Practice using inferential statistics
 We will use these tests to explore a dataset of measles cases collected from three districts in Niamey, Niger.
 
 <img src="W4_Presentation-figure/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" />
+
+Start by opening `W4_Exercise\W4_Exercise.Rproj` 
 
 We want to compare D1 and D2 to ask:
 ========================================================  
