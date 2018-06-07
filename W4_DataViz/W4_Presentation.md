@@ -45,9 +45,9 @@ left: 40%
 
 **You should be able to...**
 - customize figures
-- code a linear regression
 - code a t-test 
-- create and use scripts
+- code a correlation
+- code a linear regression
 
 *** 
 
@@ -59,8 +59,7 @@ left: 40%
     *Break*
     
   4. Inferential statistics
-  5. Revisit workflow: scripts
-  6. Wrap Up 
+  5. Wrap Up 
  
  
  1. Approach to visualization
@@ -225,25 +224,97 @@ Strength of R for statistics
 
 Practice using inferential statistics
 ========================================================  
-You learn what you need. 
+We will use these tests to explore a dataset of measles cases collected from three districts in Niamey, Niger.
 
+<img src="W4_Presentation-figure/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" />
 
-5. Revisit work flow: scripts
+We want to compare D1 and D2 to ask:
 ========================================================  
+left: 65%
+<br>
 
+**Question**
 
-6. Wrap Up
-========================================================
+1. Are the average number of cases in the two districts of Niamey different from each other?
+2. Are the number of cases for each reporting period strongly associated?
+3. Does the estimated $R_0$ differ between districts? 
+
+***
+<br>
+
+**Test**
+
+1. T-test `t.test()`
+2. Correlation `cor.test()`
+3. Linear regression `lm()`
+
+We want to compare D1 and D2 to ask:
+========================================================  
 left: 50%
+<br>
+**Test**
+
+1. T-test `t.test()`
+2. Correlation `cor.test()`
+3. Linear regression `lm()`
+
+***
+<br>
+**Result**
+
+1. the means differ 
 
 
-**We can…**
-- code using best practices
+
+We want to compare D1 and D2 to ask:
+========================================================  
+left: 50%
+<br>
+**Test**
+
+1. T-test `t.test()`
+2. Correlation `cor.test()`
+3. Linear regression `lm()`
+
+***
+<br>
+**Result**
+
+1. the means differ
+2. strongly, positively correlated
+
+
+We want to compare D1 and D2 to ask:
+========================================================  
+left: 50%
+<br>
+**Test**
+
+1. T-test `t.test()`
+2. Correlation `cor.test()`
+3. Linear regression `lm()`
+
+***
+<br>
+**Result**
+
+1. the means differ
+2. strongly, positively correlated
+3. different slopes and $\hat R_0$
+
+5. Wrap Up: We can ...
+========================================================
+left: 65%
+
+- calculate summary statistics of a dataset
+- create a figure from data 
 - create an HTML doc with code and commentary  
+- write code following best practices
 - write a function
-- create and use scripts
-- <span style="color:gray"> calculate summary statistics of a dataset </span>
-- <span style="color:gray"> create a figure from data </span>
+- iterate a calculation
+- simulate populations
+- customize figures
+- code basic inferential statistics
 
 ***
 
