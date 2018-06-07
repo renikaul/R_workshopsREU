@@ -74,7 +74,7 @@ ggplot(data = mtcars, aes(x = wt, y = mpg, color = as.factor(cyl))) + #set data,
 ```
 
 
-#Grou 2: Challenge 2 Multi-panel plots
+# Group 2: Challenge 2 Multi-panel plots
 
 For this exercise, we will use `diamonds` in the `ggplot2` package. The `ggplot2` package should already be loaded. Explore the `diamonds` dataset which contains 10 attributes (price, cut, clarity, etc.) for ~54,000 diamonds. 
 
@@ -131,7 +131,7 @@ ggplot(df, aes(Distribution, Value)) + #set x and y data
 ```
 
 
- #Group 4: Challenge 2 Weighted scatter plot
+# Group 4: Challenge 2 Weighted scatter plot
 
 For this exercise, we will use `airquality` in the `datasets` package. Install (if needed) and load the `datasets` package. Explore the `airquality` dataset, a daily air quality measurement of NYC in 1973.
 
