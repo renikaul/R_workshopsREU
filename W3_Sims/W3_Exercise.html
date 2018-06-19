@@ -279,7 +279,7 @@ library(tidyverse)</code></pre>
 parameters &lt;- c(r = 0.75) </code></pre>
 <p><strong>Time</strong></p>
 <p>Working backwards the next arguement for <code>lsoda()</code> is <code>times</code>. The solver needs to know when to report the numerical solution for the ODE. Let’s create a vector called <code>t.vector</code> starting at 0.1 and increases by 0.1 up to 1.</p>
-<p><em>Remember: We can save time when making patterned vectors by using</em> <code>seq()</code> <em>function</em></p>
+<p><em>Remember: We can save time when making patterned vectors by using</em> <code>seq()</code> <em>function. If you are having trouble figuring out how to use the function you can view the help file with</em> <code>?seq</code></p>
 <pre class="r"><code>## t.vector &lt;- seq()</code></pre>
 <p><strong>Initial condition of state variable(s)</strong></p>
 <p>The initial condition of the state variable(s) is set by a named vector, just like the parameters values. Let’s create a vector <code>y0</code> with an initial state value (N0) of 10.</p>
@@ -459,12 +459,12 @@ SIRparameters &lt;- c(beta=0.3, gamma=1/7)</code></pre>
 </div>
 <div id="challenge-parameter-values-of-an-sir" class="section level2">
 <h2>Challenge: Parameter values of an SIR</h2>
-<p>Explore the impact of the <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\gamma\)</span> values on the size and duration of the outbreak.</p>
+<p>Explore the impact of the <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\gamma\)</span> values on the size and duration of the outbreak. Remember you can address each question in separate code chunks.</p>
 <ul>
 <li>What happens when <span class="math inline">\(\gamma\)</span> is increased?</li>
 <li>What happens when <span class="math inline">\(\beta\)</span> is increased?</li>
 <li>What happens when the ratio of is held constant but the absolute values change?</li>
-<li>What is <span class="math inline">\(R_0\)</span>? Can you derive this value for the model we’ve been using?</li>
+<li>What is <span class="math inline">\(R_0\)</span>? How would you derive this value for the model we’ve been using?</li>
 <li>How do these parameter values influence <span class="math inline">\(R_0\)</span>?</li>
 </ul>
 <p>Be sure to run your simulations long enough to see the equlibrium values.</p>

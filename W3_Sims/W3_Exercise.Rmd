@@ -90,7 +90,7 @@ parameters <- c(r = 0.75)
 
 Working backwards the next arguement for `lsoda()` is `times`. The solver needs to know when to report the numerical solution for the ODE. Let's create a vector called `t.vector` starting at 0.1 and increases by 0.1 up to 1. 
 
-*Remember: We can save time when making patterned vectors by using* `seq()` *function*
+*Remember: We can save time when making patterned vectors by using* `seq()` *function. If you are having trouble figuring out how to use the function you can view the help file with* `?seq`
 ```{r time}
 ## t.vector <- seq()
 ```
@@ -363,12 +363,12 @@ SIRsim %>%
 
 ## Challenge: Parameter values of an SIR
 
-Explore the impact of the $\beta$ and $\gamma$ values on the size and duration of the outbreak. 
+Explore the impact of the $\beta$ and $\gamma$ values on the size and duration of the outbreak. Remember you can address each question in separate code chunks. 
 
 - What happens when $\gamma$ is increased? 
 - What happens when $\beta$ is increased? 
 - What happens when the ratio of is held constant but the absolute values change?
-- What is $R_0$? Can you derive this value for the model we've been using?
+- What is $R_0$? How would you derive this value for the model we've been using?
 - How do these parameter values influence $R_0$? 
 
 Be sure to run your simulations long enough to see the equlibrium values. 
