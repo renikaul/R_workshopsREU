@@ -1,7 +1,7 @@
 ---
-title: "Template"
-author: "Ania"
-date: "5/7/2019"
+title: "Title of your project"
+author: "your name"
+date: "todays' date"
 output: html_document
 ---
 
@@ -9,20 +9,45 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## 1. Project summary
 
-This is an R Markdown document. You can embed an R code chunk like this:
+This is an R Markdown template for your project. Start with a general summary. Here you should add a few sentences on the general research question. Tell us how your question will be answered and where the data will come from (e.g., field, lab, simulation, or some other source). Any predictions should be mentioned here.
 
-```{r cars}
+
+## 2. Data summary
+
+Here you should provide more detailed information on your data. Below you will have your first R code chunk with data wrangling steps and basic summary statistics of the data.
+
+Embed an R code chunk like this:
+
+```{r my data}
+
 summary(cars)
+
 ```
 
-## Including Plots
+## Plots
 
-You can also embed plots, for example:
+Provide histograms of distribution or plots of correlations. 
 
-```{r pressure, echo=FALSE}
+```{r plot of pressure, echo=FALSE}
+
 plot(pressure)
+
+```
+
+## 3. Data Analyses
+
+Here you should tell us what is planned for the analysis and statistical tests. How does that relate to your research question? why did you choose that particular analysis?
+
+
+Embed an R code chunk with analysis and result figures
+
+```{r analyses}
+
 ```
 
 
+## 4. Results and Conclusions
+
+What did you find? How do you interpret the results? 
