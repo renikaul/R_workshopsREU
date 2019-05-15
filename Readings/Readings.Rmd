@@ -6,10 +6,11 @@ output:
   html_document:
     toc: true
     toc_float: true
+   
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Introduction to the series
@@ -39,7 +40,7 @@ As I've already mentioned, the exercises focus on authentic tasks. This approach
 
 The topics covered in this workshop's reading include:
 
-  1. What is `R` and R Studio? 
+  1. What is `R` and RStudio? 
   2. Introduction to data with tidyverse
   3. Troubleshooting 
   4. Exploring data with descriptive and inferential statistics 
@@ -47,13 +48,28 @@ The topics covered in this workshop's reading include:
 
 ## 1. What is R and RStudio
 
-`R` is a statistical programming language and environment commonly used in many scientific fields. The open-source software is maintained by [CRAN](https://cran.r-project.org/) with contributors from all over the world. Since `R` is open-source, the software is freely available and has constantly expanding capabilities. We will use `R` for data manipulation and statistical inference.   
+`R` is a statistical programming language and environment commonly used in many scientific fields. The open-source software is maintained by [CRAN](https://cran.r-project.org/) with contributors from all over the world. Since `R` is open-source, the software is freely available and has constantly expanding capabilities. We will use `R` mainly for data manipulation and statistical inference.   
 
 
 ### Why use `R`? 
-I've touched on one advantage of `R` - it is free! There are a few other advantages- run statistical analysis, reproducible. is a statistical software
 
-ADD R JUSTIFICATION
+**1. R is flexible **
+
+I've already mentioned that `R` is free, but that isn't the only implication of open-source software. This also means that it can be modified by any user. Scientists can develop new analytical methods, and share with the broader scientific community. The sharing of methods is often done by publishing a package to CRAN containing the needed code for the analysis. which reduces the amount of effort a scientist needs to invest to explore new approachs! You'll learn more about packages a bit later.  
+
+**2. R is powerful **
+
+This programming language can handle complex and large data. Later in the workshop series, we will simulate a disease outbreak. `R` will allow us to quickly program increasingly complex simulations. Finally, for really *big* simulations or problems, `R` supports multicore task distribution. This allows computers to work together shortening computing time. 
+
+**3. R is reproducible**
+
+Reproducible in this sense means there is written documentation - the code- of any data manipulation, intermediate calculations, and the final analysis. This written documentation makes it easy to clearly share methods between scientists.  
+
+**4. R has a supportive community **
+
+CRAN and the `R` community are very helpful when trying to solve problems. Any package published in CRAN has a manual. These explain the detailed workings of the package. Additionally, most packages have [vignettes or tutorials](http://lajeunesse.myweb.usf.edu/metagear/metagear_basic_vignette.html) that are linked in the manual or found with a quick google search of the package name. In addition to these resources that come with packages, there are many forums to ask specific questions. [StackOverflow](https://stackoverflow.com/questions/tagged/r) and [Rbloggers](https://www.r-bloggers.com/) are two popular forums. 
+
+**5. R can be run through RStudio**
 
 R Studio is a user friendly `R` working environment that makes it easy to organize projects and provides several improvements over the default `R` working environment such as providing an integrated full featured script editor and remembering all graphics outputs for a session. It is available for most operating systems (windows, mac, and linux), and can be downloaded here: http://www.rstudio.com/
 
@@ -124,67 +140,112 @@ R Studio has a more detailed [help guide](https://www.r-project.org/help.html).
 
 
 ## 4. Exploring data
+
+
+
 ### Descriptive Statistics 
 
-When exploring a new dataset, especially in the workshops, one of the first steps is calculating descriptive statistics (ie. `summary()`,`mean()`, `sd()`, etc.).
+When exploring a new dataset, especially in the workshops, one of the first steps is calculating [descriptive statistics](https://en.wikipedia.org/wiki/Descriptive_statistics). Calculating the mean, standard deviation, and quantiles can be quickly completed using base `R` functions (ie.`mean()`, `sd()`, `summary()`). What other information might you want to know when exploring new data?
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/MRqtXL2WX2M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Inferential Statistics 
 
- However, we have not touched on inferential statistics which is concerned with the evidence for or against certain ideas. Inferential statistics is the branch of statistics that deals with hypothesis tests. If you have taken courses in probability and statistics, you may recall concepts such as p-values, F statistics, z-scores, and confidence intervals. The workshop will cover t-tests, correlations, and linear regressions a subset of inferential statistics. Below is a conceptual review of these methods that we will be using during the workshop series. 
+ Inferential statistics is concerned with the evidence for or against certain ideas, and is the branch of statistics that deals with hypothesis tests. If you have taken courses in probability and statistics, you may recall concepts such as p-values, F statistics, z-scores, and confidence intervals. The workshop series will cover t-tests, correlations, and linear regressions a subset of inferential statistics. Below is a conceptual review of these methods that we will be using during the workshop series. 
 
-Of course, `R` is able to calculate these things and, indeed, a great many other quantities that are useful for scientific inference as well. If your research requires more extensive inferential statistics, [Modern Applied Statistics with S by Venables and Ripley](ftp://ftp.math.binghamton.edu/pub/qyu/text.pdf)[^1] is a good resource for some technical background and implementation. 
+First, let's simulate some data to explore. Data is often organized into a matrix or grid, where the columns are the different variables, and each row is an observation. I will create 6 variables (columns) labeled x1 through x6 with 50 observations (rows). The summary of the data is below. 
+
+```{r simulated data, echo=FALSE, warning=FALSE, message=FALSE}
+require(mvtnorm) # require is an alternative to `library()` that is best used inside of functions. 
+sigma1 <- matrix(c(1, 0, 0, 1), nrow=2, byrow=TRUE)
+sigma2 <- matrix(c(1, 0.5, 0.5, 1), nrow=2, byrow=TRUE)
+sigma3 <- matrix(c(1, 0.9, 0.9, 1), nrow=2, byrow=TRUE)
+
+set.seed(10281979)
+x1 <- rmvnorm(50, mean=c(0,0), sigma=sigma1)
+x2 <- rmvnorm(50, mean=c(0,0), sigma=sigma2)
+x3 <- rmvnorm(50, mean=c(0,0), sigma=sigma3)
+
+d <- as.data.frame(cbind(x1,x2,x3))
+colnames(d) <- c("x1","x2","x3","x4","x5","x6")
+
+summary(d)
+```
 
 #### t-test
 
-To start, we’ll consider the problem of testing for a difference of means. The problem is this: suppose we have two different sets of observations and we would like to know if these sets are different from each other, or if the numerical differences we see are simply based on sampling error. If you recall the GMPD from the second workshop, we wanted to know which group had the highest parasite prevalence. Suppose we wanted to ask if parasite prevalence differed between carnivores and primates. (Note we are only asking if they are different, not why they are different. If we find that they are in fact different, there still may be many reasons for this: one group may have higher diversity, or easier to sample, etc.)
+To start, we’ll consider the problem of testing for a difference of means. The problem is this: suppose we have two different sets of observations and we would like to know if these sets are different from each other, or if the numerical differences we see are simply based on sampling error. Suppose we collected 25 observations from two locations. We might want to know if x1 in the two locations are different.  
 
-```{r titanic plot, echo = TRUE}
+```{r ttest plot, echo=FALSE, warning=FALSE, message=FALSE}
 library(tidyverse)
-gmp <- read_csv("data/GMPD_main.csv") %>% drop_na(Prevalence)
 
-gmp %>%
-  filter(Group != "ungulates") %>%
-  group_by(Group) %>%
-  summarise(MeanPrev = mean(Prevalence)) %>%
-  ggplot(aes(x = Group, y = MeanPrev)) +
+d <- d %>%
+  mutate(site = c(rep(1,25),rep(2,25))) %>%
+  mutate_at(vars(site), factor)
+
+d %>%
+  group_by(site) %>%
+  summarise(Mean = mean(x1)) %>%
+  ggplot(aes(x = site, y = Mean)) +
   geom_bar(stat = "identity") 
 
 ```
 
- Conventionally, we will say that “no difference” is the null hypothesis and “there is a difference” is the alternate hypothesis. We seek to “reject” the null hypothesis and the traditional statistical test is the t-test. In R, a t-test may be performed using the function `t.test()`. Thus, to test for a difference of means between carnivores and primate prevalence, we issue the following command:
+ Conventionally, we will say that “no difference” is the null hypothesis and “there is a difference” is the alternate hypothesis. We seek to “reject” the null hypothesis and the traditional statistical test is the t-test. In `R`, a t-test may be performed using the function `t.test()`. The command returns the following:
 
-```{r ttest}
-carnivors <- gmp %>% filter(Group == "carnivores")
-primates <- gmp %>% filter(Group == "primates")
-
-t.test(carnivors$Prevalence, primates$Prevalence)
+```{r ttest, echo=FALSE}
+t.test(d$x1[which(d$site==1)],d$x1[which(d$site==2)])
 ```
 
-*Note the t.test reuires the measured values from the two populations to be compared (not the mean values)*
+*Note the t.test requires the measured values from the two populations to be compared (not the mean values)*
 
-As you see, the result consists of a list of different quantities. We will focus on just two. First, the *95\% confidence interval on the difference of means* consists of two numbers -- a lower confidence limit and an upper confidence limit. This interval has the interpretation that were this operation to be repeated multiple times with different data sets, in 95\% of cases the reported interval would contain the true value of the quantity of interest, in this case the difference between the (true, not estimated) mean parasite prevalence of carnivores and primates. This is a technical definition, which you may be familiar with if you have studied probability and statistics. If you have not studied probability and statistics you can roughly interpret the result this way: any of the values in the interval are broadly consistent with the observed data. Inspecting this confidence interval, we see that it is possible that the true average parasite prevalence in carnivores exceeded the average parasite prevalence in primates by as much as 0.09, that the average parasite prevalence of carnies exceeded the average parasite prevalence of primates by as much as 0.03, and everything in between. Since zero is not on the interval from 0.03 to 0.09, we fail to reject the null hypothesis that there was no difference in the average number of cases in these two districts.
+As you see, the result consists of a list of different quantities. We will focus on just two. First, the *95\% confidence interval on the difference of means* consists of two numbers -- a lower confidence limit and an upper confidence limit. This interval has the interpretation that were this operation to be repeated multiple times with different data sets, in 95\% of cases the reported interval would contain the true value of the quantity of interest, in this case the difference between the (true, not estimated) mean x1 variables in the two sites. This is a technical definition, which you may be familiar with if you have studied probability and statistics. If you have not studied probability and statistics you can roughly interpret the result this way: any of the values in the interval are broadly consistent with the observed data. 
 
-This conclusion is underscored by the p-value, in this case $p=0.65 \times 10^{-4}$. The p-value can be interpreted this way. Suppose the null hypothesis were true, given the sampling variation inherent in these data, what is the probability that a difference of means this great or greater would be observed? For our example, the probability is $\approx 0.000 06$, a 0.006\% chance. One says that a result is *statistically significant* only when the probability of observing such a case by chance is very small, which we name with the Greek letter $\alpha$ and call the *significance level*. Conventionally, $\alpha$ is chosen to be 5\% or 0.05, so we would say ``this test fails to reject the null hypothesis of no difference at the $\alpha=0.05$ level of significance''.
+Inspecting this confidence interval, we see that it is possible that the true average x1 in site 1 exceeded the average x1 in site 2 by as much as 0.80, or as little as -0.23, and everything in between. Since zero is in the interval from -0.23 to 0.80, we fail to reject the null hypothesis that there was no difference in the average values in x1 between the 2 sites.
+
+This conclusion is underscored by the p-value, in this case $p=0.2739$. The p-value can be interpreted this way. Suppose the null hypothesis were true, given the sampling variation inherent in these data, what is the probability that a difference of means this great or greater would be observed? For our example, the probability is $\approx 0.2739$, a 27.39\% chance. One says that a result is *statistically significant* only when the probability of observing such a case by chance is very small, which we name with the Greek letter $\alpha$ and call the *significance level*. Conventionally, $\alpha$ is chosen to be 5\% or 0.05, so we would say ``this test fails to reject the null hypothesis of no difference at the $\alpha=0.05$ level of significance''.
 
 The video covers the calculations that are needed to derive the confidence interval, and p-value. 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pTmLQvMM-1M" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-#### Correlation and linear regression
+**Test your understanding:** How should you interpret negative values in the confidence interval? 
 
-Two further techniques for statistical inference are *linear regression* and *correlation*. Correlation considers the level of association between two variables. 
+#### Correlations 
+
+Correlation tests are useful for considering the level of association between two variables. From one point of view, correlation is just a descriptive statistic and any two vectors of numbers will have some correlation coefficient. Traditionally, the correlation coefficient is named with the Greek letter $\rho$ (pronounced rho). However, in the traditional hypothesis testing way, we can also express the null hypothesis of no correlation ($H_0: \rho=0$), which we then seek to reject. In `R`, this is done using the function `cor.test()`, which returns a 95\% confidence interval and a p-value, just as `t.test()` did to test for a difference of means.
+
+We have already shown that the mean value of x1 in the two sites do not differ, but are they associated with eachother? The `cor.test()` returns the following:   
+
+```{r corr, echo=FALSE}
+cor.test(d$x1[which(d$site==1)],d$x1[which(d$site==2)])
+```
+
+**Test your understanding:** What is the correlation coefficient ($\rho$) for this data? What conclusion would you make from these results?
+
+Let's explore the correlation coefficient a bit more. The following three plots show three pairs of observations that differ in their degree of correlation. How do the plots change with $\rho$?
+
+```{r}
+par(mfrow=c(1,3))
+plot(x1, main=paste('rho=',round((cor(x1[,1],x1[,2])),2)))
+plot(x2, main=paste('rho=',round((cor(x2[,1],x2[,2])),2)))
+plot(x3, main=paste('rho=',round((cor(x3[,1],x3[,2])),2)))
+```
+
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ugd4k3dC_8Y" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 **Note** The default measure of association returned by `cor.test()` is called *Pearson's correlation coefficient*. However, there are actually several different conceptions of correlation which differ in technical ways. Another of these is called *Spearman's rank-order coefficient* and may be calculated by using the argument `method='spearman'`.
 
-
-#### Linear regression
+#### <a id="Linear_regression"></a> Linear regression
 
 Linear regression is closely related to Spearman's correlation and also considers the relationship between two variables. Specifically, linear regression assumes that the relationship between two quantities can be represented by a line (which is expressed with the equation $y=mx_i+b$) and that the failure of the data to fall exactly on a line is because of some variation or measurement error in the variable $y$ such that the $i^{th}$ observation $y_i$ can be expressed as $y_i=mx+b+\epsilon_i$, where $\epsilon_i$ is the measurement error. Now, the problem is to find the values of $m$ and $b$ (the slope and intercept) such that the total error is minimized in some sense and possibly also to test hypothesis (for instance that $m=0$ or $b=0$). In ordinary (least squares) regression, we seek to minimize the *sum of squared errors*: $\Sigma_i (y_i-(mx_i+b))^2$. Since this is a *linear model*, the best fitting values of $m$ and $b$, as well as a lot of other information, may be obtained using the function `lm()`.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zPG4NjIkCjc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+We will return to an application of linear regressions later in the series. 
+
+If your research requires more extensive inferential statistics, [Modern Applied Statistics with S by Venables and Ripley](ftp://ftp.math.binghamton.edu/pub/qyu/text.pdf)[^1] is a good resource for some technical background and implementation. 
 
 ## Other useful information
 
@@ -202,7 +263,7 @@ The topics covered in this workshop's reading include:
 
   1. What is reproducible research? 
   2. Applying reproducible research in `R` with RStudio
-  3. Automating data analysis with functions and scripts
+  3. Automating tasks
   4. Homework for workshop 4
   
 ## 1. What is reproducible research?
@@ -418,36 +479,15 @@ One approach is to adopt the practice to *never change the raw data*. That is, o
 
 
 
-## 3. Automating data analysis with functions 
+## 3. Automating repeatative tasks 
 
-So far we have explored 
-### Correlation and linear regression
-
-Two further techniques for statistical inference are *linear regression* and *correlation*. Correlation considers the level of association between two variables. As an example, the following three plots show three pairs of observations $x_1$ and $x_2$ that differ in their degree of correlation. (Traditionally, the correlation coefficient is named with the Greek letter $\rho$.)
+recursive concept- loops, apply, function
 
 
-```{r}
-require(mvtnorm) # require is an alternative to `library()` that is best used inside of functions. 
-sigma1 <- matrix(c(1, 0, 0, 1), nrow=2, byrow=TRUE)
-sigma2 <- matrix(c(1, 0.5, 0.5, 1), nrow=2, byrow=TRUE)
-sigma3 <- matrix(c(1, 0.9, 0.9, 1), nrow=2, byrow=TRUE)
-
-set.seed(10281979)
-x1 <- rmvnorm(50, mean=c(0,0), sigma=sigma1)
-x2 <- rmvnorm(50, mean=c(0,0), sigma=sigma2)
-x3 <- rmvnorm(50, mean=c(0,0), sigma=sigma3)
-
-par(mfrow=c(1,3))
-plot(x1, main=paste('rho=',round((cor(x1[,1],x1[,2])),2)))
-plot(x2, main=paste('rho=',round((cor(x2[,1],x2[,2])),2)))
-plot(x3, main=paste('rho=',round((cor(x3[,1],x3[,2])),2)))
-```
-
-From one point of view, correlation is just a descriptive statistic and any two vectors of numbers will have some correlation coefficient. However, in the traditional hypothesis testing way, we can also express the null hypothesis of no correlation ($H_0: \rho=0$), which we then seek to reject. In `R`, this is done using the function `cor.test()`, which returns a 95\% confidence interval and a p-value, just as `t.test()` did to test for a difference of means.
-
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ugd4k3dC_8Y" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 ## 4. Homework for workshop 4
+
+The REU program ends with a poster session where you present the work you've completed this summer. To help you reach this point, and help us understand how you're using `R` we would also like you to submit an `R` project containing any relevant data and a .Rmd file that follows the reproducible research practices outlined above. We will spend the part of the 4th workshop developing an outline for you to fill in as your work progrsses. To make the most out of that time, and to help you prep for the first breakout session (more info coming via email) we've created a worksheet to guide your thought process. If you're struggling to answer the questions, make sure to chat with your mentors! 
+
 
 # Workshop 3: Simulating infectious diseases with R
 
@@ -605,7 +645,9 @@ so that the risk of infection a susceptible faces is proportional to the fractio
 
 Note this model is not suitable for all infectious disease scenarios. The model is suitable for the spread of an infection in a large naive population where the initial infectious agent (ie. number of infected individuals) is small and the resulting epidemic occurs sufficiently quickly that demographic processes (ie. births and deaths) are not important. 
 
-## 4. Example application: Will the pathogen invade the population? (R nought)
+## 4. Example applications
+
+### Will the pathogen invade the population? (R nought)
 
 This reading started with an example of an influenza outbreak and a possible list of questions models can help answer. When assessing a pathogen, often the first question asked is *will there be an outbreak?*. 
 
@@ -616,6 +658,50 @@ The plausibility of an outbreak or a pathogen's ability to invade a new host pop
 <iframe width="560" height="315" src="https://www.youtube.com/embed/jKUGZvW99os?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 **How would we go about deriving $R_0$?**
+
+To illustrate, we draw on a piece of epidemiological theory. By way of background, theoretical epidemiologists are often concerned with a key quantity called the *basic reproduction ratio*, designated $R_0$. $R_0$ is defined as the average number of secondary cases that will arise by contagious infection from an index patient in a wholly susceptible population. $R_0=1$ is known as a critical point because infectious diseases with $R_0>1$ almost always result in large epidemics whereas infectious diseases with $R_0<1$ rapidly die out. (Do you see why this is, given the definition?) It can be shown (using arguments not reproduced here) that for a rapidly spreading epidemic
+
+\begin{equation*}
+  \log{Y_t}\;\approx\;\log{Y_0}+(R_0-1)\,(\gamma)\,t, 
+\end{equation*}
+
+where $Y_t$ is the number of individuals currently infected at time $t$ and $\gamma^{-1}$ is the *infectious period*. This implies that a semi-log plot of $Y_t$ vs $t$ should be approximately linear with a slope proportional to $R_0-1$ and the recovery rate. If we plot the influenza data, we see that this is indeed the case.
+
+
+```{r flu data plot}
+flu <- read.csv("data/flu.csv") # load data that is two columns (day, flu)
+
+plot(flu, type = 'b', log = 'y', xlab = 'Day', ylab = 'Number of individuals infected')
+```
+
+Ultimately, then, linear regression will allow us to estimate $R_0$. However, to do this we need to note a few things. First, it is the logarithm of the number of cases on day $t$ that takes the place of $y$ in our expression $y=mx+b$. In `R` the logarithm is calculated using the function `log`. Next, $log(Y_0)$ takes the place of $b$. If we assume that the epidemic was started by a single infectious individual, then $b=log(1)=0$, so we're interested not in any best fitting line, but only that best fit line that also goes through $(x=0, y=0)$. In regression analysis, this is called fitting a model *without an intercept*. Third, if we interpret $t$ as the quantity that take the place of $x$ in $y=mx+b$, then we see that it is the entire expression $(R_0-1)\,(\gamma)$ that forms the slope $m$. Finally, the formula only applies to the *epidemic takeoff*, so we only want to fit a subset of our data. Inspecting the plot suggests that we might fit our line to data for all days up to and including day 5 of the outbreak. Now, we fit the line using `lm()` as follows:
+
+```{r}
+model <- lm(formula = log(flu) ~ day - 1 ,data = subset(flu, day <= 5))
+
+```
+
+
+Before looking at the output, there are a number of things to notice about this command. 
+
+First, the results are stored in an object that I have called `model`. 
+
+Second, the first argument (called `formula`) is nothing like any argument we've seen before. It looks sort of like a mathematical expression. the first term says that the quantity which we want to take the place of $y$ in our formula $y=mx+b$ is the logarithm of something called `flu`. (But where does `flu` come from? More on that in a moment.) 
+
+Next we see the character tilde ($\sim$). This may be read as "*distributed as*" or you may more simply think of this as taking the place of the equals sign in our formula $y=mx+b$. 
+
+Finally, to the right of tilde we see information about what is on the right hand side of the equation. First, there is `day`, which takes the place of $x$. (But where does `day` come from? Answer: the same place as `flu`.) Because `day` is a variable, `R` assumes you wish to find a slope parameter to multiply by `day`. Finally, we also see that there is a $-1$, which is a coded way of telling `R` that we wish to fit only equations that go through the origin. If we left this off, `R` would seek to find a combination of $m$ and $b$ that minimized the sum of squared errors. As it is, `R` will fix the intercept at zero and return only a slope coefficient. Now, where does `R` look to find the variables `flu` and `day`? This is provided by the argument `data`. The possible values for data are data frames that contain variables called `flu` and `day`. If we supplied the name of a data frame that did not contain these variables `R` would return an error. In our case, however, we're not interested in using all the data in `flu`, but only those records for which `day` is less than or equal to 5, which we obtain using the `subset` function as indicated. This is a base `R` alternative to `filter()`.
+
+Now we wish to see what our fit model consists of. For starters, we can simply type the name of the object at the command line.
+
+```{r}
+model
+```
+
+
+This, we see, prints to the screen the formula that was used to fit the model as well as the fit coefficients, in our case $m=1.086$. But, there is more information that we can obtain. Here we come to the other common use of `summary()`. If we ask for a summary of the model, we see that we get a lot more information: the formula; a list of residuals (the $\epsilon_i$ from above); more information about the coefficient $m$, including the estimate, an estimate of its error (i.e. a value that when we add and subtract to the estimate provides an interval -- though not a 95\% confidence interval), something called the ``t-value'' (which we won't worry about more), and finally a p-value for the hypothesis test that the coefficient is equal to zero. Also, we get some additional summary statistics such as the $R^2$ value (fraction of variance explained by the model) and other statistical details.
+
+We will use a [linear regression](#Linear_regression) to answer this question.
 
 ## 5. Other infectious disease compartmental models 
 
@@ -948,60 +1034,7 @@ Some additional resources:
 2. [Data visualisation with ggplot2](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1) by Rick Scavetta on datacamp.
 3. [The R Graphics Cookbook by Winston Chang](http://www.cookbook-r.com/Graphs/). It provides a set of recipes to solve common graphics problems.
 
-
-## 5. Example application: Linear regression
-
-Linear regression is closely related to Spearman's correlation and also considers the relationship between two variables. Specifically, linear regression assumes that the relationship between two quantities can be represented by a line (which is expressed with the equation $y=mx_i+b$) and that the failure of the data to fall exactly on a line is because of some variation or measurement error in the variable $y$ such that the $i^{th}$ observation $y_i$ can be expressed as $y_i=mx+b+\epsilon_i$, where $\epsilon_i$ is the measurement error. Now, the problem is to find the values of $m$ and $b$ (the slope and intercept) such that the total error is minimized in some sense and possibly also to test hypothesis (for instance that $m=0$ or $b=0$). In ordinary (least squares) regression, we seek to minimize the *sum of squared errors*: $\Sigma_i (y_i-(mx_i+b))^2$. Since this is a *linear model*, the best fitting values of $m$ and $b$, as well as a lot of other information, may be obtained using the function `lm()`.
-
-To illustrate, we draw on a piece of epidemiological theory. By way of background, theoretical epidemiologists are often concerned with a key quantity called the *basic reproduction ratio*, designated $R_0$. $R_0$ is defined as the average number of secondary cases that will arise by contagious infection from an index patient in a wholly susceptible population. $R_0=1$ is known as a critical point because infectious diseases with $R_0>1$ almost always result in large epidemics whereas infectious diseases with $R_0<1$ rapidly die out. (Do you see why this is, given the definition?) It can be shown (using arguments not reproduced here) that for a rapidly spreading epidemic
-
-\begin{equation*}
-  \log{Y_t}\;\approx\;\log{Y_0}+(R_0-1)\,(\gamma)\,t, 
-\end{equation*}
-
-where $Y_t$ is the number of individuals currently infected at time $t$ and $\gamma^{-1}$ is the *infectious period*. This implies that a semi-log plot of $Y_t$ vs $t$ should be approximately linear with a slope proportional to $R_0-1$ and the recovery rate. If we plot the influenza data, we see that this is indeed the case.
-
-
-```{r flu data plot}
-flu <- read.csv("data/flu.csv") # load data that is two columns (day, flu)
-
-plot(flu, type = 'b', log = 'y', xlab = 'Day', ylab = 'Number of individuals infected')
-```
-
-Ultimately, then, linear regression will allow us to estimate $R_0$. However, to do this we need to note a few things. First, it is the logarithm of the number of cases on day $t$ that takes the place of $y$ in our expression $y=mx+b$. In `R` the logarithm is calculated using the function `log`. Next, $log(Y_0)$ takes the place of $b$. If we assume that the epidemic was started by a single infectious individual, then $b=log(1)=0$, so we're interested not in any best fitting line, but only that best fit line that also goes through $(x=0, y=0)$. In regression analysis, this is called fitting a model *without an intercept*. Third, if we interpret $t$ as the quantity that take the place of $x$ in $y=mx+b$, then we see that it is the entire expression $(R_0-1)\,(\gamma)$ that forms the slope $m$. Finally, the formula only applies to the *epidemic takeoff*, so we only want to fit a subset of our data. Inspecting the plot suggests that we might fit our line to data for all days up to and including day 5 of the outbreak. Now, we fit the line using `lm()` as follows:
-
-```{r}
-model <- lm(formula = log(flu) ~ day - 1 ,data = subset(flu, day <= 5))
-
-```
-
-
-Before looking at the output, there are a number of things to notice about this command. 
-
-First, the results are stored in an object that I have called `model`. 
-
-Second, the first argument (called `formula`) is nothing like any argument we've seen before. It looks sort of like a mathematical expression. the first term says that the quantity which we want to take the place of $y$ in our formula $y=mx+b$ is the logarithm of something called `flu`. (But where does `flu` come from? More on that in a moment.) 
-
-Next we see the character tilde ($\sim$). This may be read as "*distributed as*" or you may more simply think of this as taking the place of the equals sign in our formula $y=mx+b$. 
-
-Finally, to the right of tilde we see information about what is on the right hand side of the equation. First, there is `day`, which takes the place of $x$. (But where does `day` come from? Answer: the same place as `flu`.) Because `day` is a variable, `R` assumes you wish to find a slope parameter to multiply by `day`. Finally, we also see that there is a $-1$, which is a coded way of telling `R` that we wish to fit only equations that go through the origin. If we left this off, `R` would seek to find a combination of $m$ and $b$ that minimized the sum of squared errors. As it is, `R` will fix the intercept at zero and return only a slope coefficient. Now, where does `R` look to find the variables `flu` and `day`? This is provided by the argument `data`. The possible values for data are data frames that contain variables called `flu` and `day`. If we supplied the name of a data frame that did not contain these variables `R` would return an error. In our case, however, we're not interested in using all the data in `flu`, but only those records for which `day` is less than or equal to 5, which we obtain using the `subset` function as indicated. This is a base `R` alternative to `filter()`.
-
-Now we wish to see what our fit model consists of. For starters, we can simply type the name of the object at the command line.
-
-```{r}
-model
-```
-
-
-This, we see, prints to the screen the formula that was used to fit the model as well as the fit coefficients, in our case $m=1.086$. But, there is more information that we can obtain. Here we come to the other common use of `summary()`. If we ask for a summary of the model, we see that we get a lot more information: the formula; a list of residuals (the $\epsilon_i$ from above); more information about the coefficient $m$, including the estimate, an estimate of its error (i.e. a value that when we add and subtract to the estimate provides an interval -- though not a 95\% confidence interval), something called the ``t-value'' (which we won't worry about more), and finally a p-value for the hypothesis test that the coefficient is equal to zero. Also, we get some additional summary statistics such as the $R^2$ value (fraction of variance explained by the model) and other statistical details.
-
-```{r}
-summary(model)
-```
-
-
-Finally, then, we are in a position to calculate $R_0$. Recalling from before, we understand that there is an equivalence between $m$ in the equation $y=mx+b$ and the parameter combination $(R_0-1) \gamma$ so we write $m=(R_0-1) \gamma$. Given that the infectious period of influenza is about 2.5 days, we conclude that $\gamma \approx 2.5^{-1} = 0.4$. Rearranging, we have $\hat{R_0} = m/ \gamma +1 = 1.0895 / 0.4 + 1 \approx 3.7$ (writing $R_0$ with a ``hat'' to signify that this is an estimate).
-
+Before looking at the output, there 
 
 
 [^1]: [S is statistical computing language](https://en.wikipedia.org/wiki/S_(programming_language)) and predecessor of `R`. The code implementation examples in the book are in base `R`. 
