@@ -19,7 +19,7 @@ This workshop gives students an introduction to reproducible research concepts. 
 
 3. Simulating Infectious Diseases with R
 
-This workshop focuses on implementing infectious disease models in R. since this workshop requires some understanding of compartmental models, the students are given a short primer to read it before hand. The primer covers the very basics of ordinary differential equations, and population modeling. The workshop starts with a code-along of an exponential growth model using lsoda. Here students revisit interpreting manual pages, and function syntax introduced in the previous workshops. The students then work in groups to develop an SIR model using the exponential growth model as a template. Then, the workshop revisits the workflow tenant of reproducible research by introducing and demonstrating a the `.R` script file type. Creating and sourcing a script leads into a conversation about iterations. The discrete exponential growth model is used to explore for loops in R.
+This workshop focuses on implementing infectious disease models in R. since this workshop requires some understanding of compartmental models, the students are given a short primer to read it before hand. The primer covers the very basics of ordinary differential equations, and population modeling. The workshop starts with a code-along of an exponential growth model using lsoda. Here students revisit interpreting manual pages, and function syntax introduced in the previous workshops. The students then work in groups to develop an SIR model using the exponential growth model as a template. Then, the workshop revisits the workflow tenant of reproducible research by introducing and demonstrating a the `.R` script file type. ~Creating and sourcing a script leads into a conversation about iterations. The discrete exponential growth model is used to explore for loops in R.~
 
 This workshop is unique in the series since it focuses on connecting discipline specific concepts like environmental models to implementing code. 
 
@@ -63,7 +63,7 @@ The learning objectives are broken down by workshop, and are stated as "Students
 - plot numerical solutions of ODE models
 - describe the impact of changing beta and gamma on the size and duration of an outbreak in a SIR model
 - ~write and source a script in R~ (MOVED TO W2)
-- write a for loop to iterate over a vector
+- ~write a for loop to iterate over a vector~ (Removed from workshop)
 
 ### Workshop 4: Data visualization in R
 
