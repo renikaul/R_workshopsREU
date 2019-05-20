@@ -19,7 +19,7 @@ This is the first of four sessions on using `R` and R Studio as part of your res
 
 Each workshop has a short reading that introduces important concepts that we will apply during the workshops. Examples of `R` code use the `Courier New` font with grey highlight. 
 
-The first two workshops focus on covering the basics of `R` and R Studio for scientific research. The third workshop focuses on infectious disease modeling which is a key tool used in the field. Finally, the last workshop covers data visualization and developing a template for your project. This last workshop will be a useful reference when creating the [scientific posters](http://reu.ecology.uga.edu/?cat=34) you'll be presenting at the end of the REU program, along with the markdown document that we ask you to submit at the end of the program. Each workshop is led by a different instructor and are happy to help with follow up questions. 
+The first two workshops focus on covering the basics of `R` and R Studio for scientific research. The third workshop focuses on infectious disease modeling which is a key tool used in the field. Finally, the last workshop covers data visualization and developing a outline for your project. This last workshop will be a useful reference when creating the [scientific posters](http://reu.ecology.uga.edu/?cat=34) you'll be presenting at the end of the REU program, along with the markdown document that we ask you to submit at the end of the program. Each workshop is led by a different instructor and are happy to help with follow up questions. 
 
 To get the most out of this experience, I suggest:
 
@@ -31,7 +31,7 @@ To get the most out of this experience, I suggest:
 * If you understand a concept, test yourself by trying to teach it to a peer. 
 * Look for ways to apply these tools to your research. 
 
-As I've already mentioned, the exercises focus on authentic tasks. This approach prioritizes task completion over detailed technical knowledge of programming in `R`. If you're working on a quantitative project or are just curious, I suggest [R for Data Science](http://r4ds.had.co.nz/) or the [Introduction to R free course from DataCamp](https://www.datacamp.com/courses/free-introduction-to-r). 
+As I've already mentioned, the exercises focus on authentic tasks. This approach prioritizes task completion over detailed technical knowledge of programming in `R`. If you're working on a quantitative project or are just curious, I suggest [R for Data Science](http://r4ds.had.co.nz/) or the [Introduction to R free course from DataCamp](https://www.datacamp.com/courses/free-introduction-to-r) for more indepth understanding of `R`. 
 
 
 
@@ -479,15 +479,56 @@ One approach is to adopt the practice to *never change the raw data*. That is, o
 
 
 
-## 3. Automating repeatative tasks 
+## 3. Automating repetitive tasks 
 
-recursive concept- loops, apply, function
+Workflows often require repeating the same task many times. Fortunately, `R` has a few different ways to handle recursive tasks. The automation that you use depends on the number of times you plan on repeating the task, the size of the tasks, and the intended use of the output. The following methods can be used individually, or in combination to create the solution appropriate for your needs. 
 
+![When to automate](figs/geeks2.png)
+
+### Control Structures
+
+Control structures allow you to control if, when, or how often code is executed. These can be thought of as logic statements. This is a way to make your code more flexible to the type of input, and output you'd like. Some common control structures are:
+
+* `if` and `else`: testing a condition and acting on it
+
+* `for`: execute a loop a fixed number of times
+
+* `while`: execute a loop while a condition is true
+
+* `repeat`: execute an infinite loop (must `break` out of it to stop)
+
+* `break`: break the execution of a loop
+
+* `next`: skip an interation of a loop
+
+![logic flow of if else statement](figs/ifelse_flow-2.png)
+
+These control sturctures are much more common when using base `R` rather than `tidyverse`, but you may come across a problem that can be solved with the above statements. We will come back to `for` statements in workshop 3. 
+
+### Apply Family Functions
+
+Apply functions are used to do bulk calculations. Suppose we would like to determine the mean, min, and max. value in every column. We could do this one by one using a control structure for each calculation, or all at once using an apply statement. In fact, much of the `tidyverse` is based on using the apply function approach. We won't explicitly cover apply functions in the workshop, but you might come across a need for them in the future. This is especially true if you are working in base `R`. 
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/f0U74ZvLfQo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+If you'd like a more indepth explaination of control structures vs apply statements check out this [tutorial](https://nicercode.github.io/guides/repeating-things/). 
+
+### Functions
+
+You've already taken advantage of functions that are part of the `tidyverse` package. However, `R` also allows the user to create there own functions. The video below introduces the basic structure of a function, along with the flexiblity of the outputs. Don't worry if the different output options are unfamiliar. I just want you to have an idea of the different possibilities. You will have a chance to practice writing functions in this workshop. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/i2VH5jIL76Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<!-- Data camp functions 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/M4fMccWy5lU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 
 ## 4. Homework for workshop 4
 
-The REU program ends with a poster session where you present the work you've completed this summer. To help you reach this point, and help us understand how you're using `R` we would also like you to submit an `R` project containing any relevant data and a .Rmd file that follows the reproducible research practices outlined above. We will spend the part of the 4th workshop developing an outline for you to fill in as your work progrsses. To make the most out of that time, and to help you prep for the first breakout session (more info coming via email) we've created a worksheet to guide your thought process. If you're struggling to answer the questions, make sure to chat with your mentors! 
+The REU program ends with a poster session where you present the work you've completed this summer. To help you reach this point, and help us understand how you're using `R` we would also like you to submit an `R` project containing any relevant data and a .Rmd file that follows the reproducible research practices outlined above. We will spend the part of the 4th workshop developing an outline based on a [template](https://github.com/renikaul/R_workshopsREU/blob/master/RMD/Template.Rmd) for you to fill in as your work progrsses. To make the most out of that time, and to help you prep for the first breakout session (more info coming via email) we've created a worksheet to guide your thought process. If you're struggling to answer the questions, make sure to chat with your mentors! Please bring the completed [worksheet]() to workshop 4.
 
+---
 
 # Workshop 3: Simulating infectious diseases with R
 
@@ -509,7 +550,7 @@ Infectious diseases cause a substantial global burden of morbidity and mortality
 
 !["Influenza epidemic curve"](figs/flu_fig.png)
 
-The figure above shows the number of children confined to bed (I: infected) as a result of contracting influenza in boarding school. As the number of infected children increase, the number of healthy children (S: Susceptible) decreases. 
+The figure above shows the number of children confined to bed (I: infected) as a result of contracting influenza in a boarding school. As the number of infected children increase, the number of healthy children (S: Susceptible) decreases. 
 
 Modeling can help us answer the following basic questions arising from the epidemic:
 
@@ -523,7 +564,7 @@ If we are able to predict the epidemic curve with a model, we can also evaluate 
 
 ## 1. What is a mathematical model?
 
-We distinguish between mathematical and statistical models.  *Mathematical* or *dynamical* models are abstract models that uses mathematical language to describe the behavior of a system. The epidemiological processes (e.g., infection of susceptible individuals, recovery of infected individuals) are represented by equations. *Statistical* models attempt to describe relationships between observed quantities and independent variables. Otto and Day [^1] give a nice overview of the differences between these two approaches. Models can help us to understand nature and to make predictions. In this workshop, we will show you how to formulate a basic mathematical model of an epidemic and how to solve this model in R.
+We distinguish between mathematical and statistical models.  *Mathematical* or *dynamical* models are abstract models that uses mathematical language to describe the behavior of a system. The epidemiological processes (e.g., infection of susceptible individuals, recovery of infected individuals) are represented by equations. *Statistical* models attempt to describe relationships between observed quantities and independent variables. Otto and Day [^2] give a nice overview of the differences between these two approaches. Models can help us to understand nature and to make predictions. In this workshop, we will show you how to formulate a basic mathematical model of an epidemic and how to solve this model in R.
 
 Why use mathematical models? A mathematical model can give us key insights into how various forces act to change a system over time. For example,the number of susceptible, infectious, and recovered hosts change through time based on the number of hosts for a parasite, birth of susceptibles into the population, transmission of the infection, and recovery from infection.
 
@@ -546,7 +587,7 @@ A key decision when developing a model is how to treat time.
 *Continuous time models* allow variables to change at any point in time (i.e., time is represented by a continuous axis).
 
 Which type of model to use depends on the biological question. Continuous variables are often used if the variables take on large enough values that treating them as continuous introduces very little error to the results. Another justification for their use is that it is typically easier mathematically to treat variables as continuous -- calculus can be used to analyse the model.
-
+<a id=recursive_eq></a>
 Typically, discrete time models are written as *recursion equations* that describe the value of variables at the next time step in terms of a function of it at the current time step, e.g.,
 $$\begin{aligned}
 N_{t+1} = \text{``some function of }N_t\text{"},
@@ -716,16 +757,71 @@ Common compartmental models:
 - $MSIR$ : *Maternally-derived immunity ->Susceptible -> Infectious -> Recovered*. suitable for representing illnesses that have passive immunity at birth from maternal antibodies, e.g., measles.
 
 
-
-
 ## 6. Automating data analysis with loops
 
+The last reading introduced automating repetitive tasks using control structures. This workshop will explore [recursive equations](#recursive_eq) with `for` loops. If you recall a `for` loop will execute code a fixed number of times. Let's review our understanding of loops, recursive equations, and then map them onto eachother. 
+
+### loops
+
+Loops or `for` loops repeat a chunk of code a set number of times. This is defined at the beginning of the loop using `for(i in 1:10)`. This can be read as substitute the values 1,2,3,4,...,10 in for the value of `i` in loop code. If I had non-sequential values I wanted to use instead, I would make an object and use `i` as an index for the object. 
+
+```{r}
+N.seq <- c(2,4,8,16,32) # set of numbers I'd like to use in my loop
+
+for(i in 1:5){
+  print(N.seq[i]) #this will print the i-th number (1-5) of the N.seq object. 
+}
+```
+
+Now suppose I wanted to calculate the first 5 numbers in a geometrically (doubling) increasing function starting at 2. How would the above loop need to be modified? 
+
+```{r}
+N.seq <- c(2,0,0,0,0) # where I would like to save my values, and the starting value of 2. 
+
+for(i in 1:4){
+  N.seq[i+1] <- N.seq[i]^2 #this will save the N.seq[i]^2 in the i+1 place. 
+}
+
+N.seq
+```
+
+Compare the two loops. What's different? How many times is the first loop repeated? the second loop? What objects are being changed during each iteration?
+
+### recursive equations
+
+<a id=recursive_eq></a>
+Remember, discrete time models are often written as *recursion equations* that describe the value of variables at the next time step in terms of a function of it at the current time step, e.g.,
+
+$$\begin{aligned}
+N_{t+1} = \text{``some function of }N_t\text{"},
+\end{aligned}$$
+
+In the case of an exponentially growing populations the discrete time model is written as
+$$\begin{aligned}
+N_{t+1} = N_t + r*N_t.
+\end{aligned}$$
+
+Where the population at the next time step ($t+1$) is the size at the current time ($t$) plus some per capita growth rate ($r$) times the current population size. How should I go about calculating the population size at $t+5$? Since this equation will only tell me what will happen in the next time step, I have to calculate the next time step 5 times, each time updating the value of $N_t$. 
+
+### mapping loops onto recursive equations
+
+We know that `for` loops can be used to execute code many times. In in the second `for` loop example, we saw how to use indexing (the square brackets) to calculate the next value based on the current value. The discrete time model of exponential growth has a similar motif where the next value is based on the current value. Try modifying the example to calculate the population size for the next 4 time steps. Assume that the populations started with 10 individuals and has a 20/% growth rate ($N_t=10$,$r=0.2$). Do your values match mine below?
+
+```{r, echo=FALSE}
+N.seq <- c(10,0,0,0,0) # where I would like to save my values, and the starting value of 2. 
+
+for(i in 1:4){
+  N.seq[i+1] <- N.seq[i]+(0.2*N.seq[i]) #this will save the N.seq[i]^2 in the i+1 place. 
+}
+```
+
+```{r}
+N.seq
+```
+
+We will revisit this in the workshop, so bring your solutions! 
+
 -----
-
-[^1]: Otto, S. P. and Day, T.  A Biologists Guide to Mathematical Modeling in Ecology and Evolution. Princeton University Press, Princeton and Oxford, 2007.  
-[^2]: While compartmental models often track the proportion of the population in each class ($S+I+R=1$), it is also possible to track the number of individuals in each class ($S+I+R=N$). For this workshop, we will track proportions.
-[^3]: Anderson, R. M. and May, R. M. Infectious Diseases of Humans: Dynamics and Control. Oxford University Press, Oxford, 1991.  
-
 
 
 # Workshop 4: Applying workshops to your work
@@ -1038,3 +1134,8 @@ Before looking at the output, there
 
 
 [^1]: [S is statistical computing language](https://en.wikipedia.org/wiki/S_(programming_language)) and predecessor of `R`. The code implementation examples in the book are in base `R`. 
+
+
+[^2]: Otto, S. P. and Day, T.  A Biologists Guide to Mathematical Modeling in Ecology and Evolution. Princeton University Press, Princeton and Oxford, 2007.  
+[^2]: While compartmental models often track the proportion of the population in each class ($S+I+R=1$), it is also possible to track the number of individuals in each class ($S+I+R=N$). For this workshop, we will track proportions.
+[^3]: Anderson, R. M. and May, R. M. Infectious Diseases of Humans: Dynamics and Control. Oxford University Press, Oxford, 1991.  
