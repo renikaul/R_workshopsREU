@@ -1,7 +1,7 @@
-Introduction to R
+W1: Introduction to R
 ========================================================
-author: 
-date: May 23, 2018
+author: Ania Majewska and Reni Kaul
+date: May 22, 2019
 autosize: true
 font-import: https://fonts.googleapis.com/css?family=PT+Sans
 font-family: 'PT Sans', sans-serif;
@@ -11,30 +11,42 @@ font-family: 'PT Sans', sans-serif;
 
 
 
-<!-- Why is R programming a useful skill? -->
-<!-- ======================================================== -->
-<!-- (John Drake) -->
+Why is R programming a useful skill? 
+======================================================== 
 
 
-About Today's instructors
+
+About today's instructors
 ========================================================
 Ania Majewska
  - My research interest is in conservation biology and disease ecology
  - I use `R` in my research to:
-   + organize data 
+   + organize and wrangle data 
    + analyze data (statistical models)
    + model disease dynamics (transmission)
  - I mostly work on the monarch butterfly and it's protozoan parasite 
  - My contact info is majewska@uga.edu
 
+About today's instructors
+========================================================
+Reni Kaul
+ - My research interest is [INSERT DESCRIPTION]
+ - I use `R` in my research to:
+   + organize data 
+   + develop machine learning algorithms
+   + [INSERT DETAILS]
+ - I mostly work [in this disease system or approach] 
+ - My contact info is [INSERT EMAIL]
+
+
 Workshop Goals 
 ========================================================
 left:65%
 **The workshop series** consists of four half day workshops each focusing on a different part of the research process
-- Introduction to `R` (Today: Ania Majewska, Robbie Richards, Paige Miller)
-- Reproducible research (May 30; Robbie Richards)
-- Simulating infectious diseases  (June 4; John Vinson)
-- Visualizing data (June 6; Michelle Evans)
+- Introduction to `R` (Today: Ania Majewska and Reni Kaul)
+- Reproducible research (May 29; Deven Vishwas Gokhale and Reni Kaul )
+- Simulating infectious diseases  (June 3; John Vinson)
+- Visualizing data (June 7; Robbie Richards)
 
 ***
 
@@ -174,7 +186,7 @@ library(tidyverse)
 
 ======================================================== 
 
-<h1> Download the W1_Exercise zip file </h1>
+<h2> Download the W1_Exercise zip file </h2>
 
 Unzip and open the folder.
 
@@ -185,11 +197,11 @@ Open W1_Exercise.Rproj
  
  <h1> *Break* 
  
-Resume at 9am </h1>
+Resume in 15 min </h1>
 
 ========================================================
 
-Open W1_Exercise.Rmd
+<h2> Open W1_Exercise.Rmd </h2>
 
 
 How to get unstuck: functions
@@ -252,7 +264,7 @@ left: 30%
   
 Exploring further
 ========================================================
-Let's work in small groups (max [X])
+Let's work in small groups (max of 3)
 
 - Develop a question that can be answered with this data
 - Decide on the needed verbs, and order
