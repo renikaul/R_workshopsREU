@@ -19,7 +19,7 @@ This is the first of four sessions on using `R` and R Studio as part of your res
 
 Each workshop has a short reading that introduces important concepts that we will apply during the workshops. Examples of `R` code use the `Courier New` font with grey highlight. 
 
-The first two workshops focus on covering the basics of `R` and R Studio for scientific research. The third workshop focuses on infectious disease modeling which is a key tool used in the field. Finally, the last workshop covers data visualization and developing a outline for your project. This last workshop will be a useful reference when creating the [scientific posters](http://reu.ecology.uga.edu/?cat=34) you'll be presenting at the end of the REU program, along with the markdown document that we ask you to submit at the end of the program. Each workshop is led by a different instructor and are happy to help with follow up questions. 
+The first two workshops focus on covering the basics of `R` and R Studio for scientific research. The third workshop focuses on infectious disease modeling which is a key tool used in the field. Finally, the last workshop covers data visualization and developing a outline for your project. This last workshop will be a useful reference when creating the [scientific posters](http://reu.ecology.uga.edu/?cat=34) you'll be presenting at the end of the REU program, along with the `R` project that we ask you to submit at the end of the program. Each workshop is led by a different instructor and are happy to help with follow up questions. 
 
 To get the most out of this experience, I suggest:
 
@@ -31,7 +31,7 @@ To get the most out of this experience, I suggest:
 * If you understand a concept, test yourself by trying to teach it to a peer. 
 * Look for ways to apply these tools to your research. 
 
-As I've already mentioned, the exercises focus on authentic tasks. This approach prioritizes task completion over detailed technical knowledge of programming in `R`. If you're working on a quantitative project or are just curious, I suggest [R for Data Science](http://r4ds.had.co.nz/) or the [Introduction to R free course from DataCamp](https://www.datacamp.com/courses/free-introduction-to-r) for more indepth understanding of `R`. 
+As I've already mentioned, the exercises focus on authentic tasks. This approach prioritizes task completion over detailed technical knowledge of programming in `R`. If you're working on a quantitative project or are just curious, I suggest [R for Data Science](http://r4ds.had.co.nz/) or the [Introduction to R free course from DataCamp](https://www.datacamp.com/courses/free-introduction-to-r) for more indepth understanding of `R`. We have also setup 6 months free access to the paid DataCamp `R` course. We will recieve a seperate email with details.  
 
 
 
@@ -63,11 +63,11 @@ This programming language can handle complex and large data. Later in the worksh
 
 **3. R is reproducible**
 
-Reproducible in this sense means there is written documentation - the code- of any data manipulation, intermediate calculations, and the final analysis. This written documentation makes it easy to clearly share methods between scientists.  
+Reproducible in this sense means there is written documentation - the code- of any data manipulation, intermediate calculations, and the final analysis. This written documentation makes it easy to clearly share methods between scientists, including your future self.  
 
 **4. R has a supportive community **
 
-CRAN and the `R` community are very helpful when trying to solve problems. Any package published in CRAN has a manual. These explain the detailed workings of the package. Additionally, most packages have [vignettes or tutorials](http://lajeunesse.myweb.usf.edu/metagear/metagear_basic_vignette.html) that are linked in the manual or found with a quick google search of the package name. In addition to these resources that come with packages, there are many forums to ask specific questions. [StackOverflow](https://stackoverflow.com/questions/tagged/r) and [Rbloggers](https://www.r-bloggers.com/) are two popular forums. 
+CRAN and the `R` community are very helpful when trying to solve problems. Any package published in CRAN has a manual. These explain the detailed workings of the package. Additionally, most packages have [vignettes or tutorials](http://lajeunesse.myweb.usf.edu/metagear/metagear_basic_vignette.html) that are linked in the manual or found with a quick google search of the package name. In addition to these resources that come with packages, there are many forums to ask specific questions. [StackOverflow](https://stackoverflow.com/questions/tagged/r) and [Rbloggers](https://www.r-bloggers.com/) are two popular forums. Twitter is also a great resource. If you're interested in developing your data manipulation and visualization skill check out #TidyTuesday run by [@ thomas_mock](https://twitter.com/thomas_mock?lang=en) . 
 
 **5. R can be run through RStudio**
 
@@ -203,13 +203,20 @@ As you see, the result consists of a list of different quantities. We will focus
 
 Inspecting this confidence interval, we see that it is possible that the true average x1 in site 1 exceeded the average x1 in site 2 by as much as 0.80, or as little as -0.23, and everything in between. Since zero is in the interval from -0.23 to 0.80, we fail to reject the null hypothesis that there was no difference in the average values in x1 between the 2 sites.
 
-This conclusion is underscored by the p-value, in this case $p=0.2739$. The p-value can be interpreted this way. Suppose the null hypothesis were true, given the sampling variation inherent in these data, what is the probability that a difference of means this great or greater would be observed? For our example, the probability is $\approx 0.2739$, a 27.39\% chance. One says that a result is *statistically significant* only when the probability of observing such a case by chance is very small, which we name with the Greek letter $\alpha$ and call the *significance level*. Conventionally, $\alpha$ is chosen to be 5\% or 0.05, so we would say ``this test fails to reject the null hypothesis of no difference at the $\alpha=0.05$ level of significance''.
+This conclusion is underscored by the p-value, in this case $p=0.2739$. The p-value can be interpreted this way. Suppose the null hypothesis were true, given the sampling variation inherent in these data, what is the probability that a difference of means this great or greater would be observed? For our example, the probability is $\approx 0.2739$, a 27.39\% chance. One says that a result is *statistically significant* only when the probability of observing such a case by chance is very small, which we name with the Greek letter alpha ($\alpha$) and call the *significance level*. Conventionally, $\alpha$ is chosen to be 5\% or 0.05, so we would say ``this test fails to reject the null hypothesis of no difference at the $\alpha=0.05$ level of significance''.
 
 The video covers the calculations that are needed to derive the confidence interval, and p-value. 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pTmLQvMM-1M" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
+<br>
+<br>
 **Test your understanding:** How should you interpret negative values in the confidence interval? 
+
+<br>
+
+*Answer* <br>
+The confidence interval of the difference of means is the estimated difference between the two groups (ie. group 1 - group 2). A positive value indicates the mean of group 1 is larger than group 2. If the difference of means is negative, then the mean of group 2 is larger than the mean on group 1. 
 
 #### Correlations 
 
@@ -220,12 +227,19 @@ We have already shown that the mean value of x1 in the two sites do not differ, 
 ```{r corr, echo=FALSE}
 cor.test(d$x1[which(d$site==1)],d$x1[which(d$site==2)])
 ```
-
+<br>
+<br>
 **Test your understanding:** What is the correlation coefficient ($\rho$) for this data? What conclusion would you make from these results?
 
-Let's explore the correlation coefficient a bit more. The following three plots show three pairs of observations that differ in their degree of correlation. How do the plots change with $\rho$?
+<br>
+*Answer* <br>
+The correlation coefficient is $\approx 0.23$, and the p-value is $0.26$. Using a significance level of $\alpha = 0.05$, we fail to reject the null hypothesis of no correlation. If the p-value was less than 0.05, then we could conclude that the two variables are positively correlated.  
+<br>
+<br>
 
-```{r}
+Let's explore the correlation coefficient a bit more. The following three plots show three pairs of observations that differ in their degree of correlation. How do the plots change with $\rho$? What would a plot with a negative $\rho$ look like?
+
+```{r, echo=FALSE}
 par(mfrow=c(1,3))
 plot(x1, main=paste('rho=',round((cor(x1[,1],x1[,2])),2)))
 plot(x2, main=paste('rho=',round((cor(x2[,1],x2[,2])),2)))
@@ -327,6 +341,7 @@ You can also open and close Projects from a drop down in the upper right hand co
 ![R Project](figs/RStudioprojectTab.png)
 
 **Note:**
+
 
 The `R project` is designed to integrate with the version control systems Git and Subversion through RStudio ([details](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN)). Ask your lab if this is something you should be using. 
 
@@ -477,7 +492,20 @@ both render to:
 
 One approach is to adopt the practice to *never change the raw data*. That is, once collected, cleaned, and organized, the raw data table for an analysis may be archived and the archived version considered to be fixed. But, what if an error is discovered? Or, more commonly, what if analysis requires some subset of the data or transformation of the data? The practice of literate statistical programming allows these operations to be included in the algorithm. That is, they are considered to be part of the work flow. If a data point needs to be changed, this can be done programmatically, in a *pre-processing* step that precedes the actual data analysis. Besides ensuring the stability of the underlying information, this approach also enables documentation of the rationale for any such changes to the data.
 
+Your project might include multiple data sets, and analyses. For this reason, it is important to keep your project directory organized. I suggest you use the following organization. 
 
+![R Project directory organization](figs/directory_org.png)
+
+
+ **data/** :  holds all raw data that is needed for the analysis
+
+ **data_output/** : place to save the intermediate, and completed analysis files
+ 
+ **documents/** : holds any relevant documents including metadata, manuals, or publications. If you have multiple `.rmd` files you can save them here, otherwise I would save it to the working_dir/
+
+ **fig_output/** : place to save figures that are produced as part of data exploration or explanation 
+
+ **scripts/** : place to save custom functions
 
 ## 3. Automating repetitive tasks 
 
@@ -507,7 +535,7 @@ These control sturctures are much more common when using base `R` rather than `t
 
 ### Apply Family Functions
 
-Apply functions are used to do bulk calculations. Suppose we would like to determine the mean, min, and max. value in every column. We could do this one by one using a control structure for each calculation, or all at once using an apply statement. In fact, much of the `tidyverse` is based on using the apply function approach. We won't explicitly cover apply functions in the workshop, but you might come across a need for them in the future. This is especially true if you are working in base `R`. 
+Apply functions are used to do bulk calculations. Suppose we would like to determine the mean, min, and max. value of every column in a large data set. We could do this one by one using a control structure for each calculation, or all at once using an apply statement. In fact, much of the `tidyverse` is based on using the apply function approach. We won't explicitly cover apply functions in the workshop, but you might come across a need for them in the future. This is especially true if you are working in base `R`. 
 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/f0U74ZvLfQo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -517,7 +545,7 @@ If you'd like a more indepth explaination of control structures vs apply stateme
 
 ### Functions
 
-You've already taken advantage of functions that are part of the `tidyverse` package. However, `R` also allows the user to create there own functions. The video below introduces the basic structure of a function, along with the flexiblity of the outputs. Don't worry if the different output options are unfamiliar. I just want you to have an idea of the different possibilities. You will have a chance to practice writing functions in this workshop. 
+You've already taken advantage of functions that are part of the `tidyverse` package. However, `R` also allows the user to create their own functions. The video below introduces the basic structure of a function, along with the flexiblity of the outputs. Don't worry if the different output options are unfamiliar. I just want you to have an idea of the different possibilities. You will have a chance to practice writing functions in this workshop. 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/i2VH5jIL76Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -526,13 +554,13 @@ You've already taken advantage of functions that are part of the `tidyverse` pac
 
 ## 4. Homework for workshop 4
 
-The REU program ends with a poster session where you present the work you've completed this summer. To help you reach this point, and help us understand how you're using `R` we would also like you to submit an `R` project containing any relevant data and a .Rmd file that follows the reproducible research practices outlined above. We will spend the part of the 4th workshop developing an outline based on a [template](https://github.com/renikaul/R_workshopsREU/blob/master/RMD/Template.Rmd) for you to fill in as your work progrsses. To make the most out of that time, and to help you prep for the first breakout session (more info coming via email) we've created a worksheet to guide your thought process. If you're struggling to answer the questions, make sure to chat with your mentors! Please bring the completed [worksheet]() to workshop 4.
+The REU program ends with a poster session where you present the work you've completed this summer. To help you reach this point, and help us understand how you're using `R` we would also like you to submit an `R` project containing any relevant data and a .Rmd file that follows the reproducible research practices outlined above. We will spend a part of the 4th workshop developing an outline based on a [template](https://github.com/renikaul/R_workshopsREU/blob/master/RMD/Template.Rmd) for you to fill in as your work progresses. To make the most out of that time, and to help you prep for the first breakout session (more info coming via email) we've created a worksheet to guide your thought process. If you're struggling to answer the questions, make sure to chat with your mentors! Please bring the completed [worksheet](https://docs.google.com/document/d/1ENacpY9VF7qzh-4OMCeKGMfdZ_aq_nL_mRW9yWoAS5c/edit?usp=sharing) to workshop 4.
 
 ---
 
 # Workshop 3: Simulating infectious diseases with R
 
-The first two workshops focused on developing `R` programming skills. The third workshop is slightly different in that it focuses on a sinlge task. This workshop will cover simulating infectious diseases. Before covering the programming aspect, we need to cover the conceptual details of population models.    
+The first two workshops focused on developing `R` programming skills. The third workshop is slightly different in that it focuses on a single task. This workshop will cover simulating infectious diseases. Before covering the programming aspect, we need to cover the conceptual details of population models.    
 
 The topics covered in this workshop's reading include:
 
@@ -543,6 +571,9 @@ The topics covered in this workshop's reading include:
   5. Other infectious disease models
   6. Automating data analysis with loops 
   
+*Note on syntax* 
+
+ The first two workshops were using `tidyverse` where data is linked to verb(s) using a pipe (`%>%`). This workshop will start to introduce more base `R` syntax. This was a purposeful choice since many of the tutorials, and guidance that you'll come across for mathematical models will be in base `R`. If you're in a quantitative lab, you may have also noticed that many people code in a blend of the two styles. It is understandable to get confused, or stuck when switching between the two syntaxes. It is especially important to practice your problem solving skills, which includes asking for help, in this workshop.  
   
 ## Introduction to infectious disease modeling
 
@@ -578,16 +609,16 @@ There are innumerable things to keep in mind when thinking about models. Some ar
 - Models should have a purpose - you should always be able to say *why* a particular model was created, or what question it answers, or what insight it generates about the real-world
 
 ### Model types
-
+<a id=recursive_eq></a>
 Mathematical models can be deterministic or stochastic. A *deterministic model* assumes that the future is entirely predicted by the model. A *stochastic model* assumes that random events affect the system, in which case the model can only predict the probability of various outcomes in the future.
 
-A key decision when developing a model is how to treat time.
+A key decision when developing a methematical model is how to treat time.
 
 *Discrete time models* track changes to variables in discrete time steps.
 *Continuous time models* allow variables to change at any point in time (i.e., time is represented by a continuous axis).
 
 Which type of model to use depends on the biological question. Continuous variables are often used if the variables take on large enough values that treating them as continuous introduces very little error to the results. Another justification for their use is that it is typically easier mathematically to treat variables as continuous -- calculus can be used to analyse the model.
-<a id=recursive_eq></a>
+
 Typically, discrete time models are written as *recursion equations* that describe the value of variables at the next time step in terms of a function of it at the current time step, e.g.,
 $$\begin{aligned}
 N_{t+1} = \text{``some function of }N_t\text{"},
@@ -654,7 +685,7 @@ and then iterate to get a numerical solution for $N(t)$. This is Euler's method,
 
 ## 3. The SIR model
 
-The population model above can be expanded to describe how an infectious disease spreads in a population. The classical $SIR$ compartmental model tracks the proportions [^2] of the population in each of three classes (or compartments): susceptible, denoted by $S(t)$, infectious ($I(t)$) and recovered ($R(t)$). As the epidemic progresses, these quantities can change over time. 
+The population model above can be expanded to describe how an infectious disease spreads in a population. The classical $SIR$ compartmental model tracks the proportions [^3] of the population in each of three classes (or compartments): susceptible, denoted by $S(t)$, infectious ($I(t)$) and recovered ($R(t)$). As the epidemic progresses, these quantities can change over time. 
 
 
 In a *demographically closed* system, flow out of one class must enter another class, giving rise to a *conservation property*: the population size does not change over time. Thus no births, deaths or migration events occur. Hence, the proportions of each class sum to one, i.e., $S+I+R =1$. The key assumptions of the most basic SIR model are:
@@ -665,7 +696,7 @@ In a *demographically closed* system, flow out of one class must enter another c
 
 To clarify and organize the processes in a $SIR$ model (or the processes of any model), it is useful to draw a flow diagram. A flow diagram illustrates how each variable affects its own dynamics and those of the other variables.
 
-!["SIR flow diagram"](figs/SIRFlow.jpg)
+![SIR flow diagram](figs/SIRFlow.jpg)
 
 Here, the boxes represent the $S$, $I$ and $R$ classes. Arrows that start at one box and go to another box indicate conversion of members of one class to another class. Solid arrows between boxes indicate the process removes an amount of the variable (the arrow leaves the box) or contributes some amount to a variable (enters the box). If an arrow exits and returns to the same box, then that variable can regenerate itself. Dashed arrows indicate there is an interaction between the variables, i.e., when a variable influences the flow into another box but does not represent a decline in the variable from which the arrow begins (e.g., an infectious individual does not lose the infection when she passes it on to someone else). *What does the dashed arrow represent?*
 
@@ -692,30 +723,36 @@ Note this model is not suitable for all infectious disease scenarios. The model 
 
 This reading started with an example of an influenza outbreak and a possible list of questions models can help answer. When assessing a pathogen, often the first question asked is *will there be an outbreak?*. 
 
-The plausibility of an outbreak or a pathogen's ability to invade a new host population can be assessed by measuring the number of *new* infections that arise from a single infected host. This value $R_0$ is called the basic reproduction ratio (or $R_0$, see Anderson and May [^3] for more information) and is compared against the threshold for pathogens to invade a population. 
+The plausibility of an outbreak or a pathogen's ability to invade a new host population can be assessed by measuring the number of *new* infections that arise from a single infected host. This value $R_0$ is called the *basic reproduction ratio* (or $R_0$, see Anderson and May [^4] for more information) and is compared against the threshold for pathogens to invade a population. 
 
 **What might be a 'threshold' value of $R_0$?**  
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/jKUGZvW99os?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-**How would we go about deriving $R_0$?**
+### Deriving R nought from time series data
 
-To illustrate, we draw on a piece of epidemiological theory. By way of background, theoretical epidemiologists are often concerned with a key quantity called the *basic reproduction ratio*, designated $R_0$. $R_0$ is defined as the average number of secondary cases that will arise by contagious infection from an index patient in a wholly susceptible population. $R_0=1$ is known as a critical point because infectious diseases with $R_0>1$ almost always result in large epidemics whereas infectious diseases with $R_0<1$ rapidly die out. (Do you see why this is, given the definition?) It can be shown (using arguments not reproduced here) that for a rapidly spreading epidemic
+The video explained how to calculate $R_0$ by tracking the number of new cases caused by a current case. This type of data is produced through a method called [contact tracing](https://en.wikipedia.org/wiki/Contact_tracing) which is time intensive and can be difficult to collect. So how could we calculate the $R_0$ for the flu data presented at the beginning of the reading?   
+
+It can be shown (using arguments not reproduced here) that for a rapidly spreading epidemic
 
 \begin{equation*}
-  \log{Y_t}\;\approx\;\log{Y_0}+(R_0-1)\,(\gamma)\,t, 
+  \log{I_t}\;\approx\;\log{I_0}+(R_0-1)\,(\gamma)\,t, 
 \end{equation*}
 
-where $Y_t$ is the number of individuals currently infected at time $t$ and $\gamma^{-1}$ is the *infectious period*. This implies that a semi-log plot of $Y_t$ vs $t$ should be approximately linear with a slope proportional to $R_0-1$ and the recovery rate. If we plot the influenza data, we see that this is indeed the case.
+where $I_t$ is the number of individuals currently infected at time $t$ and $\gamma^{-1}$ is the *infectious period*. This implies that a semi-log plot of $I_t$ vs $t$ should be approximately linear with a slope proportional to $R_0-1$ and the recovery rate. If we plot the influenza data, we see that this is indeed the case for the first 5 days.
 
 
 ```{r flu data plot}
-flu <- read.csv("data/flu.csv") # load data that is two columns (day, flu)
+flu <- read.csv("data/flu.csv") # load data that is two columns named day, and flu
 
-plot(flu, type = 'b', log = 'y', xlab = 'Day', ylab = 'Number of individuals infected')
+plot(flu, type = 'b', log = 'y', xlab = 'Day', ylab = 'Number of individuals infected') # example plot using base R syntax
 ```
 
-Ultimately, then, linear regression will allow us to estimate $R_0$. However, to do this we need to note a few things. First, it is the logarithm of the number of cases on day $t$ that takes the place of $y$ in our expression $y=mx+b$. In `R` the logarithm is calculated using the function `log`. Next, $log(Y_0)$ takes the place of $b$. If we assume that the epidemic was started by a single infectious individual, then $b=log(1)=0$, so we're interested not in any best fitting line, but only that best fit line that also goes through $(x=0, y=0)$. In regression analysis, this is called fitting a model *without an intercept*. Third, if we interpret $t$ as the quantity that take the place of $x$ in $y=mx+b$, then we see that it is the entire expression $(R_0-1)\,(\gamma)$ that forms the slope $m$. Finally, the formula only applies to the *epidemic takeoff*, so we only want to fit a subset of our data. Inspecting the plot suggests that we might fit our line to data for all days up to and including day 5 of the outbreak. Now, we fit the line using `lm()` as follows:
+Ultimately, then, [linear regression](#Linear_regression) will allow us to estimate $R_0$. However, to do this we need to note a few things. First, it is the logarithm of the number of cases on day $t$ that takes the place of $y$ in our expression $y=mx+b$. In `R` the logarithm is calculated using the function `log`. 
+
+Next, $log(I_0)$ takes the place of $b$. If we assume that the epidemic was started by a single infectious individual, then $b=log(1)=0$, so we're interested not in any best fitting line, but only that best fit line that also goes through $(x=0, y=0)$. In regression analysis, this is called fitting a model *without an intercept*. 
+
+Third, if we interpret $t$ as the quantity that take the place of $x$ in $y=mx+b$, then we see that it is the entire expression $(R_0-1)\,(\gamma)$ that forms the slope $m$. Finally, the formula only applies to the *epidemic takeoff*, so we only want to fit a subset of our data. Inspecting the plot suggests that we might fit our line to data for all days up to and including day 5 of the outbreak. Now, we fit the line using `lm()` as follows:
 
 ```{r}
 model <- lm(formula = log(flu) ~ day - 1 ,data = subset(flu, day <= 5))
@@ -727,11 +764,11 @@ Before looking at the output, there are a number of things to notice about this 
 
 First, the results are stored in an object that I have called `model`. 
 
-Second, the first argument (called `formula`) is nothing like any argument we've seen before. It looks sort of like a mathematical expression. the first term says that the quantity which we want to take the place of $y$ in our formula $y=mx+b$ is the logarithm of something called `flu`. (But where does `flu` come from? More on that in a moment.) 
+Second, the first argument (called `formula`) is nothing like any argument we've seen before. It looks sort of like a mathematical expression. The first term says that the quantity which we want to take the place of $y$ in our formula $y=mx+b$ is the logarithm of something called `flu`. (But where does `flu` come from? More on that in a moment.) 
 
 Next we see the character tilde ($\sim$). This may be read as "*distributed as*" or you may more simply think of this as taking the place of the equals sign in our formula $y=mx+b$. 
 
-Finally, to the right of tilde we see information about what is on the right hand side of the equation. First, there is `day`, which takes the place of $x$. (But where does `day` come from? Answer: the same place as `flu`.) Because `day` is a variable, `R` assumes you wish to find a slope parameter to multiply by `day`. Finally, we also see that there is a $-1$, which is a coded way of telling `R` that we wish to fit only equations that go through the origin. If we left this off, `R` would seek to find a combination of $m$ and $b$ that minimized the sum of squared errors. As it is, `R` will fix the intercept at zero and return only a slope coefficient. Now, where does `R` look to find the variables `flu` and `day`? This is provided by the argument `data`. The possible values for data are data frames that contain variables called `flu` and `day`. If we supplied the name of a data frame that did not contain these variables `R` would return an error. In our case, however, we're not interested in using all the data in `flu`, but only those records for which `day` is less than or equal to 5, which we obtain using the `subset` function as indicated. This is a base `R` alternative to `filter()`.
+Finally, to the right of tilde we see information about what is on the right hand side of the equation. First, there is `day`, which takes the place of $x$. (But where does `day` come from? Answer: the same place as `flu`.) Because `day` is a variable, `R` assumes you wish to find a slope parameter to multiply by `day`. Finally, we also see that there is a $-1$, which is a coded way of telling `R` that we wish to fit only equations that go through the origin. If we left this off, `R` would seek to find a combination of $m$ *and* $b$ that minimized the sum of squared errors. As it is, `R` will fix the intercept at zero ($b=0$) and return only a slope coefficient. Now, where does `R` look to find the variables `flu` and `day`? This is provided by the argument `data`. The possible values for data are data frames that contain variables called `flu` and `day`. If we supplied the name of a data frame that did not contain these variables `R` would return an error. In our case, however, we're not interested in using all the data in `flu`, but only those records for which `day` is less than or equal to 5, which we obtain using the `subset` function as indicated. This is a base `R` alternative to `filter()`.
 
 Now we wish to see what our fit model consists of. For starters, we can simply type the name of the object at the command line.
 
@@ -740,9 +777,15 @@ model
 ```
 
 
-This, we see, prints to the screen the formula that was used to fit the model as well as the fit coefficients, in our case $m=1.086$. But, there is more information that we can obtain. Here we come to the other common use of `summary()`. If we ask for a summary of the model, we see that we get a lot more information: the formula; a list of residuals (the $\epsilon_i$ from above); more information about the coefficient $m$, including the estimate, an estimate of its error (i.e. a value that when we add and subtract to the estimate provides an interval -- though not a 95\% confidence interval), something called the ``t-value'' (which we won't worry about more), and finally a p-value for the hypothesis test that the coefficient is equal to zero. Also, we get some additional summary statistics such as the $R^2$ value (fraction of variance explained by the model) and other statistical details.
+This, we see, prints to the screen the formula that was used to fit the model as well as the fit coefficients, in our case $m=1.086$. But, there is more information that we can obtain. Here we come to the other common use of `summary()`. If we ask for a summary of the model, we see that we get a lot more information: 
 
-We will use a [linear regression](#Linear_regression) to answer this question.
+```{r}
+summary(model)
+```
+
+the formula; a list of residuals (the $\epsilon_i$ from above); more information about the coefficient $m$, including the estimate, an estimate of its error (i.e. a value that when we add and subtract to the estimate provides an interval -- though not a 95\% confidence interval), something called the ``t-value'' (which we won't worry about more), and finally a p-value for the hypothesis test that the coefficient is equal to zero. Also, we get some additional summary statistics such as the $R^2$ value (fraction of variance explained by the model) and other statistical details.
+
+Now that we've estimated the slope of a linear regression, what is the $R_0$ for flu? We will revisit this in the workshop, so bring your solutions! 
 
 ## 5. Other infectious disease compartmental models 
 
@@ -803,9 +846,9 @@ N_{t+1} = N_t + r*N_t.
 
 Where the population at the next time step ($t+1$) is the size at the current time ($t$) plus some per capita growth rate ($r$) times the current population size. How should I go about calculating the population size at $t+5$? Since this equation will only tell me what will happen in the next time step, I have to calculate the next time step 5 times, each time updating the value of $N_t$. 
 
-### mapping loops onto recursive equations
+### mapping recursive equations onto loops
 
-We know that `for` loops can be used to execute code many times. In in the second `for` loop example, we saw how to use indexing (the square brackets) to calculate the next value based on the current value. The discrete time model of exponential growth has a similar motif where the next value is based on the current value. Try modifying the example to calculate the population size for the next 4 time steps. Assume that the populations started with 10 individuals and has a 20/% growth rate ($N_t=10$,$r=0.2$). Do your values match mine below?
+We know that `for` loops can be used to execute code many times. In the second `for` loop example, we saw how to use indexing (the square brackets) to calculate the next value based on the current value. The discrete time model of exponential growth has a similar motif where the next value is based on the current value. Try modifying the example to calculate the population size for the next 4 time steps. Assume that the populations started with 10 individuals and has a 20/% growth rate ($N_t=10$, $r=0.2$). Do your values match mine below?
 
 ```{r, echo=FALSE}
 N.seq <- c(10,0,0,0,0) # where I would like to save my values, and the starting value of 2. 
@@ -815,7 +858,7 @@ for(i in 1:4){
 }
 ```
 
-```{r}
+```{r, echo=FALSE}
 N.seq
 ```
 
@@ -826,13 +869,19 @@ We will revisit this in the workshop, so bring your solutions!
 
 # Workshop 4: Applying workshops to your work
 
-The goal of the last workshop is to start transi
-
-is workshop will cover information data visualization
+The goal of the last workshop is to start transitioning to your own analysis. The first half of the workshop will cover data visualizations using both tidyverse's `ggplot()` and base `R` plotting. The second half of the workshop will focus on developing an outline of your `R` project using an [.rmd template](https://github.com/renikaul/R_workshopsREU/blob/master/RMD/Template.Rmd) and the [worksheet](https://docs.google.com/document/d/1ENacpY9VF7qzh-4OMCeKGMfdZ_aq_nL_mRW9yWoAS5c/edit?usp=sharing) assigned in the 2nd workshop. **Please bring the completed worksheet with you.**
 
 The topics covered in this workshop's reading include:
 
+1. Selecting the figure for your purpose
+2. Saving high quality figures in `R`
+3. Two approaches to the same problem: Base `R` vs `ggplot`
+4. Visualizations for data exploration 
+5. Mapping spatial data
+6. Going further with ggplot
+7. Details of R project requirements
 
+## 1. Selecting the figure for your purpose
 Plots are used for data exploration and presentation. The visualization types differ in a few ways. 
 
 **1. Audience.** You are the audience for data exploration visualizations. Presentation visualizations are for other scientists not familiar with the work and appear in journal articles, talks, and posters.
@@ -847,7 +896,6 @@ Plots are used for data exploration and presentation. The visualization types di
 
 ![Visualization path](figs/viz_message.png)
 
-# Finding the appropriate figure
 
 There are plenty of guides on how to create the "*best*" visualization. This diagram is a good place to start when choosing your data visualizations. 
 
@@ -864,7 +912,7 @@ If you're plotting data to for publication, some things you should keep in mind:
 
 For more details see <i>Ten guidelines for effective data visualization in scientific publications</i> by [Kelleher and Wagener, 2011](https://doi.org/10.1016/j.envsoft.2010.12.006). At some point during your research career, you'll likely hear about [Edward Tufte's](https://www.edwardtufte.com/tufte/) philosophy on maximizing function over aesthetics.
 
-# Saving high quality figures in `R`
+## 2. Saving high quality figures in `R`
 
 At the end of the program, you'll make a [scientific poster](http://hsp.berkeley.edu/sites/default/files/ScientificPosters.pdf) which includes data visualization created in `R`. You can export figures in many different file types (TIFF, PNG, PDF), but what is the best method for poster figures? 
 
@@ -884,7 +932,7 @@ dev.off()
 
 If you have created a blank or unreadable file, most likely you forgot to end the figure export process by running `dev.off()`.
 
-# Two approaches to the same problem: Base `R` vs `ggplot`
+## 3. Two approaches to the same problem: Base `R` vs `ggplot`
 
 Plotting in base `R` can allow the user to create highly customized plots. This customization takes time, and requires many decisions. An alternative is to use the package `ggplot2` developed by Hadley Wickham based on the [*Grammar of Graphics*](http://www.springer.com/us/book/9780387245447) written by Leland Wilkinson. 
 
@@ -892,7 +940,7 @@ The workshops have exclusively used `ggplot` for visualizations because it works
 
 We will walk through an example using base `R` and then recreate the figure using `ggplot2`. For even more side-by-side examples, see Nathan Yau's blog post on [Flowing Data](https://flowingdata.com/2016/03/22/comparing-ggplot2-and-r-base-graphics/). 
 
-## Base `R`
+### Base `R`
 
 A simple plot can take many more lines of code than you expect based on the visualization. When plotting in base `R` you'll use a handful of parameter settings in either `par()` or in the plotting related functions listed below. 
 
@@ -990,7 +1038,7 @@ hist(disp)
 
 If you're interested in other customization in base `R` check out Paul Murrell's [R Graphics](https://www.stat.auckland.ac.nz/~paul/RG2e/) book. 
 
-## Comparision to ggplot 
+### Comparision to ggplot 
 
  The same exact scatter plot of county area vs populations size can be made using `ggplot`. Here the legend is automatically created. Check out the source of the example, which also has a compiled list of 50 different visualizations along with the code [here](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html#Scatterplot). 
 
@@ -1018,17 +1066,17 @@ gg <- ggplot(midwest, # data, every arguement after this is connected with a '+'
 plot(gg) # plot the object
 ```
 
-# Visualizations for data exploration 
+## 4. Visualizations for data exploration 
 
 Add-ons to `R` code allow for interactive and/or animated plots. With these plots you can rotate, size, and select data points which can make data exploration a bit easier. We won't have time to cover these plots as part of the workshop, but here are a few examples. 
 
-## plotly: easy interactive plots with ggplot
+### plotly: easy interactive plots with ggplot
 
 The `plotly` package is an add on to `ggplot2` for quick interactive plots. The package is still relatively new and is under current development. The legends or other features are often poorly displayed but the interactive feature maybe useful for data exploration during an in-person meeting. 
 
 Below is an example from the `plotly` [website](https://plot.ly/r/line-and-scatter/). You'll notice the syntax is similar to `ggplots` but the functions have changed a bit. 
 
-```{r plotly example, eval=TRUE}
+```{r plotly example, eval=TRUE, message=FALSE, error=FALSE}
 library(plotly)
 
 p <- plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length,
@@ -1048,7 +1096,7 @@ The `googleVis` package also has some great plots with tool tips built in.
 
 [Shiny](https://shiny.rstudio.com/) is an easy introductory tool to more novel data visualizations, and can make data dash boards for data exploration (eg. [HealthMap](https://www.healthmap.org/en/)). 
 
-## Animated plots
+### Animated plots
 
 The `plotly` package also allows for quick animations like this. 
 
@@ -1075,7 +1123,7 @@ p<-gganimate(birth, "birth.gif", ani.width = 750, ani.height = 500, interval = 0
 ![Netherlands birth rate](figs/birth.gif) 
 
 
-# Spatial data
+## 5. Mapping spatial data
  Just like other data visualizations, mapping in `R` can be done a few different ways. Common packages include: 
 
   -  `maps`
@@ -1091,7 +1139,7 @@ The last 3 (`raster`, `sp`, and `rgdal`) are also useful for analyzing spatial d
 
 The `choroplethr` package is useful for plotting U.S. county level data like this:
 
-```{r texas, eval=TRUE}
+```{r texas, eval=TRUE, message=FALSE, error=FALSE}
 library(ggplot2)
 library(choroplethr)
 library(choroplethrMaps)
@@ -1122,7 +1170,7 @@ m  # Print the map
 ```
 
 
-## Going further with ggplot
+## 6. Going further with ggplot
 
 Some additional resources:
 
@@ -1130,12 +1178,21 @@ Some additional resources:
 2. [Data visualisation with ggplot2](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1) by Rick Scavetta on datacamp.
 3. [The R Graphics Cookbook by Winston Chang](http://www.cookbook-r.com/Graphs/). It provides a set of recipes to solve common graphics problems.
 
-Before looking at the output, there 
+## 7. Details of R project requirements
+
+One product that we ask you to produce to wrap up your REU experience is a R project following reproducible research best practices. This means that you should submit a self contained project that can be run on any computer. Please test this before submitting. The absolute minimium that your project should include is:
+
+1. Data used in your analysis
+2. Metadata file of explaining your data (see the GMPD files as an example)
+3. A .rmd file that follows the template
+4. A compiled html of the .rmd file
+
+Please send the zipped project directory to infectious.disease.reu@gmail.com by **5pm Wednesday, July 17th**. 
+
+---
 
 
 [^1]: [S is statistical computing language](https://en.wikipedia.org/wiki/S_(programming_language)) and predecessor of `R`. The code implementation examples in the book are in base `R`. 
-
-
 [^2]: Otto, S. P. and Day, T.  A Biologists Guide to Mathematical Modeling in Ecology and Evolution. Princeton University Press, Princeton and Oxford, 2007.  
-[^2]: While compartmental models often track the proportion of the population in each class ($S+I+R=1$), it is also possible to track the number of individuals in each class ($S+I+R=N$). For this workshop, we will track proportions.
-[^3]: Anderson, R. M. and May, R. M. Infectious Diseases of Humans: Dynamics and Control. Oxford University Press, Oxford, 1991.  
+[^3]: While compartmental models often track the proportion of the population in each class ($S+I+R=1$), it is also possible to track the number of individuals in each class ($S+I+R=N$). For this workshop, we will track proportions.
+[^4]: Anderson, R. M. and May, R. M. Infectious Diseases of Humans: Dynamics and Control. Oxford University Press, Oxford, 1991.  
