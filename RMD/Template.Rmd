@@ -3,6 +3,7 @@ title: "Title of your project"
 author: "your name"
 date: "todays' date"
 output: html_document
+bibliography: your-bib-file.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -45,9 +46,48 @@ Embed an R code chunk with analysis and result figures
 
 ```{r analyses}
 
+
 ```
 
 
 ## 4. Results and Conclusions
 
-What did you find? How do you interpret the results? 
+What did you find? How do you interpret the results?
+
+
+
+## 5. References
+
+Finally, you can add citations. To do this you use the syntax
+
+@R-base
+
+Where R-base is the name of the R citation (used an example below). The @ sign tells R to find that particular citation in the .bib file.
+
+
+A BibTeX database is a plain-text file (with the conventional filename extension .bib) that consists of bibliography entries like this:
+
+---
+@Manual{R-base,
+  title = {R: A Language and Environment for Statistical Computing},
+  author = {{R Core Team}},
+  organization = {R Foundation for Statistical Computing},
+  address = {Vienna, Austria},
+  year = {2016},
+  url = {https://www.R-project.org/},
+}
+---
+
+You may see https://en.wikipedia.org/wiki/BibTeX for possible types of entries and fields in BibTeX.
+
+
+A bibliography entry starts with @type{, where type may be article, book, manual, and so on.7 Then there is a citation key, like R-base in the above example. To cite an entry, use @key or [@key] (the latter puts the citation in braces), e.g., @R-base is rendered as R Core Team (2019), and [@R-base] generates “(R Core Team 2019)”. 
+
+#### Citation Syntax
+
+Don't forget that citations go inside square brackets and are separated by semicolons. 
+
+---
+Blah blah [@smith04; @doe99]
+
+---
