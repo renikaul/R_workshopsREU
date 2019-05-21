@@ -1,0 +1,151 @@
+---
+title: "Application of Inferential Statistics solutions"
+author: "PopBio REU 2019"
+date: "Reni Kaul"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, tidy = TRUE, message = FALSE, warning = FALSE)
+```
+
+# Inferential statistics
+
+The reading reviewed three common inferential statistical tests: t-test, correlations, and linear regressions. These are common tests, but `R` is capable of so much more. 
+
+If your research requires more extensive inferential statistics, [Modern Applied Statistics with S by Venables and Ripley](ftp://ftp.math.binghamton.edu/pub/qyu/text.pdf) is a good resource for some technical background and implementation. 
+
+## Niamey dataset 
+
+We will use these tests to explore a dataset of measles cases collected from three districts in Niamey, Niger. Measles is an acute immunizing infection with an approximately 14 day infectious period. For this reason, epidemiological studies of measles often aggregate cases to a biweekly interval. That is, each row of the data frame corresponds to a 14 day period. Each column is a district (D1,D2, and D3). 
+
+
+Load the data and examine in the code chunk below. 
+
+```{r load data}
+library(tidyverse)
+# read in the niamey dataset
+niamey <- readRDS("data/niamey.rds")
+
+# plot the data to get an understanding of it
+niamey %>%
+  gather(key= District , value= case, D1:D3) %>%
+  ggplot(aes(Day, case, color = District)) +
+  geom_point() +
+  geom_line()
+
+```
+
+**Note:** The command to bring data into `R` (`readRDS()`) is different than what we have used in the past (`read_csv()`). You may also notice that the data file has a `.rds` extension. This file type is an `R` specific file type that can be produced (`saveRDS()`) and read by `R`. If your work involves large data files, it is best to use `.rds` or `.RData` file types. Read more about this in the [Data Import](http://r4ds.had.co.nz/data-import.html#readr-datetimes) chapter of R for Data Science or the [STAT545 course](http://stat545.com/block026_file-out-in.html#file-io-overviewl) review.
+
+## Questions and hypothesis
+
+You'll notice from the plot that district 1 and 2 have a similarly shaped epidemic curves, but differ in the initial increase in the number of cases, and peak size. You are tasked with *determining if the measles outbreak in the two districts are different*. There are many approaches that you could take, but start with the basic inferential statistics to ask:
+  
+  1. Are the average number of cases in the two districts of Niamey different from each other?
+  2. Are the number of cases for each reporting period strongly associated?
+  3. Does the estimated $R_0$ differ between districts? 
+
+Use a significance level ($\alpha$) of 0.05 for all tests. If you would like an additional challenge, use inline `R` code to include test statics in your commentary following each analysis. In-line code is printed by starting with a single back tick and lower case r, and ends with a single back tick. See the reproducible research reading for more details. 
+
+## 1. Are the average number of cases in the two districts of Niamey different from each other? 
+
+This question is asking if the means differ.  From the reading, we know a t-test will test for a *difference of means*. Conventionally, the null hypothesis (H_0) is *no difference* between the means, while the alternative hypothesis (H_A) is a difference in the means. Use the `t.test()` function to test for a difference of means between the two districts. 
+
+```{r t test}
+districtTtest<- t.test(niamey$D1, niamey$D2)
+```
+
+**Interperet the results of the t-test**
+
+The average number of cases between the two districts are not significantly different (`r signif(districtTtest$p.value, digits = 2)`). The estimated range of the difference of means is from `r signif(districtTtest$conf.int[1],digits = 3)` to `r signif(districtTtest$conf.int[2],digits = 3)`. This range includes zero, so the we cannot reject the null hypothesis of no difference. 
+
+## 2. Are the number of cases for each reporting period strongly associated?
+
+Correlation considers the level of association between two variables (ie. an increase in the first variable occurs with an increase or decrease in the second variable).However, in the tradition hypothesis testing way, we can also express the null hypothesis of no correlation (H0 : $\rho = 0$ ), which we then seek to reject. Use the `cor.test()` function to test for significant correlation. 
+
+```{r correlation}
+
+districtCorr <- cor.test(niamey$D1, niamey$D2)
+```
+
+**Interperet the results of the correlation test**
+
+The number of cases reported in the two districts are strongly, positively correlated ($\rho$ = `r signif(districtCorr$estimate, digits = 2)`, p = `r signif(districtCorr$p.value, digits = 2)`).
+
+
+## 3. Does the estimated $R_0$ differ between districts? 
+
+The reading included an example of calculating the $R_0$ from a linear regression of the number of cases over time. It can be shown the for a rapidly spreading epidemic
+
+$$  \log{Y_t}\;\approx\;\log{Y_0}+(R_0-1)\,(\gamma)\,t, $$
+
+where $Y_t$ is the number of individuals currently infected at time $t$ and $\gamma^{-1}$ is the *infectious period*. This implies that a semi-log plot of $Y_t$ vs $t$ should be approximately linear with a slope proportional to $R_0-1$ and the recovery rate.
+
+Let's first look a semi-log plot of $Y_t$ vs $t$
+```{r}
+niamey %>%
+  gather(key= District , value= case, D1:D3) %>%
+  ggplot(aes(Day, log(case), color = District)) +
+  geom_point() +
+  geom_line()
+
+```
+
+The above formula only applies to the epidemic takeoff, so we only want to fit a subset of the data. Use the figure to determine the cut off time (ie. when the epidemic peaks). In the next code chunk create an object named `niameyTakeoff` which has just the epidemic takeoff.
+
+```{r subset takeoff}
+niameyTakeoff <- niamey %>%
+            filter(Day <= 126 ) 
+```
+
+Next, let's fit a linear regression model to that data subset for District 1.
+
+Some things to keep in mind:
+
+The expression $log(Y_t) \approx (R_0 - 1)\gamma \times t + log(Y_0)$  can be matched with $y = m \times x + b$ so:
+
+  1 $log(Y_t) = y$ 
+  
+  2 $(R_0 -1)\gamma = m$
+  
+  3 $t = x$ 
+  
+  4 $log(Y_0) = b$ and $Y_0 = 1$ so $b = log(1) = 0$ 
+
+ This last point assumes that the epidemic was started by a single infectious individual, so we're interested not in any best fitting line, but only that best fit line that also goes through $(x=0, y=0)$. In regression analysis, this is called fitting a model *without an intercept*. Create a linear model (`lm()`) for District 1 using the data subset. Remember the formula to fit a model without an intercept is `y ~ x - 1` 
+
+```{r district 1 lm}
+
+district1.lm <- lm(formula = log(D1) ~ Day - 1, data = niameyTakeoff)
+summary(district1.lm)
+
+```
+
+The model can be inspected using the function `summary()`. Find the model's slope in the summary printout. The slope can also be pulled out using `$coefficients` following the linear model object name (ie. district1.lm$coefficients). 
+
+Let's repeat the process for the second district. 
+
+```{r district 2 lm}
+
+district2.lm <- lm(formula = log(D2) ~ Day - 1, data = niameyTakeoff)
+summary(district2.lm)
+
+```
+
+
+ The regression models estimated the slope for District 1 and 2 as `r signif(district1.lm$coefficients, digits = 2)`, and `r signif(district2.lm$coefficients, digits = 2)`, respectively.  We can now solve for $R_0$ using the equation $\hat R_0 = m/\gamma + 1$. 
+
+The infectious period for measles is ~ 21 days so $\gamma \approx 21^{-1} = 0.05$. Solve for $R_0$ in the next code chunk. 
+
+```{r calculating R0}
+measlesGamma <- (1/21)
+
+EstimateR0 <- function(m, gamma){ (m/gamma) + 1}
+
+district1.R0 <- EstimateR0(m = unname(district1.lm$coefficients), gamma = measlesGamma)
+district2.R0 <- EstimateR0(m = unname(district2.lm$coefficients), gamma = measlesGamma)
+```
+
+
+The $\hat R_0$ for district 1 and 2 is `r signif(district1.R0, digits=4)` and `r signif(district2.R0, digits=4)`, respectively. The $\hat R_0$ for the two districts are slightly different. Further exploration is needed to tell if they are significantly different.

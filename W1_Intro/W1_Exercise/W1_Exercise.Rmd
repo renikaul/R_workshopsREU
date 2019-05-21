@@ -1,6 +1,6 @@
 ---
 title: "W1_Exercise"
-author: "PopBio REU 2018" 
+author: "PopBio REU 2019" 
 date:  "Reni Kaul"
 output: 
   html_document: 
@@ -249,6 +249,15 @@ Now it's time for some scatter plots. Is the Age of any given passenger correlat
 
 * You can read your `ggplot2` code like a sentence, just like your `dplyr` code above: "We take the data as titanic and we map Age to the x axis and Fare to the y axis, adding points on as the layer of the plot."
 
+Recall that we describe the strength of correlation ($\rho$), and if the correlation between the two variables is greater than chance. 
+
+```{r}
+#correlation test of Age vs Fare
+#cor.test()
+
+```
+
+**How would you interpret the output?**
 
 Let's take the previous plot and color each point by Sex, to see any correlations between Sex, Age and Fare:
 

@@ -30,13 +30,13 @@ Ania Majewska
 About today's instructors
 ========================================================
 Reni Kaul
- - My research interest is [INSERT DESCRIPTION]
+ - I'm interested in understanding population extinctions
  - I use `R` in my research to:
    + organize data 
    + develop machine learning algorithms
-   + [INSERT DETAILS]
- - I mostly work [in this disease system or approach] 
- - My contact info is [INSERT EMAIL]
+   + model population dynamics 
+ - I mostly work with microbial microcosm systems 
+ - My contact info is reni@uga.edu
 
 
 Workshop Goals 
@@ -83,7 +83,7 @@ Outline
 left: 40%
 
 **At the end of this workshop you should be able to...**
-- calculate summary statistics of a dataset
+- calculate descriptive and inferential statistics of a dataset
 - create a figure from data
   
 Today
@@ -94,7 +94,7 @@ Today
   2. Introduction to `R` and tidyverse 
   
   *Break*
-  3. Code along / Exercise
+  3. Code along exercise
   
   *Break*
   4. Troubleshooting   
@@ -190,7 +190,6 @@ library(tidyverse)
 
 Unzip and open the folder.
 
-Open W1_Exercise.Rproj
 
 
 ========================================================
@@ -201,10 +200,19 @@ Resume in 15 min </h1>
 
 ========================================================
 
-<h2> Open W1_Exercise.Rmd </h2>
+<h2> Open W1_Exercise.Rproj
+
+ Open W1_Exercise.Rmd </h2>
 
 
-How to get unstuck: functions
+========================================================
+ 
+ <h1> *Break* 
+ 
+Resume in 15 min </h1>
+
+
+3. How to get unstuck: functions
 ========================================================
 left: 35%
 - Every function has a help page 
@@ -262,7 +270,7 @@ left: 30%
 
 
   
-Exploring further
+5. Exploring further
 ========================================================
 Let's work in small groups (max of 3)
 
@@ -273,12 +281,18 @@ Let's work in small groups (max of 3)
 More instructions in the file. 
 
 
-Wrap Up
+========================================================
+ 
+ <h1> *Break* 
+ 
+Resume in 15 min </h1>
+
+6. Wrap Up
 ========================================================
 left: 50%
 
 **We can...**
-- calculate summary statistics of a dataset
+- calculate descriptive and inferential statistics of a dataset
 - create a figure from data
   
 *using*
@@ -305,7 +319,7 @@ left: 50%
 
 ![W1](figs/W2_iterative.png)
 
-Datacamp.com
+7. Datacamp.com
 ========================================================
 
 We will be using datacamp.com to build more skills!

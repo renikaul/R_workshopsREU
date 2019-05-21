@@ -93,6 +93,8 @@ ggplot(passengers1, aes(x = Age, y = Fare)) +
   geom_point()
 
 ## ----message = FALSE-----------------------------------------------------
+cor.test(passengers1$Age, passengers1$Fare)
+## ----message = FALSE-----------------------------------------------------
 # Scatter plot of Age vs Fare colored by Sex
 ggplot(passengers1 %>% drop_na(), aes(x = Age, y = Fare, color = Sex)) +
   geom_point()
