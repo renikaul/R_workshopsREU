@@ -1,0 +1,94 @@
+---
+title: "W2_Exercise"
+author: "Reni Kaul"
+date: 
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+# Practicing commenting and commentary
+
+The first workshop mentioned the value of consistent coding style and was based on a [tidyverse style guide](http://style.tidyverse.org/index.html). 
+
+> Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread.
+
+Good commenting and commentary also make your code easier to read. This is also a key part of reproducible research. A well documented analysis can makes your work accessible to other scientists, including your future self. 
+
+**Directions**
+
+*Task 1: Modify your own code* 
+We will practice this skill by modifying the group exercise from the first workshop with comments and commentary. Start by copy and pasting your group's exercise from the first workshop in the space below *## Documenting my group's exercise*, then add comments and commentary that follow literate statistical programming practices. You should have a copy of your exploration in your email. 
+
+*Task 2: Modify someone else's code*
+The code for another group's exploration is included in the code chunk under *## Documenting another group's exercise*. Since you were not involved in their exploration, it might be easier to understand their code by running pieces of it at a time. In order to do that we need to load the `tidyverse` package and passenger data. 
+
+When you are finished adding comments and commentary knit the `.Rmd` file into an HTML. Do the code and figures look how you expected? Experiment with the `opts_chunk$set()` and YAML setting to create the desired `.html`.
+
+How does your documentation compare with other group members? 
+
+```{r load passenger1 data, warning = FALSE, message = FALSE, tidy = TRUE}
+# Import the Tidyverse
+library(tidyverse)
+# Import data and convert survived to yes/no factor for easy plotting (passengers1).  
+passengers <- read_csv("data/train.csv")
+
+passengers1 <- passengers %>% 
+  mutate(Survived = ifelse(Survived == 0, "No", "Yes"))
+```
+
+*Useful information* 
+
+* The `.Rmd` allows us to mix code (code chunks) and natural language. 
+* The natural language can be quickly formatted using `R`'s version of a markdown language ([See page 1 for more details on formatting with Rmarkdown](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)). 
+* A minimum code chunk starts with  **```{r}**  and ends with **```**. You may want to seperate different coding tasks into different code chunks ([See page 2 for more details on the code chunk options](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)). 
+* Note that `#` sign within a code chunk starts a comment, but is a section header in Rmarkdown. 
+
+## Documenting my group's exercise
+
+
+```{r my groups exercise}
+temp <- passengers %>% 
+  group_by(Embarked) %>% 
+  drop_na %>% 
+  summarise(AvFare = mean(Fare)) 
+
+ggplot(temp, aes(x = as.factor(Embarked), y = AvFare)) +
+  geom_bar(stat = "identity")
+  
+```
+
+
+## Documenting another group's exercise
+
+
+```{r another groups exercise}
+
+p2 <- passengers %>%
+  drop_na() %>%
+  mutate(FamSize = Parch + SibSp) %>%
+  mutate(Pclass = as.character(Pclass))
+  
+p2Summary <- p2 %>%
+  group_by(Pclass) %>%
+  summarise(meanFam = mean(FamSize), minFam = min(FamSize), maxFam = max(FamSize))  
+
+p2Summary
+
+ggplot(p2, aes(x = Pclass , y = FamSize)) +
+  geom_boxplot() +
+  geom_jitter(aes(colour = as.factor(SibSp))) +
+  theme_classic() +
+  scale_color_discrete(name= "No. Siblings") +
+  scale_x_discrete(labels = c("Upper", "Middle", "Lower")) +
+  labs(
+    title = "Some data from the Titanic", 
+    x = "Socio-economic status (SES)",
+    y = "Family Size"
+  )
+    
+
+```
+

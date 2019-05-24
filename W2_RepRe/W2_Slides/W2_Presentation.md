@@ -1,7 +1,7 @@
 Reproducible Research with R
 ========================================================
-author: [NAME]
-date: 
+author: Reni Kaul & Deven Gokhale
+date: May 29th
 autosize: true
 font-import: https://fonts.googleapis.com/css?family=PT+Sans
 font-family: 'PT Sans', sans-serif;
@@ -14,13 +14,13 @@ font-family: 'PT Sans', sans-serif;
 About Myself
 ========================================================
 
- - My research interest is [INSERT DESCRIPTION]
+ -  I am curious about understanding the population biology of pathogens that spread across a rough susceptibility landscape. 
  - I use `R` in my research to:
    + organize data 
-   + develop machine learning algorithms
-   + 
- - I mostly work [in this disease system or approach] 
- - My contact info is [INSERT EMAIL]
+   + develop tools based on dynamical systems to analyze time-series data 
+   + visualization of results (plots and animations)
+ - I have worked with Dengue in the past and am currently working on exploring drivers of mumps re-emergence in the US.  
+ - My contact info is deven.gokhale@uga.edu
  
 
 Outline 
@@ -32,7 +32,7 @@ left: 40%
 - create an HTML doc with code and commentary  
 - write a function
 - create and use scripts
-- <span style="color:gray"> calculate summary statistics of a dataset </span>
+- <span style="color:gray"> calculate summary and inferential statistics of a dataset </span>
 - <span style="color:gray"> create a figure from data </span>
 
   
@@ -199,8 +199,10 @@ The tidyverse package is designed to make it easy to install and load core packa
 
 ======================================================== 
 
-Open `W2_Exercise.Rmd` by double clicking "W2_Exercise.Rproj"
+<h1>Double click "W2_Exercise.Rproj"
  to practice commenting and literate programming
+ 
+Open the `W2_ExerciseG_.Rmd` with your group number in the file name/<h1>
 
 Questions to reflect on...
 ======================================================== 
@@ -245,7 +247,7 @@ What is the Global Mammal Parasite Database?
 
 Take the next few minutes to review:
 
-* Check out the dataset publication at http://bit.ly/RworkshopGMPD
+* Check out the dataset publication at http://bit.ly/RworkshopGMPD under *Supporting Information*
 * Read the abstract of the `metadata.pdf` file 
 * Read about the file formats on page 14-19
 * Open the data files, match the column titles to the metadata explaination  
@@ -333,8 +335,11 @@ Q2. Do vectored parasites also have intermediate hosts?
 
 
 ```r
-gmpTraits %>% mutate(vector = ifelse(vector == 0, "No", "Yes")) %>% mutate(intermediate = ifelse(intermediate == 
-    0, "No", "Yes")) %>% ggplot(aes(x = vector, fill = intermediate)) + geom_bar()
+gmpTraits %>%
+  mutate(vector = ifelse(vector == 0, "No", "Yes")) %>%
+  mutate(intermediate = ifelse(intermediate == 0, "No", "Yes")) %>%
+  ggplot(aes(x = vector, fill = intermediate)) +
+  geom_bar()
 ```
 
 ![plot of chunk unnamed-chunk-7](W2_Presentation-figure/unnamed-chunk-7-1.png)
@@ -556,8 +561,8 @@ Make a script
 
 ```r
 # Written on May 11, 2018 by Reni Kaul
-# This script contains functions for the R workshop; REU summer 2018. 
-# Originally written to be part of the W2_Functions.Rmd exploratio
+# This script contains functions for the R workshop; REU popbio program. 
+# Originally written to be part of the W2_Functions.Rmd exploration
 
  PrevByParType <- function(dataset){
   dataset %>%
@@ -611,7 +616,7 @@ left: 50%
 ***
 ![W2](figs/W2_iterative.png)
 
-
+**Reminder: complete project worksheet**
 
   6. Wrap Up
 ========================================================
