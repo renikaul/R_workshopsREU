@@ -1,7 +1,7 @@
 Simulating infectious diseases with R
 ========================================================
 author: John Vinson
-date: June 4, 2018
+date: June 3, 2019
 autosize: true
 font-import: https://fonts.googleapis.com/css?family=PT+Sans
 font-family: 'PT Sans', sans-serif;
@@ -27,9 +27,9 @@ About Myself
 
 Selected Publications (using R): 
 
-- Fisher, Molly A., John E. Vinson, John L. Gittleman, and John M. Drake. 2018. “The Description and Number of Undiscovered Mammal Species.” Ecology and Evolution 8 (7): 3628–35.
-
 - Vinson, John E., John M. Drake, Pejman Rohani, and Andrew W. Park. 2016. “The Potential for Sexual Transmission to Compromise Control of Ebola Virus Outbreaks.” Biology Letters 12 (6). 
+
+- Fisher, Molly A., John E. Vinson, John L. Gittleman, and John M. Drake. 2018. “The Description and Number of Undiscovered Mammal Species.” Ecology and Evolution 8 (7): 3628–35.
  
 Review of past workshops 
 ========================================================
