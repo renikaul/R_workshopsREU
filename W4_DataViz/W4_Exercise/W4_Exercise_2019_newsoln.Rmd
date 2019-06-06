@@ -1,0 +1,250 @@
+---
+title: "W4_Exercise_soln"
+author: "PopBio REU 2019"
+date: "Reni Kaul and Ania Majewska"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, tidy = TRUE, message = FALSE, warning = FALSE)
+```
+
+# Inferential statistics
+
+The reading reviewed three common inferential statistical tests: t-test, correlations, and linear regressions. These are common tests, but `R` is capable of so much more. 
+
+If your research requires more extensive inferential statistics, [Modern Applied Statistics with S by Venables and Ripley](ftp://ftp.math.binghamton.edu/pub/qyu/text.pdf) is a good resource for some technical background and implementation. 
+
+## Monarch butterfly dataset 
+
+We will use these tests to explore a dataset of monarch butterflies which can be infected with a protozoan parasite called Ophryocystis elektroscirrha (OE). [More about the parasites](http://monarchparasites.org/) Citizen scientists and researchers from UGA went out to sample monarchs for this parasite to better understand whether urbanization might influence infection risk. Monarchs were sampled at sites with varying amount of urbanization from 3 regions of the US: northern US, southern US, and Hawaii. For each site the researchers noted how many monarchs were sampled, how many were infected, infection prevalence, year of sampling, exact coordinates (Latitude, Longitude), and information on urbanization around each site. Urbanization metrics include impervious surface and developed land cover classes (open space, low intensity, medium intesity, and high intensity developed land) at two scales 1km and 2.5km. 
+
+
+![Figure 1 A) Sampling locations for three monarch populations examined in this study. The summer breeding range of eastern North American migratory monarchs is highlighted in yellow, and locations where monarchs were sampled appear as blue circles (N = 47 sites). Monarchs were also sampled in southern coastal U.S. (red circles; N = 21 sites), and in Hawaii (gray circles; N = 17 sites). B) Example site with four developed land cover classes surrounding a sampling location in Hawaii at two scales (1 km and 2.5 km).](figs/MonarchDataFigure1_new.jpg)
+
+## Key to urbanization metrics 
+Impervious surface - human-made structures through which water cannot infiltrate, such as roads, parking lots, rooftops
+
+Open Space - areas with a mixture of some constructed materials, but mostly vegetation in the form of lawn grasses. Impervious surfaces account for less than 20% of total cover. These areas most commonly include large-lot single-family housing units, parks, golf courses, and vegetation planted in developed settings for recreation, erosion control, or aesthetic purposes.
+
+Low intensity - areas with a mixture of constructed materials and vegetation. Impervious surfaces account for 20% to 49% percent of total cover. These areas most commonly include single-family housing units.
+
+Medium intensity - areas with a mixture of constructed materials and vegetation. Impervious surfaces account for 50% to 79% of the total cover. These areas most commonly include single-family housing units.
+
+High intensity -highly developed areas where people reside or work in high numbers. Examples include apartment complexes, row houses and commercial/industrial. Impervious surfaces account for 80% to 100% of the total cover.
+
+
+
+First, load the data and take a look. 
+
+```{r load data}
+library(tidyverse)
+
+# read in the  dataset
+monarchs <- read.csv("data/butterflies.csv")
+
+# take a quick look at the data
+
+summary(monarchs)
+
+
+```
+
+
+## Questions and hypothesis
+
+You are tasked with *determining if butterfly infection prevalence is related to the region in which the butterflies were sampled and whether there are any relationships with urbanization metrics*. There are many approaches that you could take, but start with the basic inferential statistics to ask:
+  
+  1. Is the average monarch infection prevalence different between regions?
+  2. Is the prevalence associated with urbanization metrics? 
+  3. Are any of the urbanization metrics correlated with each other? 
+
+
+Use a significance level ($\alpha$) of 0.05 for all tests. If you would like an additional challenge, use inline `R` code to include test statics in your commentary following each analysis. In-line code is printed by starting with a single back tick and lower case r, and ends with a single back tick. See the reproducible research reading for more details. 
+
+## 1. Is the average monarch infection prevalence different between regions?
+
+This question is asking if the means differ. Let's visualize the data first. 
+
+```{r region bar plot}
+
+monarchs %>% 
+  group_by(Region) %>% 
+  ggplot(., aes(x = Region, y= Prevalence))+
+  geom_boxplot()
+
+```
+
+
+Interpret the boxplots. What do the different lines on the boxplot indicate? Run ?geom_boxplot to better understand boxplots. 
+
+
+The question is whether the means differ. From the reading, we know a t-test will test for a *difference of means*. Conventionally, the null hypothesis (H_0) is *no difference* between the means, while the alternative hypothesis (H_A) is a difference in the means. Use the `t.test()` function to test for a difference of means between the regions. There are three regions, so you may want to run multiple tests.
+
+```{r t test}
+
+TestDF<-monarchs %>%
+  group_by(Region) %>% 
+  mutate(grouped_id = row_number()) %>% 
+  select(Region, Prevalence, grouped_id) %>% 
+  spread(key = Region, value = Prevalence)
+
+
+NandStest<- t.test(TestDF$NorthernUS, TestDF$SouthernUS)
+NandStest
+
+NandHtest<- t.test(TestDF$NorthernUS, TestDF$Hawaii)
+NandHtest
+
+SandHtest<- t.test(TestDF$SouthernUS, TestDF$Hawaii)
+SandHtest
+
+```
+
+**Interperet the results of the t-tests**
+
+The average number of cases between the regions are significantly different. Looking at the first test: (`r signif(NandStest$p.value, digits = 2)`). The estimated range of the difference of means is from `r signif(NandStest$conf.int[1],digits = 3)` to `r signif(NandStest$conf.int[2],digits = 3)`. This range does not include zero, so the we reject the null hypothesis of no difference. 
+
+
+## 2. Is the infection prevalence associated with any of the urbanization metrics?
+
+Each group can pick one of the urbanization metrics: (1) impervious surface, (2) open space, (3) low, (4) medium, or (5) high developed land cover.
+
+Based on the description of the urbanization metrics above, come up with a hypothesis as to why a metric might increase infection risk.
+
+Visualize first
+```{r plots}
+
+monarchs %>%
+  ggplot(aes(Impervious.Surf_1km, Prevalence, color = Region)) +
+  geom_point()
+
+```
+
+
+We will examine each region separatly since we noted significant differences in infection prevalance.
+```{r subset }
+Smonachs <- monarchs %>%
+            filter(Region == "SouthernUS") 
+```
+
+Next, let's fit a linear regression model to that data subset for Southern US.
+
+Create a linear model (`lm()`) for Southern US using the data subset. 
+
+```{r southern lm}
+
+Smo1.lm <- lm(formula = Prevalence ~ Impervious.Surf_1km, data = Smonachs)
+summary(Smo1.lm)
+
+```
+
+The model can be inspected using the function `summary()`. Find the model's slope in the summary printout. The slope can also be pulled out using `$coefficients` following the linear model object name (ie. Smo1.lm$coefficients). 
+
+Let's repeat the process for the Northern US and Hawaii.
+
+```{r northern lm}
+
+Nmonachs <- monarchs %>%
+            filter(Region == "NorthernUS") 
+
+North.lm <- lm(formula = Prevalence ~ Impervious.Surf_1km, data = Nmonachs)
+summary(North.lm)
+
+```
+```{r Hawaii lm}
+
+Hawmonachs <- monarchs %>%
+            filter(Region == "Hawaii") 
+
+Hawaii.lm <- lm(formula = Prevalence ~ Impervious.Surf_1km, data = Hawmonachs )
+summary(Hawaii.lm)
+
+```
+
+**Interperet the results of the linear models**
+
+You can add linear model lines with geom_smooth()
+```{r}
+monarchs %>%
+  ggplot(aes(Impervious.Surf_1km, Prevalence, color = Region)) +
+  geom_point()+
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+
+## 3. Are any of the urbanization metrics correlated with each other?  
+
+
+Let's first look a plot of impervious surface and open space at 1km scale.
+```{r}
+monarchs %>%
+  ggplot(aes(Impervious.Surf_1km, open_1km)) +
+  geom_point()
+
+```
+
+
+What if we look at the different regions.
+```{r}
+monarchs %>%
+  ggplot(aes(Impervious.Surf_1km, open_1km, color = Region)) +
+  geom_point()
+
+```
+
+
+Let's do a formal test. Correlation considers the level of association between two variables (ie. an increase in the first variable occurs with an increase or decrease in the second variable).However, in the tradition hypothesis testing way, we can also express the null hypothesis of no correlation (H0 : $\rho = 0$ ), which we then seek to reject. Use the `cor.test()` function to test for significant correlation. 
+
+```{r correlation}
+
+UrbCorr <- cor.test(monarchs$Impervious.Surf_1km, monarchs$open_1km)
+
+UrbCorr
+```
+
+**Interperet the results of the correlation test**
+
+The number of cases reported in the two districts are strongly, positively correlated ($\rho$ = `r signif(UrbCorr$estimate, digits = 2)`, p = `r signif(UrbCorr$p.value, digits = 2)`).
+
+
+## Extra challenge !!! 
+
+Create a map of the sampling sites (only mainland US) with symbols indicating sample sizes per site.
+
+```{r}
+library(maps)
+library(ggmap)
+
+# load US map data - entire US
+
+all_states <- ggplot2::map_data("state")
+
+mydata <- 
+ monarchs %>% 
+  filter(State !="HI")
+
+# add nice colors for points on map
+cols<-c("#0571b0","#f03b20") 
+
+
+# make a map with points indicating sample sizes per site
+ggplot() + 
+  geom_polygon(data=all_states, aes(x=long, y=lat, group = group),colour="black", fill="grey98")+
+  geom_point(data=mydata, aes(x=Longitude, y=Latitude, size = Total.samples,colour = Region)) + 
+  scale_size(name="No. of sampled \nindividuals", breaks =c(25,50,75,100))+
+  theme_classic()+
+  scale_colour_manual(values = cols, name="Region")+
+  theme(axis.line=element_blank(),
+        axis.text.x=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks=element_blank(),
+        axis.title.x=element_blank(),
+        axis.title.y=element_blank(),
+        legend.text=element_text(size=18),
+        plot.title = element_text(size = 18, face = "bold") , 
+        legend.title=element_text(size=18))
+
+
+```
+

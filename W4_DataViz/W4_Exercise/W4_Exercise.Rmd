@@ -25,16 +25,13 @@ Load the data and finish the plot in the code chunk below.
 ```{r load data}
 library(tidyverse)
 # read in the niamey dataset
-niamey <- readRDS("data/niamey.rds")
+Monarchs <- read_csv("data/butterflies.csv")
 
 # plot the data to get an understanding of it
 niamey %>%
-  gather(key = District , value = case, D1:D3) %>%
 ##  ggplot() +
 
 ```
-
-**Note:** The command to bring data into `R` (`readRDS()`) is different than what we have used in the past (`read_csv()`). You may also notice that the data file has a `.rds` extension. This file type is an `R` specific file type that can be produced (`saveRDS()`) and read by `R`. If your work involves large data files, it is best to use `.rds` or `.RData` file types. Read more about this in the [Data Import](http://r4ds.had.co.nz/data-import.html#readr-datetimes) chapter of R for Data Science or the [STAT545 course](http://stat545.com/block026_file-out-in.html#file-io-overviewl) review.
 
 ## Questions and hypothesis
 
@@ -112,8 +109,8 @@ The expression $log(Y_t) \approx (R_0 - 1)\gamma \times t + log(Y_0)$  can be ma
 
 ```{r district 1 lm}
 
-## district1.lm <- lm(formula = log(D1) ~ Day - 1, data = )
-## summary()
+ lm1 <- lm(formula = Prevalence~ med_1km, data = Monarchs)
+ summary(lm1)
 
 ```
 

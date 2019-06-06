@@ -1,6 +1,6 @@
 Data Visualization in R
 ========================================================
-author: [NAME]
+author: Michelle Evans
 date: 
 autosize: true
 font-import: https://fonts.googleapis.com/css?family=PT+Sans
@@ -14,13 +14,13 @@ font-family: 'PT Sans', sans-serif;
 About Myself
 ========================================================
 
- - My research interest is [INSERT DESCRIPTION]
+ - My research interest is urbanization and mosquito-borne diseases.
  - I use `R` in my research to:
-   + organize data 
-   + develop machine learning algorithms
-   + 
- - I mostly work [in this disease system or approach] 
- - My contact info is [INSERT EMAIL]
+   + analyze data from the field and lab
+   + map out hotspots of disease risk
+   + help "future-me" remember what I did
+ - I mostly work with dengue in *Aedes* mosquitoes in urban areas in India.
+ - My contact info is mvevans@uga.edu
  
 Review of past workshops 
 ========================================================
