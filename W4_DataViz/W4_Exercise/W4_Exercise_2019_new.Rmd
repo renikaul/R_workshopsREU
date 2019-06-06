@@ -1,5 +1,5 @@
 ---
-title: "W4_Exercise_soln"
+title: "W4_Exercise"
 author: "PopBio REU 2019"
 date: "Reni Kaul and Ania Majewska"
 output: html_document
@@ -45,7 +45,7 @@ monarchs <- read.csv("data/butterflies.csv")
 
 # take a quick look at the data
 
-summary(monarchs)
+##summary()
 
 ```
 
@@ -63,14 +63,15 @@ Use a significance level ($\alpha$) of 0.05 for all tests. If you would like an 
 
 ## 1. Is the average monarch infection prevalence different between regions?
 
-This question is asking if the means differ. Let's visualize the data first. 
+This question is asking if the means differ. Let's visualize the data first with a boxplot. 
 
 ```{r region bar plot}
 
-monarchs %>% 
-  group_by(Region) %>% 
-  ggplot(., aes(x = Region, y= Prevalence))+
-  geom_boxplot()
+# plot the data 
+
+##monarchs %>% 
+  ##group_by(Region) %>% 
+  ##ggplot()
 
 ```
 
@@ -86,17 +87,17 @@ TestDF<-monarchs %>%
   group_by(Region) %>% 
   mutate(grouped_id = row_number()) %>% 
   select(Region, Prevalence, grouped_id) %>% 
-  spread(key = Region, value = Prevalence)
+  ##spread() # make the data in a long format 
 
 
-NandStest<- t.test(TestDF$NorthernUS, TestDF$SouthernUS)
-NandStest
+##NandStest<- t.test()
+##NandStest
 
-NandHtest<- t.test(TestDF$NorthernUS, TestDF$Hawaii)
-NandHtest
+##NandHtest<- t.test()
+##NandHtest
 
-SandHtest<- t.test(TestDF$SouthernUS, TestDF$Hawaii)
-SandHtest
+##SandHtest<- t.test()
+##SandHtest
 
 ```
 
@@ -114,9 +115,8 @@ Based on the description of the urbanization metrics above, come up with a hypot
 Visualize first
 ```{r plots}
 
-monarchs %>%
-  ggplot(aes(Impervious.Surf_1km, Prevalence, color = Region)) +
-  geom_point()
+##monarchs %>%
+  ##ggplot()
 
 ```
 
@@ -124,7 +124,7 @@ monarchs %>%
 We will examine each region separatly since we noted significant differences in infection prevalance.
 ```{r subset }
 Smonachs <- monarchs %>%
-            filter(Region == "SouthernUS") 
+           ## filter() 
 ```
 
 Next, let's fit a linear regression model to that data subset for Southern US.
@@ -145,19 +145,23 @@ Let's repeat the process for the Northern US and Hawaii.
 ```{r northern lm}
 
 Nmonachs <- monarchs %>%
-            filter(Region == "NorthernUS") 
+            ##filter() 
 
-North.lm <- lm(formula = Prevalence ~ Impervious.Surf_1km, data = Nmonachs)
-summary(North.lm)
+##North.lm <- lm()
+##summary(North.lm)
 
 ```
+
+
+
+Now Hawaii 
 ```{r Hawaii lm}
 
-Hawmonachs <- monarchs %>%
-            filter(Region == "Hawaii") 
+##Hawmonachs <- monarchs %>%
+           ## filter() 
 
-Hawaii.lm <- lm(formula = Prevalence ~ Impervious.Surf_1km, data = Hawmonachs )
-summary(Hawaii.lm)
+##Hawaii.lm <- lm()
+##summary(Hawaii.lm)
 
 ```
 
@@ -177,18 +181,18 @@ monarchs %>%
 
 Let's first look a plot of impervious surface and open space at 1km scale.
 ```{r}
-monarchs %>%
-  ggplot(aes(Impervious.Surf_1km, open_1km)) +
-  geom_point()
+##monarchs %>%
+  ##ggplot()) +
+  ##geom_point()
 
 ```
 
 
 What if we look at the different regions.
 ```{r}
-monarchs %>%
-  ggplot(aes(Impervious.Surf_1km, open_1km, color = Region)) +
-  geom_point()
+##monarchs %>%
+  ##ggplot(aes()) +
+  ##geom_point()
 
 ```
 
@@ -197,9 +201,10 @@ Let's do a formal test. Correlation considers the level of association between t
 
 ```{r correlation}
 
-UrbCorr <- cor.test(monarchs$Impervious.Surf_1km, monarchs$open_1km)
+##UrbCorr <- cor.test()
 
-UrbCorr
+##UrbCorr
+
 ```
 
 **Interperet the results of the correlation test**
@@ -214,35 +219,6 @@ Create a map of the sampling sites (only mainland US) with symbols indicating sa
 ```{r}
 library(maps)
 library(ggmap)
-
-# load US map data - entire US
-
-all_states <- ggplot2::map_data("state")
-
-mydata <- 
- monarchs %>% 
-  filter(State !="HI")
-
-# add nice colors for points on map
-cols<-c("#0571b0","#f03b20") 
-
-
-# make a map with points indicating sample sizes per site
-ggplot() + 
-  geom_polygon(data=all_states, aes(x=long, y=lat, group = group),colour="black", fill="grey98")+
-  geom_point(data=mydata, aes(x=Longitude, y=Latitude, size = Total.samples,colour = Region)) + 
-  scale_size(name="No. of sampled \nindividuals", breaks =c(25,50,75,100))+
-  theme_classic()+
-  scale_colour_manual(values = cols, name="Region")+
-  theme(axis.line=element_blank(),
-        axis.text.x=element_blank(),
-        axis.text.y=element_blank(),
-        axis.ticks=element_blank(),
-        axis.title.x=element_blank(),
-        axis.title.y=element_blank(),
-        legend.text=element_text(size=18),
-        plot.title = element_text(size = 18, face = "bold") , 
-        legend.title=element_text(size=18))
 
 ```
 
