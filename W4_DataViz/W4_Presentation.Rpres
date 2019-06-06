@@ -1,6 +1,6 @@
 Data Visualization in R
 ========================================================
-author: Michelle Evans
+author: Robbie Richards
 date: 
 autosize: true
 font-import: https://fonts.googleapis.com/css?family=PT+Sans
@@ -17,13 +17,14 @@ opts_chunk$set(cache = FALSE, eval = FALSE)
 About Myself
 ========================================================
 
- - My research interest is urbanization and mosquito-borne diseases.
+ - My research interest is predator-parasite interactions.
  - I use `R` in my research to:
    + analyze data from the field and lab
    + map out hotspots of disease risk
+   + predict species distributions
    + help "future-me" remember what I did
- - I mostly work with dengue in *Aedes* mosquitoes in urban areas in India.
- - My contact info is mvevans@uga.edu
+ - I mostly work with small mammals, their predators, and their gastro-intestinal parasites
+ - My contact info is robert.richards@uga.edu
  
 Review of past workshops 
 ========================================================
@@ -225,51 +226,44 @@ Strength of R for statistics
 * code based analysis means modifications to analysis are recorded
 * ...
 
-Practice using inferential statistics
-========================================================  
-We will use these tests to explore a dataset of measles cases collected from three districts in Niamey, Niger.
 
-```{r, eval=TRUE, echo=FALSE, messages = FALSE, fig.align='center'}
-library(tidyverse)
-# read in the niamey dataset
-niamey <- readRDS("data/niamey.rds")
 
-# plot the data to get an understanding of it
-niamey %>% gather(key = District, value = case, D1:D3) %>% ggplot(aes(Day, case, 
-    color = District)) + geom_point() + geom_line() 
-```
-
-Start by opening `W4_Exercise\W4_Exercise.Rproj` 
-
-We want to compare D1 and D2 to ask:
+We want to to ask:
 ========================================================  
 left: 65%
 <br>
 
 **Question**
 
-1. Are the average number of cases in the two districts of Niamey different from each other?
-2. Are the number of cases for each reporting period strongly associated?
-3. Does the estimated $R_0$ differ between districts? 
-
+You are tasked with *determining if butterfly infection prevalence is related to the region in which the butterflies were sampled and whether there are significant relationships with urbanization metrics*. There are many approaches that you could take, but start with the basic inferential statistics to ask:
+  
+  1. Is the average monarch infection prevalence different between regions?
+  2. Is the prevalence associated with urbanization metrics? 
+  3. Are any of the urbanization metrics correlated with each other?
+  
 ***
 <br>
 
 **Test**
 
-1. T-test `t.test()`
-2. Correlation `cor.test()`
-3. Linear regression `lm()`
+1. T-tests `t.test()`
+2. Linear regressions `lm()`
+3. Correlation `cor.test()`
 
-We want to compare D1 and D2 to ask:
+
+
+
+Start by opening `W4_Exercise\W4_Exercise.Rproj` 
+
+We want to compare regions to ask:
 ========================================================  
 left: 50%
 <br>
 **Test**
 
-1. T-test `t.test()`
-2. Correlation `cor.test()`
-3. Linear regression `lm()`
+1. T-tests `t.test()`
+2. Linear regressions `lm()`
+3. Correlation `cor.test()`
 
 ***
 <br>
@@ -279,41 +273,42 @@ left: 50%
 
 
 
-We want to compare D1 and D2 to ask:
+We want to compare regions to ask:
 ========================================================  
 left: 50%
 <br>
 **Test**
 
-1. T-test `t.test()`
-2. Correlation `cor.test()`
-3. Linear regression `lm()`
+1. T-tests `t.test()`
+2. Linear regressions `lm()`
+3. Correlation `cor.test()`
+
 
 ***
 <br>
 **Result**
 
 1. the means differ
-2. strongly, positively correlated
+2. some are strongly, positively correlated
 
 
-We want to compare D1 and D2 to ask:
+We want to compare regions to ask:
 ========================================================  
 left: 50%
 <br>
 **Test**
 
-1. T-test `t.test()`
-2. Correlation `cor.test()`
-3. Linear regression `lm()`
+1. T-tests `t.test()`
+2. Linear regressions `lm()`
+3. Correlation `cor.test()`
 
 ***
 <br>
 **Result**
 
 1. the means differ
-2. strongly, positively correlated
-3. different slopes and $\hat R_0$
+2. relationships between infection and urbanization
+3. some are strongly, positively correlated
 
 5. Wrap Up: We can ...
 ========================================================
